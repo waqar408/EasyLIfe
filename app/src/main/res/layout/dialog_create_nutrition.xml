@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_8sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAddWorkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_24sdp"
+            app:cardElevation="@dimen/_4sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                >
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:text="Create Nutrition"
+                    android:textColor="@color/haiti"
+                    android:textSize="@dimen/_15sdp" />
+                <LinearLayout
+                    android:id="@+id/ln"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/tv"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:background="@drawable/ed_stroked_back_green">
+                    <TextView
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nutrition Name"
+                        android:fontFamily="@font/barlow_medium"
+                        android:textColor="@color/colorc"
+                        />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_26sdp"
+                        android:background="@null"
+                        android:textColor="@color/haiti"
+                        android:text="Lucy Martin"
+                        android:gravity="start"
+                        android:textSize="@dimen/_13sdp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        />
+                </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_below="@+id/ln"
+                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/bg_green_rounded_30dp"
+                    android:elevation="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/tvnext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="@dimen/_36sdp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:text="Got it!"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</RelativeLayout>

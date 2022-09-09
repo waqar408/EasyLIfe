@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/porcelain"
+    tools:context=".trainerside.activities.clientdetail.UserWorkoutDetailActivity">
+
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        android:visibility="gone"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_5sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
+    <RelativeLayout
+        android:id="@+id/layout_backArrow"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_8dp"
+        android:elevation="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_back_arrow" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/workoutCategoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="Selected Workouts List"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_14sdp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVideos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_backArrow"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_12sdp" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_550sdp"
+            android:background="@drawable/bottom_right_curve_back"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:elevation="@dimen/_15sdp"
+                android:outlineAmbientShadowColor="@color/white"
+                android:outlineSpotShadowColor="@color/white"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/text_todo"
+                    android:src="@drawable/white_bell_icon" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ln"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:background="@drawable/bottom_right_curve_dark_green"
+                android:elevation="@dimen/_6sdp"
+                android:outlineAmbientShadowColor="@color/black"
+                android:outlineSpotShadowColor="@color/black">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/tvTrainerName"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:background="@drawable/bottom_right_curve_dark_green"
+
+                    >
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/trainerPic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.SelectedCornerRadius" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvTrainerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tvSpeciality"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_24sdp" />
+
+                <TextView
+                    android:id="@+id/tvSpeciality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/rlChats"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:text="Fitness Expert"
+                    android:textColor="@color/white70percent"
+                    android:textSize="@dimen/_12sdp" />
+
+                <RelativeLayout
+                    android:id="@+id/rlChats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/rlChat"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:background="@drawable/rounded_green"
+                        android:elevation="@dimen/_12sdp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/_17sdp"
+                            android:src="@drawable/chaticon" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlReviews1"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_toEndOf="@+id/rlChat"
+                        android:background="@drawable/rounded_green"
+                        android:elevation="@dimen/_12sdp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/img"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_star_white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:layout_toEndOf="@+id/img"
+                            android:fontFamily="@font/barlow_semibold"
+                            android:text="5.0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_11sdp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/bg_white_rounded_8dp"
+                    android:elevation="@dimen/_15sdp"
+                    android:outlineAmbientShadowColor="@color/white"
+                    android:outlineSpotShadowColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/text_todo"
+                        android:src="@drawable/ic_back_arrow" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ln"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_8sdp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvWorkExperience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_15sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/barlow_regular"
+                        android:gravity="center_horizontal"
+                        android:text="Work\n Experience"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:background="@color/greenverticalviewcolor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvCompleteWorkout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_15sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/barlow_regular"
+                        android:gravity="center_horizontal"
+                        android:text="Completed\n Workouts"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:background="@color/greenverticalviewcolor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvClients"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_15sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/barlow_regular"
+                        android:gravity="center_horizontal"
+                        android:text="Active\n Clients"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rlReviewsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="Reviews"
+                android:textColor="@color/haiti"
+                android:textSize="@dimen/_17sdp" />
+
+            <RelativeLayout
+                android:id="@+id/rlReviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvReviews">
+
+                <TextView
+                    android:id="@+id/tvNoViewFound"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:gravity="center"
+                    android:text="No Review Found"
+                    android:textColor="@color/haiti"
+                    android:textSize="@dimen/_13sdp"
+                    android:visibility="gone" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/idNestedSV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <!--linear layout for displaying
+                            our recycler view-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <!--recycler view for displaying our list of data
+                                and we are making nested scroll for our
+                                recycler view as false-->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvReviews"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:nestedScrollingEnabled="false"
+                            tools:itemCount="1"
+                            tools:listitem="@layout/item_reviews" />
+
+                        <!--we are adding progress bar
+                                for the purpose of loading-->
+                        <ProgressBar
+                            android:id="@+id/idPBLoading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:progressTint="@color/white"
+                            android:theme="@style/progressBarBlue" />
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tvAddAReviews"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/rlReviews"
+                android:layout_marginHorizontal="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/btn_back_blue"
+                android:elevation="@dimen/_12sdp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="Add A Reviews"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/tvSubsribeNow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_below="@+id/tvAddAReviews"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:background="@drawable/btn_back"
+                android:elevation="@dimen/_12sdp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="Subscribe Now"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

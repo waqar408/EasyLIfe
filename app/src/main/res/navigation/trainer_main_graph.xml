@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trainer_main_graph"
+    app:startDestination="@id/trainerHomeFragment">
+
+
+    <fragment
+        android:id="@+id/trainerHomeFragment"
+        android:name="com.easylife.easylifes.trainerside.fragments.TrainerHomeFragment"
+        android:label="fragment_trainer_home"
+        tools:layout="@layout/fragment_trainer_home" >
+        <action
+            android:id="@+id/action_trainerHomeFragment_to_trainerChatFragment"
+            app:destination="@id/trainerChatFragment" />
+        <action
+            android:id="@+id/action_trainerHomeFragment_to_trainerProfileFragment"
+            app:destination="@id/trainerProfileFragment" />
+        <action
+            android:id="@+id/action_trainerHomeFragment_to_trainerExcersiceFragment"
+            app:destination="@id/trainerExcersiceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainerChatFragment"
+        android:name="com.easylife.easylifes.trainerside.fragments.TrainerChatFragment"
+        android:label="fragment_trainer_chat"
+        tools:layout="@layout/fragment_trainer_chat" />
+    <fragment
+        android:id="@+id/trainerExcersiceFragment"
+        android:name="com.easylife.easylifes.trainerside.fragments.TrainerExcersiceFragment"
+        android:label="fragment_trainer_excersice"
+        tools:layout="@layout/fragment_trainer_excersice" />
+    <fragment
+        android:id="@+id/trainerProfileFragment"
+        android:name="com.easylife.easylifes.trainerside.fragments.TrainerProfileFragment"
+        android:label="fragment_trainer_profile"
+        tools:layout="@layout/fragment_trainer_profile" />
+</navigation>

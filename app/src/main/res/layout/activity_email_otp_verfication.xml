@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userside.activities.auth.EmailOtpVerficationActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbarThumbVertical="@null">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/layout_backArrow"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_white_rounded_8dp"
+                android:elevation="@dimen/_15sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/text_todo"
+                    android:src="@drawable/ic_back_arrow" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/text_verifyMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_22sdp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="Email Verification"
+                android:textColor="@color/hintcolor"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/text_enterOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_verifyMobile"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="Enter your OTP here"
+                android:textColor="@color/smokey_grey"
+                android:textSize="@dimen/_13sdp" />
+
+            <com.chaos.view.PinView
+                android:id="@+id/pinview"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_enterOtp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_48sdp"
+                android:cursorVisible="true"
+                android:elevation="@dimen/_12sdp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:itemBackground="@drawable/pin_back"
+                android:shadowColor="@color/black"
+                android:shadowRadius="1"
+                android:textColor="@color/black"
+                app:cursorColor="@color/black"
+                app:hideLineWhenFilled="true"
+                app:itemCount="6"
+                app:itemHeight="@dimen/_40sdp"
+                app:itemSpacing="@dimen/_10sdp"
+                app:itemWidth="@dimen/_40sdp"
+                app:lineColor="@color/white"
+                app:lineWidth="0dp" />
+
+
+            <TextView
+                android:id="@+id/text_receiveCod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pinview"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_70sdp"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="Didn't you received any code?"
+                android:textColor="@color/smokey_grey"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/text_resendCod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_receiveCod"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="Re-send code"
+                android:textColor="@color/appColor"
+                android:textSize="@dimen/_13sdp" />
+
+            <RelativeLayout
+                android:id="@+id/layout_send"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@id/text_resendCod"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginVertical="@dimen/_30sdp"
+                android:background="@drawable/bg_green_rounded_30dp"
+                android:elevation="@dimen/_8sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/barlow_medium"
+                    android:text="Verify"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

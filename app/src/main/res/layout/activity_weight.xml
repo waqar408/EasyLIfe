@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userside.activities.auth.WeightActivity">
+    <RelativeLayout
+        android:id="@+id/layout_backArrow"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_8dp"
+        android:elevation="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_back_arrow" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/text_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:fontFamily="@font/barlow_regular"
+        android:padding="@dimen/_3sdp"
+        android:text="Skip"
+        android:textColor="@color/smokey_grey"
+        android:textSize="@dimen/_13sdp" />
+
+    <ImageView
+        android:id="@+id/imgline"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_10sdp"
+        android:layout_below="@+id/layout_backArrow"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_36sdp"
+        android:src="@drawable/weightslidebar" />
+
+    <TextView
+        android:id="@+id/text_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgline"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_36sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:gravity="center"
+        android:text="What's your weight?"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_17sdp" />
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_gender"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:text="Help us to create your\n personalized plan"
+        android:textColor="@color/smokey_grey"
+        android:textSize="@dimen/_13sdp" />
+
+   <LinearLayout
+       android:id="@+id/ln"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/_38sdp"
+       android:background="@drawable/btn_weight_selection_back"
+       android:layout_below="@+id/text_description"
+       android:layout_marginHorizontal="@dimen/_66sdp"
+       android:layout_marginTop="@dimen/_24sdp"
+       android:elevation="@dimen/_20sdp"
+       android:weightSum="1"
+       >
+       <TextView
+           android:id="@+id/tvLbs"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_weight="0.5"
+           android:layout_marginStart="@dimen/_1sdp"
+           android:layout_marginVertical="@dimen/_1sdp"
+           android:text="lbs"
+           android:textSize="@dimen/_13sdp"
+           android:textColor="@color/smokey_grey"
+           android:gravity="center"
+           android:background="@drawable/btn_weight_selection_white"
+           android:fontFamily="@font/barlow_medium"/>
+       <TextView
+           android:id="@+id/tvKg"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginEnd="@dimen/_1sdp"
+           android:layout_marginVertical="@dimen/_1sdp"
+           android:text="kg"
+           android:textColor="@color/black"
+           android:gravity="center"
+           android:textSize="@dimen/_13sdp"
+           android:fontFamily="@font/barlow_medium"
+           android:layout_weight="0.5"/>
+   </LinearLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_below="@+id/ln"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:src="@drawable/weightselect" />
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ln"
+        android:layout_marginTop="@dimen/_24sdp">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_40sdp"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvUnit"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_toEndOf="@+id/tv"
+            android:gravity="center"
+            android:text="lbs"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp" />
+    </RelativeLayout>
+
+
+    <com.elsunhoty.rulerpicker.lib.RulerView
+        android:id="@+id/viewRuler"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/rl"
+        app:layout_constraintVertical_bias="0.13"
+        app:ruler_hash_mark_distance="16dp"
+        app:ruler_hash_mark_interval="8"
+        app:ruler_indicator_color="@color/appColor"
+        app:ruler_indicator_height="90dp"
+        app:ruler_indicator_width="5dp"
+        app:ruler_long_hash_mark_color="#FFFFFF"
+        app:ruler_long_hash_mark_height="40dp"
+        app:ruler_long_hash_mark_text_color="#BFBFBF"
+        app:ruler_long_hash_mark_text_margin_top="14dp"
+        app:ruler_long_hash_mark_text_size="12sp"
+        app:ruler_long_hash_mark_width="2dp"
+        app:ruler_max_value="300"
+        app:ruler_small_hash_mark_color="#CFCFCF"
+        app:ruler_small_hash_mark_height="30dp"
+        app:ruler_small_hash_mark_width="1dp" />
+
+    <RelativeLayout
+        android:id="@+id/layout_send"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginVertical="@dimen/_30sdp"
+        android:background="@drawable/bg_green_rounded_30dp"
+        android:elevation="@dimen/_12sdp">
+
+        <TextView
+            android:id="@+id/tvnext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_36sdp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Next"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
+
+        <ImageView
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_36sdp"
+            android:layout_toEndOf="@+id/tvnext"
+            android:src="@drawable/ic_forward_white" />
+
+    </RelativeLayout>
+</RelativeLayout>

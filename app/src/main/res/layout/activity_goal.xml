@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userside.activities.auth.GoalActivity">
+    <RelativeLayout
+        android:id="@+id/layout_backArrow"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_8dp"
+        android:elevation="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_back_arrow" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/text_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:fontFamily="@font/barlow_regular"
+        android:padding="@dimen/_3sdp"
+        android:text="@string/skip"
+        android:textColor="@color/smokey_grey"
+        android:textSize="@dimen/_13sdp" />
+
+    <ImageView
+        android:id="@+id/imgline"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_10sdp"
+        android:layout_below="@+id/layout_backArrow"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_36sdp"
+        android:src="@drawable/goalslider" />
+
+    <TextView
+        android:id="@+id/text_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgline"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_36sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:gravity="center"
+        android:text="@string/whatsgoals"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_17sdp" />
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_gender"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:text="@string/helpustocreate"
+        android:textColor="@color/smokey_grey"
+        android:textSize="@dimen/_13sdp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/text_description"
+        android:layout_marginTop="@dimen/_36sdp">
+        <TextView
+            android:id="@+id/getfilter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:text="@string/fitter"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:textColor="@color/smokey_grey"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/sleeping"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:text="@string/sleeping"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/smokey_grey"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:text="@string/wloss"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:textColor="@color/smokey_grey"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/track"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:text="@string/trackmy"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:textColor="@color/smokey_grey"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/improvefitness"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:text="@string/improvemy"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:textColor="@color/smokey_grey"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_send"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginVertical="@dimen/_30sdp"
+        android:background="@drawable/bg_green_rounded_30dp"
+        android:elevation="@dimen/_12sdp">
+
+        <TextView
+            android:id="@+id/tvnext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_36sdp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
+
+        <ImageView
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_36sdp"
+            android:layout_toEndOf="@+id/tvnext"
+            android:src="@drawable/ic_forward_white" />
+
+    </RelativeLayout>
+</RelativeLayout>

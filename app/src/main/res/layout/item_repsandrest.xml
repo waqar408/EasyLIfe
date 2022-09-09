@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+        <TextView
+            android:id="@+id/tvReps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="2"
+            android:layout_weight="0.4"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/haiti"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="0.3">
+            <TextView
+                android:id="@+id/tvTimeReps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 : 30"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/haiti"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="0.3">
+            <TextView
+                android:id="@+id/tvTimeRest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 : 30"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/haiti"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:background="@color/grayviewcolor"
+        />
+</LinearLayout>

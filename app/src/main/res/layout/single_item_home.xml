@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_24sdp"
+    app:cardElevation="@dimen/_16sdp"
+    android:layout_margin="@dimen/_12sdp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_145sdp"
+        >
+
+        <ImageView
+            android:id="@+id/image_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/text_todo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/images" />
+
+
+        <TextView
+            android:id="@+id/text_trainBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/rlRead"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:fontFamily="@font/barlow_bold"
+            android:text="Fitness"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp" />
+
+        <RelativeLayout
+            android:id="@+id/rlRead"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            >
+
+            <TextView
+                android:id="@+id/text_readMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="Read More"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/image_enterArrow"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:src="@drawable/ic_enter_arrow"
+                android:layout_toEndOf="@id/text_readMore"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:contentDescription="@string/text_todo"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

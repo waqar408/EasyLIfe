@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/porcelain"
+    tools:context=".trainerside.activities.clientdetail.SelectedWorkoutActivity">
+    <RelativeLayout
+        android:id="@+id/layout_backArrow"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_8dp"
+        android:elevation="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_back_arrow" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvWorkoutCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="Selected Workout"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_14sdp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvNoViewFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:fontFamily="@font/barlow_bold"
+        android:text="No Workout Found"
+        android:layout_above="@+id/layoutCreateWorkout"
+        android:layout_below="@+id/layout_backArrow"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layoutCreateWorkout"
+        android:layout_below="@+id/layout_backArrow">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSelectedWorkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_24sdp"
+            tools:listitem="@layout/item_selected_workout" />
+        <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+            android:id="@+id/dotloader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:trailingcircular_animDelay="600"
+            app:trailingcircular_animDuration="1200"
+            android:visibility="gone"
+            app:trailingcircular_bigCircleRadius="24dp"
+            app:trailingcircular_dotsColor="@color/appColor"
+            app:trailingcircular_dotsRadius="@dimen/_5sdp"
+            app:trailingcircular_noOfTrailingDots="5" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layoutCreateWorkout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:background="@drawable/bg_green_rounded_30dp"
+        android:elevation="@dimen/_8sdp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Create Workout"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
+
+    </RelativeLayout>
+</RelativeLayout>

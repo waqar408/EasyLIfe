@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/porcelain"
+    tools:context=".userside.activities.follower.FollowerFollowingActivity">
+    <RelativeLayout
+        android:id="@+id/layout_backArrow"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_8dp"
+        android:elevation="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_back_arrow" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="Followers"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_14sdp" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_bell_home" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/layout_backArrow"
+        android:id="@+id/layout_search"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_20dp"
+        android:elevation="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/image_search"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_search_icn"
+            app:tint="@color/homesearchcolor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_toEndOf="@id/image_search"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Search here..."
+            android:textColor="@color/homesearchcolor"
+            android:textSize="@dimen/_12sdp" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_app_color_rounded_100dp"
+            android:elevation="@dimen/_10sdp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/text_todo"
+                android:src="@drawable/ic_dictation" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@id/layout_search"
+        android:id="@+id/ln"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_38sdp"
+        android:background="@drawable/btn_porclain_back"
+        android:layout_marginHorizontal="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:elevation="@dimen/_20sdp"
+        android:weightSum="1"
+        >
+        <TextView
+            android:id="@+id/tvft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:text="Followers"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/btn_weight_selection_back"
+            android:fontFamily="@font/barlow_medium"/>
+        <TextView
+            android:id="@+id/tvcm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_1sdp"
+            android:layout_marginVertical="@dimen/_1sdp"
+            android:text="Following"
+            android:textColor="@color/graycolor"
+            android:gravity="center"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="@font/barlow_medium"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_16sdp"
+        android:id="@+id/rvFollowers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_6sdp"
+        android:layout_below="@+id/ln"
+        tools:listitem="@layout/item_followers"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_16sdp"
+        android:visibility="gone"
+        android:id="@+id/rvFollowings"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_6sdp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ln" />
+</RelativeLayout>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "758452967031",
+    "project_id": "easy-life-89301",
+    "storage_bucket": "easy-life-89301.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758452967031:android:c32de0f0187c2189f09872",
+        "android_client_info": {
+          "package_name": "com.easylife.easylifes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758452967031-1h38q381ci5bddifatao02qag6v858uh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.easylife.easylifes",
+            "certificate_hash": "cf719bf8f71d943efb41a2b2c40a24a98363cf9c"
+          }
+        },
+        {
+          "client_id": "758452967031-1bopeut40vn1unkv508h18nltrj0u01t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzEsT-J22bnjey4HmEB_EacNcMTlpzmDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758452967031-1bopeut40vn1unkv508h18nltrj0u01t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

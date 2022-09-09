@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/trainerHomeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/trainerChatFragment"
+        android:icon="@drawable/ic_message"
+        android:title="Doc" />
+
+    <item
+        android:id="@+id/trainerExcersiceFragment"
+        android:icon="@drawable/ic_excersice"
+        android:title="Tools" />
+
+
+
+    <item
+        android:id="@+id/trainerProfileFragment"
+        android:icon="@drawable/ic_profiles"
+        android:title="Me" />
+</menu>

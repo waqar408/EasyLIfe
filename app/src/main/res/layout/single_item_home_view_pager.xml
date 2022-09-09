@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:background="@drawable/bg_green_rounded_20dp"
+        android:elevation="@dimen/_10sdp"
+        >
+
+        <TextView
+            android:id="@+id/text_trainBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/barlow_semibold"
+            android:text="Train\n your body\n &amp; Mind"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_trainBody"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/text_readMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="Read More"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/image_enterArrow"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:src="@drawable/ic_enter_arrow"
+                android:layout_toEndOf="@id/text_readMore"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:contentDescription="@string/text_todo"/>
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/image_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_female" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userside.activities.MainActivity2">
+    <com.elsunhoty.rulerpicker.lib.RulerView
+        android:id="@+id/viewRuler"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13"
+        app:ruler_hash_mark_distance="16dp"
+        app:ruler_hash_mark_interval="8"
+        app:ruler_indicator_color="#73FF7474"
+        app:ruler_indicator_height="90dp"
+        app:ruler_indicator_width="5dp"
+        app:ruler_long_hash_mark_color="#FFFFFF"
+        app:ruler_long_hash_mark_height="40dp"
+        app:ruler_long_hash_mark_text_color="#BFBFBF"
+        app:ruler_long_hash_mark_text_margin_top="14dp"
+        app:ruler_long_hash_mark_text_size="12sp"
+        app:ruler_long_hash_mark_width="2dp"
+        app:ruler_max_value="300"
+        app:ruler_small_hash_mark_color="#CFCFCF"
+        app:ruler_small_hash_mark_height="30dp"
+        app:ruler_small_hash_mark_width="1dp" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewRuler" />
+</androidx.constraintlayout.widget.ConstraintLayout>

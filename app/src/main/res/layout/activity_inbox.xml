@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/porcelain"
+    tools:context=".userside.activities.inbox.InboxActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55sdp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:padding="@dimen/_11sdp"
+            android:src="@drawable/ic_back_arrow" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_toEndOf="@+id/imgBack"
+            android:scaleType="fitXY"
+            android:src="@drawable/profileicon"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        <LinearLayout
+            android:id="@+id/lntext"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/imgProfile"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOtherUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_medium"
+                android:text="User Name"
+                android:textColor="@color/haiti"
+                android:textSize="@dimen/_11sdp" />
+
+            <TextView
+                android:id="@+id/otherUserNicName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_regular"
+                android:text="mac 123"
+                android:textColor="@color/haiti"
+                android:textSize="@dimen/_11sdp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvNoViewFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/barlow_bold"
+        android:text="No Chat Found"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/lnChat"
+        android:layout_below="@+id/rlBar"
+        tools:itemCount="12"
+
+        tools:listitem="@layout/item_chat_message" />
+
+
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="40dp"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_7sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
+
+    <LinearLayout
+        android:id="@+id/lnChat"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_weight="0.25"
+            android:background="@drawable/btn_back"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_12sdp">
+
+            <EditText
+                android:id="@+id/edMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="Write a message...."
+                android:paddingStart="@dimen/_12sdp"
+                android:textColor="@color/haiti"
+                android:textColorHint="@color/grayfollowertext"
+                android:textCursorDrawable="@drawable/cursor"
+                android:textSize="@dimen/_11sdp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lnSendLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rlAttachment"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/rounded_green"
+                android:elevation="@dimen/_12sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/ic_attachment" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sendMessage"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_toEndOf="@+id/rlAttachment"
+                android:background="@drawable/rounded_green"
+                android:elevation="@dimen/_12sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/ic_forward_arrow" />
+            </RelativeLayout>
+
+            <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+                android:id="@+id/chatloader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                app:trailingcircular_animDelay="600"
+                app:trailingcircular_animDuration="1000"
+                app:trailingcircular_bigCircleRadius="@dimen/_16sdp"
+                app:trailingcircular_dotsColor="@color/appColor"
+                app:trailingcircular_dotsRadius="@dimen/_4sdp"
+                app:trailingcircular_noOfTrailingDots="5" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

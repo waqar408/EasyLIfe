@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_8sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAddWorkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_24sdp"
+            app:cardElevation="@dimen/_4sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                >
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:fontFamily="@font/barlow_bold"
+                    android:text="Create workout from\n selected exercises"
+                    android:textColor="@color/haiti"
+                    android:textSize="@dimen/_15sdp" />
+
+                <LinearLayout
+                    android:id="@+id/ln"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/ed_stroked_back_green"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:text="Workout Name"
+                        android:textColor="@color/colorc" />
+
+                    <EditText
+                        android:id="@+id/edWorkoutName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/barlow_medium"
+                        android:gravity="start|center_vertical"
+                        android:hint="Enter here..."
+                        android:textCursorDrawable="@drawable/cursor"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_below="@+id/ln"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:paddingHorizontal="@dimen/_24sdp"
+                    android:background="@drawable/bg_green_rounded_30dp"
+                    android:elevation="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/tvnext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="@dimen/_36sdp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:text="Got it!"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,208 @@
+<resources>
+    <string name="app_name">Easy Life</string>
+    <string name="text_todo">text_todo</string>
+    <!--get started screen texxt-->
+    <string name="welcometoeasylife">Welcome to Easy Life</string>
+    <string name="healthandfitness">Let\'s your new Health &amp; Fitness\n Journey with us!</string>
+    <string name="getstarted">Get Started</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius" parent="">
+        <item name="cornerSizeBottomRight">75dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius2" parent="">
+        <item name="cornerSizeBottomRight">@dimen/_20sdp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">@dimen/_20sdp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/_20sdp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius3" parent="">
+        <item name="cornerSizeBottomRight">@dimen/_20sdp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">@dimen/_20sdp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/_20sdp</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.SelectedCornerRadius4" parent="">
+        <item name="cornerSizeBottomRight">40dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">40dp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeTopLeft">40dp</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopRight">40dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+    </style>
+
+
+    <style name="BottomCurve">
+        <item name="android:bottomRightRadius">@dimen/_24sdp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize20Percent" parent="">
+        <item name="cornerSize">20%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize12Percent" parent="">
+        <item name="cornerSize">12%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize16Percent" parent="">
+        <item name="cornerSize">16%</item>
+    </style>
+
+    <!--verify phoneNumber-->
+    <string name="verifyphonenUmber">Verify Phone Number</string>
+    <string name="tryAnotherWay">Try another way</string>
+    <string name="send">Send</string>
+    <!--gender selection-->
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <!--forgot password-->
+    <string name="forgotpassword">Forgot Password</string>
+    <string name="pleaseenteremailtoreceivelink">Please enter your email address.\n You will receive a link to create a new password via email.</string>
+    <string name="submit">Submit</string>
+    <string name="update">update</string>
+    <!--Reset password-->
+    <string name="resetpassword">Reset Password</string>
+    <string name="enternewpassword">Enter new password</string>
+    <string name="change">Change</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <!--height selection-->
+    <string name="whatsyourheight">What\'s your height?</string>
+    <!--what is goal-->
+    <string name="whatsgoals">What\'s your goal?</string>
+    <string name="fitter">Get Fitter</string>
+    <string name="sleeping">Better Sleeping Habits</string>
+    <string name="wloss">Weight Loss</string>
+    <string name="trackmy">Track My Nutrition</string>
+    <string name="improvemy">Improve My Overall Fitness</string>
+    <!--Signup-->
+    <string name="fullName">Full Name</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="emailAddress">Email Address</string>
+    <string name="password">Password</string>
+    <string name="oldpassword">Enter Old Password</string>
+    <string name="createNewAccount">Create New Account</string>
+    <string name="enterYourDetails">Enter Your details to create account</string>
+    <string name="signup">Sign Up</string>
+    <string name="orSignUpWith">Or Sign Up with</string>
+    <string name="alreadyhaveanaccount">Already have Account?</string>
+    <string name="signin">Sign In</string>
+    <string name="experience">Experience</string>
+    <!--achieve goal-->
+    <string name="skip">Skip</string>
+    <string name="howtoachievegoal">How to achieve goal?</string>
+    <string name="helpustocreate">Help us to create your\n personalized plan</string>
+    <string name="diet">Diet</string>
+    <string name="workout">Workout</string>
+    <string name="workoutdiet">Workout and Diet</string>
+    <string name="next">Next</string>
+    <string name="letusknow">Please Let Us Know How You Want To Acheive This Goal</string>
+
+    <!--addnewaddrerss-->
+    <string name="addnewaddress">Add New Address</string>
+    <string name="name">Name</string>
+    <string name="lucy">Lucy Martin</string>
+    <string name="emailaddress">Email Address</string>
+    <string name="ema">lucymartin@gmail.com</string>
+    <string name="phonenumnber">Phone No</string>
+    <string name="ph">+91 124923 2121</string>
+    <string name="addressline1">Address Line 1</string>
+    <string name="ad">A/234, Kigs Plazaa, Mithakhali</string>
+    <string name="addressline2">Address Line 2</string>
+    <string name="addh">AhmedAbad, Gujrat</string>
+    <string name="zipcode">Zipcode</string>
+    <string name="ziph">380009</string>
+    <string name="state">State</string>
+    <string name="stah">Gujarat</string>
+    <string name="country">Country</string>
+
+    <!--add new address-->
+    <string name="addnewcard">Add New Card</string>
+    <string name="nameofcard">Name of Card</string>
+    <string name="cardnumber">Card Number</string>
+    <string name="cardn">2323232323232323</string>
+    <string name="expirydate">Exp Date</string>
+    <string name="exph">24/08</string>
+    <string name="cvv">CVV</string>
+    <string name="cvvh">789</string>
+    <string name="billingzip">Billing Zip Code</string>
+    <string name="billh">1589</string>
+    <string name="usepaymentmethod">Use Payment Method</string>
+
+    <!--choose package-->
+    <string name="choosemonthlypackage">Choose your\nMonthly Packages</string>
+    <string name="workoutpan">Workout Pack</string>
+    <string name="starter">Starter</string>
+    <string name="aed">AED</string>
+    <string name="month1">/1 Month</string>
+    <string name="basic">Basic</string>
+    <string name="moth2">/2 Month</string>
+    <string name="premium">Premium</string>
+    <string name="month3">/3 Month</string>
+
+    <!--client nutrition-->
+    <string name="clientnutrition">Client Nutrition</string>
+    <string name="calori">(3200 calories)</string>
+    <string name="eggyolk">Egg Yolk</string>
+    <string name="cup1">1 Cup</string>
+    <string name="friedegg">Fried Egg</string>
+    <string name="totalnutrition">Total Nutrition</string>
+    <string name="calories">Calories</string>
+    <string name="protein">Protein</string>
+    <string name="carbohydrate">Carbohydrates</string>
+    <string name="fiber">Fiber</string>
+    <string name="fat">Fat</string>
+    <string name="sodium">Sodium</string>
+
+    <!--current fitness-->
+    <string name="whatscurrentfitness">What\'s your current \nfitness level?</string>
+    <string name="beginner">Beginner</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="advance">Advance</string>
+    <string name="ialwaysworkout">I always workout regular 2 or 3 \ntimes a week.</string>
+    <string name="pleaseelectcurrentfitness">Please Select Your Current Fitness Level</string>
+
+    <!--customize interest-->
+    <string name="customizeinterest">Time to customize \nyour interest!</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="organic">Organic</string>
+    <string name="meditation">Meditation</string>
+    <string name="sports">Sports</string>
+    <string name="smokefree">Smoke Free</string>
+    <string name="sleep">Sleep</string>
+    <string name="health">Health</string>
+    <string name="running">Running</string>
+    <string name="vegan">Vegan</string>
+    <!--change password-->
+    <string name="changepassword">Change Password</string>
+    <string name="checkinternet">Check your internet connection</string>
+
+
+    <style name="customRatingBar" parent="">
+        <item name="android:progressDrawable">@drawable/ratingbar</item>
+        <item name="android:minHeight">30dip</item>
+        <item name="android:maxHeight">30dip</item>
+    </style>
+
+    <style name="progressBarBlue" parent="@style/Theme.AppCompat">
+        <item name="colorAccent">@color/appColor</item>
+    </style>
+</resources>

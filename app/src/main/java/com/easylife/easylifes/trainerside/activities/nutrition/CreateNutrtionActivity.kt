@@ -37,6 +37,7 @@ class CreateNutrtionActivity : AppCompatActivity() {
     var sugar = ""
     var clientId = ""
     var trainerId = ""
+    var from = ""
     val apiClient = ApiClient()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,6 +123,8 @@ class CreateNutrtionActivity : AppCompatActivity() {
                                 intent.putExtra("mealId",signupResponse.data.id.toString())
                                 intent.putExtra("nutritionName",nutritionName)
                                 intent.putExtra("clientid",clientId)
+                                intent.putExtra("from","nutrition")
+
                                 startActivity(intent)
                                 finish()
                             } else {
@@ -160,6 +163,7 @@ class CreateNutrtionActivity : AppCompatActivity() {
         val intent = intent
         nutritionName = intent.getStringExtra("nutritionName").toString()
         clientId = intent.getStringExtra("clientid").toString()
+        from = intent.getStringExtra("from").toString()
         binding.tvNames.text = nutritionName
     }
 

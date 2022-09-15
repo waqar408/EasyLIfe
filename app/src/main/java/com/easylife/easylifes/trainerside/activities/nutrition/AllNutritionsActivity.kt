@@ -60,7 +60,7 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this@AllNutritionsActivity, "loginResponse")
         val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-        trainerId  = obj.id.toString()
+        trainerId = obj.id.toString()
 
 
 
@@ -71,11 +71,12 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
 
     override fun onClickArea(position: Int) {
         val model = plansList[position]
-        val intent = Intent(this@AllNutritionsActivity,ClientNutritionActivity::class.java)
+        val intent = Intent(this@AllNutritionsActivity, ClientNutritionActivity::class.java)
         val gson = Gson()
         val mySelectMeal = gson.toJson(model)
-        intent.putExtra("myplan",mySelectMeal)
-        intent.putExtra("clientid",clientId)
+        intent.putExtra("myplan", mySelectMeal)
+        intent.putExtra("clientid", clientId)
+        intent.putExtra("from","from")
         startActivity(intent)
     }
 
@@ -85,8 +86,10 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
         val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(this@AllNutritionsActivity)) {
             binding.dotloader.visibility = View.VISIBLE
-            apiClient.getApiService().viewMealPlan("view",clientId,
-                trainerId)
+            apiClient.getApiService().viewMealPlan(
+                "view", clientId,
+                trainerId
+            )
                 .enqueue(object : Callback<MealPlanResponseModel> {
 
                     override fun onResponse(
@@ -99,8 +102,13 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
                             if (signupResponse?.status!!.equals(true)) {
                                 plansList = ArrayList()
                                 plansList = signupResponse.data
-                                binding.rvAllNutritions.layoutManager = GridLayoutManager(this@AllNutritionsActivity,2)
-                                binding.rvAllNutritions.adapter = AllNutritionsAdapter(this@AllNutritionsActivity,plansList,this@AllNutritionsActivity)
+                                binding.rvAllNutritions.layoutManager =
+                                    GridLayoutManager(this@AllNutritionsActivity, 2)
+                                binding.rvAllNutritions.adapter = AllNutritionsAdapter(
+                                    this@AllNutritionsActivity,
+                                    plansList,
+                                    this@AllNutritionsActivity
+                                )
                             } else {
                                 utilities.showFailureToast(
                                     this@AllNutritionsActivity,
@@ -160,13 +168,15 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
         val nutritionName = dialog.findViewById<EditText>(R.id.edNutritionName)
         layout_send.setOnClickListener {
             val nutritionName1 = nutritionName.text.toString()
-            if (nutritionName1.equals(""))
-            {
-                utilities.showFailureToast(this@AllNutritionsActivity,"Please enter nutrition name")
-            }else{
+            if (nutritionName1.equals("")) {
+                utilities.showFailureToast(
+                    this@AllNutritionsActivity,
+                    "Please enter nutrition name"
+                )
+            } else {
                 val intent = Intent(this@AllNutritionsActivity, CreateNutrtionActivity::class.java)
-                intent.putExtra("nutritionName",nutritionName1)
-                intent.putExtra("clientid",clientId)
+                intent.putExtra("nutritionName", nutritionName1)
+                intent.putExtra("clientid", clientId)
                 startActivity(intent)
                 finish()
             }

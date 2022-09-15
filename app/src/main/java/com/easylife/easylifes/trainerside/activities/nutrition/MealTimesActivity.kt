@@ -27,6 +27,7 @@ class MealTimesActivity : AppCompatActivity(),MealTimesAdapter.onMealTimeClick {
     var planId = ""
     var nutritionName = ""
     var clientid = ""
+    var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMealTimesBinding.inflate(layoutInflater)
@@ -42,6 +43,7 @@ class MealTimesActivity : AppCompatActivity(),MealTimesAdapter.onMealTimeClick {
         planId = intent.getStringExtra("mealId").toString()
         clientid = intent.getStringExtra("clientid").toString()
         nutritionName = intent.getStringExtra("nutritionName").toString()
+        from = intent.getStringExtra("from").toString()
         getMealTimes()
 
         binding.layoutBackArrow.setOnClickListener {
@@ -49,6 +51,7 @@ class MealTimesActivity : AppCompatActivity(),MealTimesAdapter.onMealTimeClick {
             intent.putExtra("mealId",planId)
             intent.putExtra("nutritionName",nutritionName)
             intent.putExtra("clientid",clientid)
+            intent.putExtra("from",from)
             finish()
         }
     }
@@ -118,6 +121,7 @@ class MealTimesActivity : AppCompatActivity(),MealTimesAdapter.onMealTimeClick {
         intent.putExtra("planid",planId.toString())
         intent.putExtra("nutritionName",nutritionName)
         intent.putExtra("clientid",clientid)
+        intent.putExtra("from",from)
         startActivity(intent)
         finish()
     }
@@ -128,6 +132,7 @@ class MealTimesActivity : AppCompatActivity(),MealTimesAdapter.onMealTimeClick {
         intent.putExtra("mealId",planId)
         intent.putExtra("nutritionName",nutritionName)
         intent.putExtra("clientid",clientid)
+        intent.putExtra("from",from)
         finish()
     }
 

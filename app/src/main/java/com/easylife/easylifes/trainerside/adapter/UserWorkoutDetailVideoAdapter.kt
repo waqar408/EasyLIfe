@@ -245,6 +245,7 @@ class UserWorkoutDetailVideoAdapter(
                 ) {
                     if (response.body() != null) {
                         val status = response.body()!!.status
+                        
                     }
                 }
 

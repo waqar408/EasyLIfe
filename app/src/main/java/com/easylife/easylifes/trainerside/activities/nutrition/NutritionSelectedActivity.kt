@@ -33,6 +33,7 @@ class NutritionSelectedActivity : AppCompatActivity() {
     var mealid = ""
     var nutritionName = ""
     var clientid = ""
+    var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNutritionSelectedBinding.inflate(layoutInflater)
@@ -50,6 +51,7 @@ class NutritionSelectedActivity : AppCompatActivity() {
             intent.putExtra("planid",planid.toString())
             intent.putExtra("nutritionName",nutritionName)
             intent.putExtra("clientid",clientid)
+            intent.putExtra("from",from)
             startActivity(intent)
             finish()
         }
@@ -135,6 +137,8 @@ class NutritionSelectedActivity : AppCompatActivity() {
         mealtimeid = intent.getStringExtra("mealtimeid").toString()
         clientid = intent.getStringExtra("clientid").toString()
         nutritionName = intent.getStringExtra("nutritionName").toString()
+        mealid = intent.getStringExtra("mealId").toString()
+        from = intent.getStringExtra("from").toString()
         binding.tvNames.text = nutritionName
         val gson = Gson()
         searchDataModel =
@@ -181,6 +185,7 @@ class NutritionSelectedActivity : AppCompatActivity() {
         intent.putExtra("planid",planid.toString())
         intent.putExtra("nutritionName",nutritionName)
         intent.putExtra("clientid",clientid)
+        intent.putExtra("from",from)
         startActivity(intent)
         finish()
     }

@@ -21,6 +21,7 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
     var clientid = ""
     var planid = ""
     var mealtimeid = ""
+    var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityClientNutritionBinding.inflate(layoutInflater)
@@ -43,6 +44,7 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
         val gson = Gson()
         modelPlan = gson.fromJson(intent.getStringExtra("myplan"), MealPlansDataModel::class.java)
         clientid = intent.getStringExtra("clientid").toString()
+        from = intent.getStringExtra("from").toString()
         planid = modelPlan.id.toString()
 
         mealTimesList = ArrayList()
@@ -106,7 +108,10 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
         intent.putExtra("clientid",clientid)
         intent.putExtra("mealId",planid.toString())
         intent.putExtra("mealtimeid",model.id.toString())
+        intent.putExtra("nutritionName",model.meal_time)
+        intent.putExtra("from",from)
         startActivity(intent)
+        finish()
 
     }
 }

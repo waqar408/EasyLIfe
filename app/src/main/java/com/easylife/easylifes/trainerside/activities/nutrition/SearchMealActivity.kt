@@ -27,6 +27,7 @@ class SearchMealActivity : AppCompatActivity(),SearchMealAdapter.onMealTimeClick
     var mealtimeid = ""
     var nutritionName = ""
     var clientid = ""
+    var from  = ""
     lateinit var listSearchMeal : ArrayList<SearchDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,13 +117,31 @@ class SearchMealActivity : AppCompatActivity(),SearchMealAdapter.onMealTimeClick
         mealtimeid = intent.getStringExtra("mealtimeid").toString()
         clientid = intent.getStringExtra("clientid").toString()
         nutritionName = intent.getStringExtra("nutritionName").toString()
-        binding.tvName.text= nutritionName
+        from = intent.getStringExtra("from").toString()
+        if (!nutritionName.isNullOrEmpty())
+        {
+            binding.tvName.text= nutritionName
+        }
         binding.layoutBackArrow.setOnClickListener {
-            val intent = Intent(this@SearchMealActivity,MealTimesActivity::class.java)
-            intent.putExtra("mealId",planid)
-            intent.putExtra("nutritionName",nutritionName)
-            intent.putExtra("clientid",clientid)
-            finish()
+            if (from.equals(""))
+            {
+                val intent = Intent(this@SearchMealActivity,MealTimesActivity::class.java)
+                intent.putExtra("planid",planid)
+                intent.putExtra("mealtimeid",mealtimeid)
+                intent.putExtra("nutritionName",nutritionName)
+                intent.putExtra("clientid",clientid)
+                intent.putExtra("from",from)
+                finish()
+            }else{
+                val intent = Intent(this@SearchMealActivity,NutritionFoodDetailActivity::class.java)
+                intent.putExtra("planid",planid)
+                intent.putExtra("mealtimeid",mealtimeid)
+                intent.putExtra("clientid",clientid)
+                intent.putExtra("nutritionName",nutritionName)
+                intent.putExtra("from",from)
+                finish()
+            }
+
         }
     }
 
@@ -136,6 +155,7 @@ class SearchMealActivity : AppCompatActivity(),SearchMealAdapter.onMealTimeClick
         intent.putExtra("planid",planid.toString())
         intent.putExtra("nutritionName",nutritionName)
         intent.putExtra("clientid",clientid)
+        intent.putExtra("from",from)
         startActivity(intent)
         finish()
 
@@ -143,10 +163,23 @@ class SearchMealActivity : AppCompatActivity(),SearchMealAdapter.onMealTimeClick
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this@SearchMealActivity,MealTimesActivity::class.java)
-        intent.putExtra("mealId",planid)
-        intent.putExtra("nutritionName",nutritionName)
-        intent.putExtra("clientid",clientid)
-        finish()
+        if (from.equals(""))
+        {
+            val intent = Intent(this@SearchMealActivity,MealTimesActivity::class.java)
+            intent.putExtra("planid",planid)
+            intent.putExtra("mealtimeid",mealtimeid)
+            intent.putExtra("nutritionName",nutritionName)
+            intent.putExtra("clientid",clientid)
+            intent.putExtra("from",from)
+            finish()
+        }else{
+            val intent = Intent(this@SearchMealActivity,NutritionFoodDetailActivity::class.java)
+            intent.putExtra("mealId",planid)
+            intent.putExtra("mealtimeid",mealtimeid)
+            intent.putExtra("clientid",clientid)
+            intent.putExtra("nutritionName",nutritionName)
+            intent.putExtra("from",from)
+            finish()
+        }
     }
 }

@@ -125,6 +125,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             android:visibility="gone" />
+
         <RelativeLayout
             android:id="@+id/layoutAddToStack"
             android:layout_width="match_parent"

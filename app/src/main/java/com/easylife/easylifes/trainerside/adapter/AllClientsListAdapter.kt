@@ -1,6 +1,7 @@
 package com.easylife.easylifes.trainerside.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,9 @@ import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.trainerhome.TrainerUserDataModel
+import com.easylife.easylifes.trainerside.activities.clientdetail.AllWorkoutsActivity
+import com.easylife.easylifes.trainerside.activities.nutrition.AllNutritionsActivity
+import com.easylife.easylifes.trainerside.activities.nutrition.MealTimesActivity
 import com.google.android.material.imageview.ShapeableImageView
 import org.w3c.dom.Text
 
@@ -35,8 +39,13 @@ class AllClientsListAdapter(
         holder.tvName.text = model.name
         Glide.with(context).load(model.profile_image).into(holder.imgProfile)
         holder.tvUserName.text = model.username
-        holder.itemView.setOnClickListener {
+        holder.rlWorkout.setOnClickListener {
             mListener.onClickArea(position)
+        }
+        holder.tvNutrition.setOnClickListener {
+            val intent = Intent(context, AllNutritionsActivity::class.java)
+            intent.putExtra("clientid",model.id.toString())
+            context.startActivity(intent)
         }
 
     }

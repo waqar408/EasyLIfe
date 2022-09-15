@@ -17,8 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyLifes"
         android:usesCleartextTraffic="true">
-        <activity android:name=".trainerside.activities.FullScreenVideoActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".trainerside.activities.nutrition.NutritionFoodDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".trainerside.activities.nutrition.SearchMealActivity"
+            android:exported="false" />
+        <activity
+            android:name=".trainerside.activities.nutrition.MealTimesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".trainerside.activities.FullScreenVideoActivity"
+            android:exported="false" />
         <activity
             android:name=".trainerside.activities.clientdetail.UserWorkoutDetailActivity"
             android:exported="false" />
@@ -27,9 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".trainerside.activities.clientdetail.WorkoutsListActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".trainerside.activities.clientdetail.SelectedWorkoutActivity"
             android:exported="false" />

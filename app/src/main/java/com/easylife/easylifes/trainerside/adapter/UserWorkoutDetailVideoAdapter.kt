@@ -122,7 +122,15 @@ class UserWorkoutDetailVideoAdapter(
                 Toast.makeText(context, "Please Enter Rest Seconds", Toast.LENGTH_SHORT).show()
             } else {
 
-                val item = UserWorkoutRepsDataModel(0, "", reps, repMinutes, repsSeconds, restMinute, restSeconds)
+                val item = UserWorkoutRepsDataModel(
+                    0,
+                    "",
+                    reps,
+                    repMinutes,
+                    repsSeconds,
+                    restMinute,
+                    restSeconds
+                )
                 var obj = model
 
                 obj.data.add(item)
@@ -209,8 +217,8 @@ class UserWorkoutDetailVideoAdapter(
             val rest_Seconds = data.get(i).rest_seconds
 
             val obj1 = JsonObject()
-            obj1.addProperty("id", id.toInt())
-            obj1.addProperty("user_workout_video_id",user_workout_video_id)
+            obj1.addProperty("id", 0)
+            obj1.addProperty("user_workout_video_id", 0)
             obj1.addProperty("reps", rep.toInt())
             obj1.addProperty("reps_minutes", repsMinutes.toInt())
             obj1.addProperty("reps_seconds", reps_second.toInt())
@@ -221,15 +229,15 @@ class UserWorkoutDetailVideoAdapter(
 
         }
         val jsonObject2 = JsonObject()
-        jsonObject2.addProperty("workout_id",model.id)
-        jsonObject2.add("data",array1)
+        jsonObject2.addProperty("workout_id", model.id)
+        jsonObject2.add("data", array1)
         array2.add(jsonObject2)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("user_workout_id",model.user_workout_id)
+        jsonObject.addProperty("user_workout_id", model.user_workout_id)
         jsonObject.add("workouts", array2)
 
 
-        apiClient.getApiService().createWorkout(jsonObject)
+        apiClient.getApiService().addMore(jsonObject)
             .enqueue(object : retrofit2.Callback<BaseResponse?> {
                 override fun onResponse(
                     call: Call<BaseResponse?>,
@@ -237,14 +245,7 @@ class UserWorkoutDetailVideoAdapter(
                 ) {
                     if (response.body() != null) {
                         val status = response.body()!!.status
-                        if (status == true) {
-                            Toast.makeText(context, response.body()!!.message,Toast.LENGTH_SHORT).show()
-                        } else {
-                            //
-                            Toast.makeText(context, response.body()!!.message,Toast.LENGTH_SHORT).show()
-                        }
                     }
-
                 }
 
                 override fun onFailure(

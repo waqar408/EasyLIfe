@@ -10,6 +10,10 @@ import com.easylife.easylifes.model.forgotpassword.ForgotPasswordResponseModel
 import com.easylife.easylifes.model.home.HomeResponseModel
 import com.easylife.easylifes.model.chat.messenger.MessengerResponseModel
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
+import com.easylife.easylifes.model.mealplan.CreateMealPlanResponseModel
+import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
+import com.easylife.easylifes.model.mealtime.MealTimesResponseModel
+import com.easylife.easylifes.model.search.SearchResponseModel
 import com.easylife.easylifes.model.signup.SignupResponseModel
 import com.easylife.easylifes.model.trainerdetail.TrainerDetailResponseModel
 import com.easylife.easylifes.model.trainerhome.TrainerHomeResponseModel
@@ -184,8 +188,8 @@ interface ApiService {
     @POST("get-user-workouts")
     @FormUrlEncoded
     fun getUserWorkouts(
-        @Field("trainer_id") user_id: String,
-        @Field("user_id") trainer_id: String?,
+        @Field("trainer_id") trainer_id: String,
+        @Field("user_id") user_id: String?,
     ):
             Call<GetUserWorkoutsResponseModel>
 
@@ -229,6 +233,10 @@ interface ApiService {
     @GET
     fun messageSeen(@Url url: String): Call<BaseResponse>
 
+    @Headers("Accept: application/json")
+    @GET
+    fun mealTime(@Url url: String): Call<MealTimesResponseModel>
+
 
     @Headers("Accept: application/json")
     @POST("send_message")
@@ -259,6 +267,14 @@ interface ApiService {
     open fun createWorkout(@Body params: JsonObject?): Call<BaseResponse>
 
     @Headers("Accept: application/json")
+    @POST("add-more-workouts")
+    open fun addMore(@Body params: JsonObject?): Call<BaseResponse>
+
+    @Headers("Accept: application/json")
+    @POST("add-food")
+    open fun addFood(@Body params: JsonObject?): Call<BaseResponse>
+
+    @Headers("Accept: application/json")
     @POST("get-user-workouts")
     @FormUrlEncoded
     fun getUserWorkoutDetail(
@@ -266,4 +282,44 @@ interface ApiService {
         @Field("user_id") user_id: String
     ):
             Call<GetUserWorkoutsResponseModel>
+
+
+    @Headers("Accept: application/json")
+    @POST("meal-plan")
+    @FormUrlEncoded
+    fun mealPlan(
+        @Field("action") action: String,
+        @Field("meal_plan_id") meal_plan_id: String,
+        @Field("user_id") user_id: String,
+        @Field("trainer_id") trainer_id: String,
+        @Field("title") title: String,
+        @Field("calorie_target") calorie_target: String,
+        @Field("macro_type") macro_type: String,
+        @Field("protien") protien: String,
+        @Field("carbs") carbs: String,
+        @Field("fat") fat: String,
+        @Field("fibre") fibre: String,
+        @Field("sodium") sodium: String,
+        @Field("sugar") sugar: String,
+    ):
+            Call<CreateMealPlanResponseModel>
+
+    @Headers("Accept: application/json")
+    @POST("meal-plan")
+    @FormUrlEncoded
+    fun viewMealPlan(
+        @Field("action") action: String,
+        @Field("user_id") user_id: String,
+        @Field("trainer_id") trainer_id: String
+    ):
+            Call<MealPlanResponseModel>
+
+    @Headers("Accept: application/json")
+    @POST("search-meals")
+    @FormUrlEncoded
+    fun searchMeal(
+        @Field("search_string") search_string: String,
+
+    ):
+            Call<SearchResponseModel>
 }

@@ -39,6 +39,7 @@
             android:textSize="@dimen/_14sdp" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_alignParentEnd="true"
@@ -48,6 +49,7 @@
             android:layout_weight="1">
 
             <ImageView
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_bell_home" />
@@ -55,6 +57,7 @@
         </RelativeLayout>
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -317,13 +320,14 @@
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
+                        android:id="@+id/tvCalories"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:paddingStart="@dimen/_24sdp"
-                        android:text="1,221"
+                        android:text="Loading"
                         android:fontFamily="@font/barlow_medium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
@@ -369,13 +373,14 @@
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
+                        android:id="@+id/tvProtein"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:paddingStart="@dimen/_24sdp"
-                        android:text="50g"
+                        android:text="Loading"
                         android:fontFamily="@font/barlow_medium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
@@ -421,13 +426,14 @@
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
+                        android:id="@+id/tvCarbs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:paddingStart="@dimen/_24sdp"
-                        android:text="137g"
+                        android:text="Loading"
                         android:fontFamily="@font/barlow_medium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
@@ -473,13 +479,14 @@
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
+                        android:id="@+id/tvFiber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:paddingStart="@dimen/_24sdp"
-                        android:text="38g"
+                        android:text="Loading"
                         android:fontFamily="@font/barlow_medium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
@@ -525,6 +532,7 @@
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
+                        android:id="@+id/tvfat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
@@ -578,6 +586,7 @@
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
+                        android:id="@+id/tvSodium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"

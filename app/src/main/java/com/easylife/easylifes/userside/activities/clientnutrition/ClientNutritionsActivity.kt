@@ -18,22 +18,10 @@ class ClientNutritionsActivity : AppCompatActivity() {
         binding = ActivityClientNutritionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initViews()
 
 
 
     }
 
-    private fun initViews() {
-        utilities = Utilities(this@ClientNutritionsActivity)
-        utilities.setGrayBar(this@ClientNutritionsActivity)
-        clientNutritionList= ArrayList()
-        clientNutritionList.add(JobsDataModel(R.drawable.nutritionimg,"A.M.Snack"))
-        clientNutritionList.add(JobsDataModel(R.drawable.nutritionimg,"A.M.Snack"))
-        clientNutritionList.add(JobsDataModel(R.drawable.nutritionimg,"A.M.Snack"))
-        clientNutritionList.add(JobsDataModel(R.drawable.nutritionimg,"A.M.Snack"))
 
-        binding.rvClientNutrition.layoutManager = LinearLayoutManager(this@ClientNutritionsActivity,LinearLayoutManager.VERTICAL,false)
-        binding.rvClientNutrition.adapter  = ClientNutritionAdapter(this@ClientNutritionsActivity,clientNutritionList)
-    }
 }

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/porcelain"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".userside.fragment.ChatFragment">
-
+    tools:context=".trainerside.activities.nutrition.SearchMealActivity">
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/layout_backArrow"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
@@ -25,39 +23,22 @@
             android:src="@drawable/ic_back_arrow" />
 
     </RelativeLayout>
+
     <TextView
-        android:id="@+id/tvChat"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat"
-        android:textColor="@color/haiti"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:textSize="@dimen/_14sdp"
-        />
-    <RelativeLayout
-        android:visibility="gone"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_weight="1">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_bell_home" />
-
-    </RelativeLayout>
-
-
+        android:layout_marginTop="@dimen/_22sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="Meals Times"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_14sdp" />
     <RelativeLayout
         android:id="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
-        android:layout_below="@+id/tvChat"
+        android:layout_below="@+id/layout_backArrow"
         android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_24sdp"
         android:background="@drawable/bg_white_rounded_20dp"
@@ -106,37 +87,59 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
+    <LinearLayout
+        android:id="@+id/lnNoMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/restaurant"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/haiti"
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/barlow_bold"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="Empty Meal?" />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvChat"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/layout_search"
-        android:layout_marginTop="@dimen/_16sdp"
+        tools:listitem="@layout/item_mealslist"
+        android:layout_marginTop="@dimen/_12sdp"
         tools:itemCount="3"
-
-        tools:listitem="@layout/item_chats" />
-
-    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
-        android:id="@+id/dotloader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:trailingcircular_animDelay="600"
-        app:trailingcircular_animDuration="1200"
         android:visibility="gone"
-        app:trailingcircular_bigCircleRadius="24dp"
-        app:trailingcircular_dotsColor="@color/appColor"
-        app:trailingcircular_dotsRadius="@dimen/_5sdp"
-        app:trailingcircular_noOfTrailingDots="5" />
-    <TextView
-        android:id="@+id/tvNoChat"
-        android:layout_width="wrap_content"
+        android:layout_below="@id/layout_search"
+        android:layout_above="@id/layoutAddToStack"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No Chat Found"
-        android:layout_centerInParent="true"
-        android:textSize="@dimen/_13sdp"
-        android:textColor="@color/black"
-        android:visibility="gone"/>
+        android:id="@+id/rvMealsList"/>
+    <RelativeLayout
+        android:id="@+id/layoutAddToStack"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+
+        android:background="@drawable/bg_green_rounded_30dp"
+        android:elevation="@dimen/_8sdp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/barlow_medium"
+            android:text="Add To Stack"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

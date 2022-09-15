@@ -42,6 +42,7 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     var clientId = ""
     var workoutCategoryId = ""
     var workoutCategoryName = ""
+    var useridd = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAllWorkoutsBinding.inflate(layoutInflater)
@@ -50,7 +51,6 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
         initViews()
         onClicks()
         getUserWorkouts()
-       // workoutCategories()
 
     }
 
@@ -70,18 +70,16 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
         val jsonn: String = utilities.getString(this@AllWorkoutsActivity, "loginResponse")
         val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
         myid = java.lang.String.valueOf(obj.id)
+        useridd  = java.lang.String.valueOf(obj.id)
+
         val intent = intent
         clientId = intent.getStringExtra("clientid").toString()
-    }
 
+    }
 
     private fun getUserWorkouts() {
         val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(this@AllWorkoutsActivity)) {
-            val gsonn = Gson()
-            val jsonn: String = utilities.getString(this@AllWorkoutsActivity, "loginResponse")
-            val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-            val useridd: String = java.lang.String.valueOf(obj.id)
 
             binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().getUserWorkouts(useridd,clientId)
@@ -92,44 +90,24 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
                     ) {
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
-
-                        if (signupResponse!!.status) {
+                        if (signupResponse!!.status ==  true) {
                             //banner list data
                             //categories data
                             allWorkoutCategoriesList = ArrayList()
                             allWorkoutCategoriesList = response.body()!!.data.data
                             allClients(allWorkoutCategoriesList)
-
-
                         } else {
-                            utilities.showFailureToast(
-                                this@AllWorkoutsActivity,
-                                signupResponse.message
-                            )
-
-
+                            utilities.showFailureToast(this@AllWorkoutsActivity, signupResponse.message)
                         }
-
                     }
-
                     override fun onFailure(call: Call<GetUserWorkoutsResponseModel>, t: Throwable) {
                         binding.dotloader.visibility = View.GONE
-                        utilities.showFailureToast(this@AllWorkoutsActivity, t.message!!)
+                       // utilities.showFailureToast(this@AllWorkoutsActivity, t.message!!)
                     }
-
-
                 })
-
-
         } else {
-
-            utilities.showFailureToast(
-                this@AllWorkoutsActivity,
-                resources.getString(R.string.checkinternet)
-            )
-
+            utilities.showFailureToast(this@AllWorkoutsActivity, resources.getString(R.string.checkinternet))
         }
-
     }
 
     private fun allClients(categoriesList: ArrayList<GetUserWorkoutDataListModel>) {

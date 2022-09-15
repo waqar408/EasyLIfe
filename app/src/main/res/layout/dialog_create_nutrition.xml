@@ -53,13 +53,15 @@
                         android:textColor="@color/colorc"
                         />
                     <EditText
+                        android:id="@+id/edNutritionName"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_26sdp"
+                        android:layout_height="@dimen/_36sdp"
                         android:background="@null"
                         android:textColor="@color/haiti"
-                        android:text="Lucy Martin"
-                        android:gravity="start"
-                        android:textSize="@dimen/_13sdp"
+                        android:hint="Enter here..."
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_11sdp"
+                        android:textCursorDrawable="@drawable/cursor"
                         android:fontFamily="@font/barlow_medium"
                         android:layout_marginHorizontal="@dimen/_16sdp"
                         />

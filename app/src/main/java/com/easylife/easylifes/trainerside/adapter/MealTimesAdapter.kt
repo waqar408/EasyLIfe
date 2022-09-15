@@ -9,30 +9,31 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.easylife.easylifes.R
 import com.easylife.easylifes.model.JobsDataModel
-import com.easylife.easylifes.model.mealplan.MealPlansDataModel
+import com.easylife.easylifes.model.mealplan.MealTimeDataModel
+import com.google.android.material.imageview.ShapeableImageView
 
 
-class AllNutritionsAdapter(
+class MealTimesAdapter(
     val context: Context,
-    val list: ArrayList<MealPlansDataModel>,
-    var mListener: onAllClientDetailClick
+    val list: ArrayList<MealTimeDataModel>,
+    var mListener: onMealTimeClick
 
 ) :
-    RecyclerView.Adapter<AllNutritionsAdapter.ViewHolder>() {
+    RecyclerView.Adapter<MealTimesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.item_all_workout, parent, false)
+            .inflate(R.layout.item_mealtime, parent, false)
         return ViewHolder(view,mListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: MealPlansDataModel = list.get(position)
-        holder.tvName.text = model.title
+        val model: MealTimeDataModel = list.get(position)
+        holder.tvName.text = model.meal_time
         holder.itemView.setOnClickListener {
-            mListener.onClickArea(position)
-        }
 
+            mListener.onMealTimeClick(position)
+        }
     }
 
 
@@ -40,15 +41,15 @@ class AllNutritionsAdapter(
         return list.size
     }
 
-    class ViewHolder(itemView: View, listener: onAllClientDetailClick) :
+    class ViewHolder(itemView: View, listener: onMealTimeClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvPlans);
-        val imgProfile: ImageView = itemView.findViewById(R.id.imgPic);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile)
 
     }
 
-    interface onAllClientDetailClick {
-        fun onClickArea(position: Int)
+    interface onMealTimeClick {
+        fun onMealTimeClick(position: Int)
     }
 
 

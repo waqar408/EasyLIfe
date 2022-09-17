@@ -74,10 +74,12 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
         val intent = Intent(this@AllNutritionsActivity, ClientNutritionActivity::class.java)
         val gson = Gson()
         val mySelectMeal = gson.toJson(model)
+        intent.putExtra("mealplanid",model.id.toString())
         intent.putExtra("myplan", mySelectMeal)
         intent.putExtra("clientid", clientId)
         intent.putExtra("from","from")
         startActivity(intent)
+        finish()
     }
 
     private fun allPlansApi(

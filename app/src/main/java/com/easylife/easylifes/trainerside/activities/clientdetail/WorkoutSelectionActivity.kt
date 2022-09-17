@@ -40,19 +40,34 @@ class WorkoutSelectionActivity : AppCompatActivity() {
     var workoutCategoryId = ""
     var workoutCategoryName = ""
     var clientid = ""
+    var categoryid = ""
+    var from = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutSelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         initViews()
         onClicks()
     }
 
     private fun onClicks() {
         binding.layoutBackArrow.setOnClickListener {
-            finish()
+            if (from.equals("from"))
+            {
+                val intent = Intent(this@WorkoutSelectionActivity,UserWorkoutDetailActivity::class.java)
+                intent.putExtra("categoryid",categoryid)
+                intent.putExtra("from",from)
+                intent.putExtra("clientid",clientid)
+                finish()
+            }else{
+                val intent = Intent(this@WorkoutSelectionActivity,AllWorkoutsActivity::class.java)
+                intent.putExtra("categoryid",categoryid)
+                intent.putExtra("from",from)
+                intent.putExtra("clientid",clientid)
+                finish()
+            }
+
         }
 
         binding.edSearch.addTextChangedListener(object : TextWatcher {
@@ -90,9 +105,10 @@ class WorkoutSelectionActivity : AppCompatActivity() {
                 }
                 val intent = Intent(this@WorkoutSelectionActivity, SelectedWorkoutActivity::class.java)
                 intent.putExtra("clientid",clientid)
-//                intent.putParcelableArrayListExtra("list",customizeList)
                 intent.putExtra("workoutCategoryName",workoutCategoryName)
                 intent.putExtra("workoutCategoryId",workoutCategoryId.toString())
+                intent.putExtra("categoryid",categoryid)
+                intent.putExtra("from",from)
                 startActivity(intent)
                 finish()
 
@@ -109,6 +125,20 @@ class WorkoutSelectionActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         categoryVideoList.clear()
+        if (from.equals("from"))
+        {
+            val intent = Intent(this@WorkoutSelectionActivity,UserWorkoutDetailActivity::class.java)
+            intent.putExtra("categoryid",categoryid)
+            intent.putExtra("from",from)
+            intent.putExtra("clientid",clientid)
+            finish()
+        }else{
+            val intent = Intent(this@WorkoutSelectionActivity,AllWorkoutsActivity::class.java)
+            intent.putExtra("categoryid",categoryid)
+            intent.putExtra("from",from)
+            intent.putExtra("clientid",clientid)
+            finish()
+        }
     }
 
     private fun filter(text: String) {
@@ -139,7 +169,9 @@ class WorkoutSelectionActivity : AppCompatActivity() {
         val intent = intent
         clientid = intent.getStringExtra("clientid").toString()
         workoutCategoryId = intent.getStringExtra("workoutCategoryId").toString()
+        categoryid = intent.getStringExtra("categoryid").toString()
         workoutCategoryName = intent.getStringExtra("workoutCategoryName").toString()
+        from = intent.getStringExtra("from").toString()
         binding.workoutName.text = workoutCategoryName
         cagtegoryVideos()
 
@@ -199,5 +231,7 @@ class WorkoutSelectionActivity : AppCompatActivity() {
         }
 
     }
+
+
 
 }

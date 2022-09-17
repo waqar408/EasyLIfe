@@ -43,6 +43,7 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     var workoutCategoryId = ""
     var workoutCategoryName = ""
     var useridd = ""
+    var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAllWorkoutsBinding.inflate(layoutInflater)
@@ -141,6 +142,7 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
                 val intent = Intent(this@AllWorkoutsActivity,WorkoutSelectionActivity::class.java)
                 intent.putExtra("clientid",clientId)
                 intent.putExtra("workoutCategoryName",workoutCategoryName)
+                intent.putExtra("from","workout")
                 startActivity(intent)
                 dialog.dismiss()
             }else{
@@ -154,6 +156,7 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     override fun onClickArea(position: Int) {
        val model = allWorkoutCategoriesList.get(position)
         val intent =  Intent(this@AllWorkoutsActivity,UserWorkoutDetailActivity::class.java)
+        intent.putExtra("from","from")
         intent.putExtra("clientid",clientId.toString())
         intent.putExtra("categoryid",model.id.toString())
         intent.putExtra("categoryName",model.title)

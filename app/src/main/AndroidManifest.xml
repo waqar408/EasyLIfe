@@ -18,6 +18,9 @@
         android:theme="@style/Theme.EasyLifes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".trainerside.activities.nutrition.MacronutrientsDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".trainerside.activities.nutrition.NutritionFoodDetailActivity"
             android:exported="false" />
         <activity

@@ -47,6 +47,49 @@
         android:text="Selected Workouts List"
         android:textColor="@color/haiti"
         android:textSize="@dimen/_14sdp" />
+    <RelativeLayout
+        android:id="@+id/layoutAdd"
+        android:layout_toStartOf="@+id/layoutDelete"
+        android:layout_width="@dimen/_28sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_marginEnd="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:background="@drawable/btn_green_back_8dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/ic_add"
+            app:tint="@color/white" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layoutDelete"
+        android:layout_width="@dimen/_28sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:background="@drawable/btn_green_back_8dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:padding="@dimen/_6sdp"
+            android:src="@drawable/delete"
+            app:tint="@color/white" />
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvVideos"
         android:layout_width="match_parent"

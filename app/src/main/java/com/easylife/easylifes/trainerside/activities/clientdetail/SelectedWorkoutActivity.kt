@@ -32,6 +32,8 @@ class SelectedWorkoutActivity : AppCompatActivity(), SelectedWorkoutAdapter.onCa
     var tvWorkoutCategory = ""
     var clientid = ""
     var userId = ""
+    var categoryid = ""
+    var from = ""
 
     lateinit var adapter: SelectedWorkoutAdapter
     lateinit var apiClient: ApiClient
@@ -50,8 +52,10 @@ class SelectedWorkoutActivity : AppCompatActivity(), SelectedWorkoutAdapter.onCa
 
         binding.layoutBackArrow.setOnClickListener {
             val intent = Intent(this@SelectedWorkoutActivity, WorkoutSelectionActivity::class.java)
-            intent.putExtra("workoutCategoryName", tvWorkoutCategory)
-            intent.putExtra("clientid", clientid)
+            intent.putExtra("clientid",clientid)
+            intent.putExtra("workoutCategoryName",tvWorkoutCategory)
+            intent.putExtra("categoryid",categoryid)
+            intent.putExtra(from,"from")
             startActivity(intent)
             finish()
         }
@@ -61,8 +65,10 @@ class SelectedWorkoutActivity : AppCompatActivity(), SelectedWorkoutAdapter.onCa
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this@SelectedWorkoutActivity, WorkoutSelectionActivity::class.java)
-        intent.putExtra("workoutCategoryName", tvWorkoutCategory)
-        intent.putExtra("clientid", clientid)
+        intent.putExtra("clientid",clientid)
+        intent.putExtra("workoutCategoryName",tvWorkoutCategory)
+        intent.putExtra("categoryid",categoryid)
+        intent.putExtra("from",from)
         startActivity(intent)
         finish()
 
@@ -79,10 +85,11 @@ class SelectedWorkoutActivity : AppCompatActivity(), SelectedWorkoutAdapter.onCa
             this@SelectedWorkoutActivity
         )
         val intent = intent
-//        allClientsList = intent.getParcelableArrayListExtra("list")!!
         allClientsList = UtilityClass.instance!!.list
         tvWorkoutCategory = intent.getStringExtra("workoutCategoryName").toString()
         clientid = intent.getStringExtra("clientid").toString()
+        categoryid = intent.getStringExtra("categoryid").toString()
+        from = intent.getStringExtra("from").toString()
         binding.tvWorkoutCategory.text = tvWorkoutCategory
         Log.d("allclientlist", allClientsList.toString())
 
@@ -102,6 +109,8 @@ class SelectedWorkoutActivity : AppCompatActivity(), SelectedWorkoutAdapter.onCa
             intent.putExtra("clientid",clientid)
 //            intent.putParcelableArrayListExtra("list",allClientsList)
             intent.putExtra("workoutCategoryName",tvWorkoutCategory)
+            intent.putExtra("categoryid",categoryid)
+            intent.putExtra("from",from)
             startActivity(intent)
             finish()
         }

@@ -39,12 +39,12 @@
             android:textSize="@dimen/_14sdp" />
 
         <RelativeLayout
-            android:visibility="gone"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:id="@+id/rlDelete"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:layout_weight="1">
 
@@ -52,7 +52,8 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_bell_home" />
+                android:padding="@dimen/_12sdp"
+                android:src="@drawable/delete" />
 
         </RelativeLayout>
 
@@ -253,14 +254,37 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:id="@+id/layoutMacronutritions"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_below="@+id/cardView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:background="@drawable/bg_green_rounded_30dp"
+            android:elevation="@dimen/_8sdp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/black">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/barlow_medium"
+                android:paddingHorizontal="@dimen/_50sdp"
+                android:text="Macronutrients"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+
+        </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvClientNutrition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardView"
+            android:layout_below="@+id/layoutMacronutritions"
             android:layout_marginHorizontal="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/_16sdp"
             tools:itemCount="1"
             tools:listitem="@layout/item_client_nutritions" />
 
@@ -606,6 +630,18 @@
 
 
         </LinearLayout>
+        <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+            android:id="@+id/dotloader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:trailingcircular_animDelay="600"
+            app:trailingcircular_animDuration="1200"
+            app:trailingcircular_bigCircleRadius="24dp"
+            android:visibility="gone"
+            app:trailingcircular_dotsColor="@color/appColor"
+            app:trailingcircular_dotsRadius="@dimen/_5sdp"
+            app:trailingcircular_noOfTrailingDots="5" />
     </RelativeLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -2,15 +2,23 @@ package com.easylife.easylifes.trainerside.activities.nutrition
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easylife.easylifes.databinding.ActivityClientNutritionBinding
 import com.easylife.easylifes.model.mealplan.FoodDataModel
+import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlansDataModel
 import com.easylife.easylifes.model.mealplan.MealTimeDataModel
 import com.easylife.easylifes.userside.adapter.ClientNutritionAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
+import com.tabadol.tabadol.data.network.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFoodClick {
@@ -21,6 +29,7 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
     var clientid = ""
     var planid = ""
     var mealtimeid = ""
+    var mealPlanId = ""
     var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +44,16 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
         binding.layoutBackArrow.setOnClickListener {
             finish()
         }
+        binding.rlDelete.setOnClickListener {
+            deleteMeal(mealPlanId)
+        }
+        binding.layoutMacronutritions.setOnClickListener {
+            val gson = Gson()
+            val mySelectMeal = gson.toJson(modelPlan)
+            val intent = Intent(this@ClientNutritionActivity,MacronutrientsDetailActivity::class.java)
+            intent.putExtra("myplan",mySelectMeal)
+            startActivity(intent)
+        }
     }
 
     private fun initViews() {
@@ -45,6 +64,7 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
         modelPlan = gson.fromJson(intent.getStringExtra("myplan"), MealPlansDataModel::class.java)
         clientid = intent.getStringExtra("clientid").toString()
         from = intent.getStringExtra("from").toString()
+        mealPlanId = intent.getStringExtra("mealplanid").toString()
         planid = modelPlan.id.toString()
 
         mealTimesList = ArrayList()
@@ -55,20 +75,20 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
         var fiber = 0.0
         var fat = 0.0
         var sodium = 0.0
+        var quantity = 0.0
         mealTimesList = modelPlan.meal_times
-
         if (mealTimesList.size > 0) {
             for (i in 0 until mealTimesList.size) {
 
                 mealTimesLists = mealTimesList.get(i).foods
                 if (mealTimesLists.size > 0) {
                     for (j in 0 until mealTimesLists.size) {
-                        calories = mealTimesLists[j].food_details.meal_calories.toDouble() + calories
-                        protein = mealTimesLists[j].food_details.meal_protien.toDouble() + protein
-                        carbs = mealTimesLists[j].food_details.meal_carbs.toDouble() + carbs
-                        fiber = mealTimesLists[j].food_details.meal_fibre.toDouble() + fiber
-                        fat = mealTimesLists[j].food_details.meal_fat.toDouble() + fat
-                        sodium = mealTimesLists[j].food_details.meal_sodium.toDouble() + sodium
+                        calories = (mealTimesLists[j].food_details.meal_calories.toDouble() * mealTimesLists[j].food_details.serving_quantity.toDouble()) + calories
+                        protein = (mealTimesLists[j].food_details.meal_protien.toDouble()  * mealTimesLists[j].food_details.serving_quantity.toDouble())+ protein
+                        carbs = (mealTimesLists[j].food_details.meal_carbs.toDouble() * mealTimesLists[j].food_details.serving_quantity.toDouble()) + carbs
+                        fiber = (mealTimesLists[j].food_details.meal_fibre.toDouble() * mealTimesLists[j].food_details.serving_quantity.toDouble()) + fiber
+                        fat = (mealTimesLists[j].food_details.meal_fat.toDouble() * mealTimesLists[j].food_details.serving_quantity.toDouble()) + fat
+                        sodium = (mealTimesLists[j].food_details.meal_sodium.toDouble() * mealTimesLists[j].food_details.serving_quantity.toDouble()) + sodium
                     }
                 }
             }
@@ -114,4 +134,53 @@ class ClientNutritionActivity : AppCompatActivity(), ClientNutritionAdapter.onFo
         finish()
 
     }
+    private fun deleteMeal(mealId: String) {
+        val apiClient = ApiClient()
+        if (utilities.isConnectingToInternet(this@ClientNutritionActivity)) {
+            binding.dotloader.visibility = View.VISIBLE
+            apiClient.getApiService().deleteMeal(
+                "meal_plan", mealId,
+                ""
+            )
+                .enqueue(object : Callback<MealPlanResponseModel> {
+
+                    override fun onResponse(
+                        call: Call<MealPlanResponseModel>,
+                        response: Response<MealPlanResponseModel>
+                    ) {
+                        binding.dotloader.visibility = View.GONE
+                        val signupResponse = response.body()
+                        if (response.isSuccessful) {
+                            if (signupResponse?.status!!.equals(true)) {
+                                utilities.showSuccessToast(this@ClientNutritionActivity,signupResponse.message)
+                                Handler(Looper.myLooper()!!).postDelayed({
+                                    finish()
+                                },1000)
+
+                            } else {
+                                utilities.showFailureToast(
+                                    this@ClientNutritionActivity,
+                                    signupResponse.message
+                                )
+                            }
+                        } else {
+                            utilities.showFailureToast(
+                                this@ClientNutritionActivity,
+                                signupResponse!!.message
+                            )
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<MealPlanResponseModel>, t: Throwable) {
+                        // Error logging in
+                        binding.dotloader.visibility = View.GONE
+                        utilities.showFailureToast(this@ClientNutritionActivity, t.message)
+                    }
+                })
+        } else {
+            utilities.showNoInternetToast(this@ClientNutritionActivity)
+        }
+    }
+
 }

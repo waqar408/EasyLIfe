@@ -31,7 +31,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_24sdp"
                     android:fontFamily="@font/barlow_bold"
-                    android:text="Create workout from\n selected exercises"
+                    android:text="Set a name for your \nworkout collection"
                     android:textColor="@color/haiti"
                     android:textSize="@dimen/_15sdp" />
 
@@ -62,7 +62,7 @@
                         android:background="@null"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="start|center_vertical"
-                        android:hint="Enter here..."
+                        android:hint="Type here..."
                         android:textCursorDrawable="@drawable/cursor"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/haiti"

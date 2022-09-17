@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:elevation="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_30sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:background="@drawable/upper_white_curve"
+                android:elevation="@dimen/_12sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/con"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_12sdp">
+
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_excersice"
+                        android:scaleType="fitXY"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/con"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_weight="0.4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_semibold"
+                            android:text="3/4 Setup"
+                            android:textColor="@color/haiti"
+                            android:textSize="@dimen/_15sdp" />
+                        <TextView
+                            android:id="@+id/tvDescription"
+                            android:textColor="@color/haiti"
+                            android:fontFamily="@font/barlow_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:text="assasasasasasassssssssssssssssssssssssssssssssssssssssssss"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical|end"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutComplete"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginEnd="@dimen/_6sdp"
+                            android:background="@drawable/btn_green_back_8dp"
+                            >
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginEnd="@dimen/_2sdp"
+                                android:layout_marginBottom="@dimen/_2sdp"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_add" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/layoutDelete"
+                            android:layout_width="@dimen/_32sdp"
+                            android:layout_height="@dimen/_32sdp"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:background="@drawable/btn_green_back_8dp"
+                            >
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginEnd="@dimen/_2sdp"
+                                android:layout_marginBottom="@dimen/_2sdp"
+                                android:padding="@dimen/_6sdp"
+                                android:src="@drawable/delete"
+                                app:tint="@color/white" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl"
+                android:orientation="vertical">
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:text="Reps And Rest Period"
+                    android:textColor="@color/haiti"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_medium"
+                            android:text="Reps"
+                            android:textColor="@color/appColor"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:layout_width=   "@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:src="@drawable/ic_down_arrow_haiti" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_medium"
+                            android:text="Reps Period"
+                            android:textColor="@color/appColor"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:src="@drawable/ic_down_arrow_haiti" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_medium"
+                            android:text="Rest Duration"
+                            android:textColor="@color/appColor"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:src="@drawable/ic_down_arrow_haiti" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/graycolor"
+
+
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rvRepsAndRest"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_repsandrest"/>
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:background="@drawable/bg_green_rounded_30dp"
+                    android:elevation="@dimen/_8sdp"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:outlineSpotShadowColor="@color/black">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/barlow_medium"
+                        android:text="Add Set"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

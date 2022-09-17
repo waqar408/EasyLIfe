@@ -266,9 +266,15 @@ interface ApiService {
     @POST("user-workout")
     open fun createWorkout(@Body params: JsonObject?): Call<BaseResponse>
 
+
+
     @Headers("Accept: application/json")
     @POST("add-more-workouts")
-    open fun addMore(@Body params: JsonObject?): Call<BaseResponse>
+    open fun addMoreWorkout(@Body params: JsonObject?): Call<BaseResponse>
+
+    @Headers("Accept: application/json")
+    @POST("add-more-videos")
+    open fun addMoreVideo(@Body params: JsonObject?): Call<BaseResponse>
 
     @Headers("Accept: application/json")
     @POST("add-food")
@@ -322,4 +328,25 @@ interface ApiService {
 
     ):
             Call<SearchResponseModel>
+
+
+    @Headers("Accept: application/json")
+    @POST("delete-meal")
+    @FormUrlEncoded
+    fun deleteMeal(
+        @Field("delete_type") delete_type: String,
+        @Field("meal_plan_id") meal_plan_id: String,
+        @Field("meal_id") meal_id: String
+    ):
+            Call<MealPlanResponseModel>
+
+    @Headers("Accept: application/json")
+    @POST("delete-workout")
+    @FormUrlEncoded
+    fun deleteWorkout(
+        @Field("delete_type") delete_type: String,
+        @Field("workout_collection_id") workout_collection_id: String,
+        @Field("workout_video_id") workout_video_id: String
+    ):
+            Call<MealPlanResponseModel>
 }

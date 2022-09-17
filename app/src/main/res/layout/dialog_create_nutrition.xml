@@ -31,7 +31,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_24sdp"
                     android:fontFamily="@font/barlow_medium"
-                    android:text="Create Nutrition"
+                    android:text="Set a name for your \nutrition collection"
                     android:textColor="@color/haiti"
                     android:textSize="@dimen/_15sdp" />
                 <LinearLayout
@@ -58,7 +58,7 @@
                         android:layout_height="@dimen/_36sdp"
                         android:background="@null"
                         android:textColor="@color/haiti"
-                        android:hint="Enter here..."
+                        android:hint="Type here..."
                         android:gravity="center_vertical"
                         android:textSize="@dimen/_11sdp"
                         android:textCursorDrawable="@drawable/cursor"

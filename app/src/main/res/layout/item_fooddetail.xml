@@ -93,7 +93,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
+                        android:id="@+id/lnDelete"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.7"

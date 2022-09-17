@@ -40,7 +40,7 @@ class UserWorkoutDetailVideoAdapter(
     private var listForReps: ArrayList<WorkoutRepsAndRestModel> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(context).inflate(R.layout.item_selected_workout_list, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_workout_videodetail, parent, false)
         return ViewHolder(view, mListener)
     }
 
@@ -59,9 +59,9 @@ class UserWorkoutDetailVideoAdapter(
         holder.rvRepsAndRest.setRecycledViewPool(viewPool)
 
 
-        /*holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
             mListener.onClickArea(position)
-        }*/
+        }
         holder.layoutComplete.setOnClickListener {
             bottomsheetreps(
                 position,
@@ -194,6 +194,7 @@ class UserWorkoutDetailVideoAdapter(
         val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
         val rvRepsAndRest: RecyclerView = itemView.findViewById(R.id.rvRepsAndRest)
         val layoutComplete: RelativeLayout = itemView.findViewById(R.id.layoutComplete)
+        val layoutDelete: RelativeLayout = itemView.findViewById(R.id.layoutDelete)
 
     }
 
@@ -237,7 +238,7 @@ class UserWorkoutDetailVideoAdapter(
         jsonObject.add("workouts", array2)
 
 
-        apiClient.getApiService().addMore(jsonObject)
+        apiClient.getApiService().addMoreWorkout(jsonObject)
             .enqueue(object : retrofit2.Callback<BaseResponse?> {
                 override fun onResponse(
                     call: Call<BaseResponse?>,

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -33,17 +34,17 @@ class NutritionFoodDetailAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model: FoodDataModel = list.get(position)
-        holder.tvCalories.text = model.food_details.meal_calories
-        holder.tvProtein.text = model.food_details.meal_protien
-        holder.tvCarbs.text = model.food_details.meal_carbs
-        holder.tvFat.text = model.food_details.meal_fat
-        holder.tvFiber.text = model.food_details.meal_fibre
-        holder.tvSodium.text = model.food_details.meal_sodium
-        holder.tvSugar.text = model.food_details.meal_sugar
+        holder.tvCalories.text = (model.food_details.meal_calories.toDouble() * model.food_details.serving_quantity.toDouble()).toString()
+        holder.tvProtein.text = (model.food_details.meal_protien.toDouble()* model.food_details.serving_quantity.toDouble()).toString()
+        holder.tvCarbs.text = (model.food_details.meal_carbs.toDouble()* model.food_details.serving_quantity.toDouble()).toString()
+        holder.tvFat.text = (model.food_details.meal_fat.toDouble()* model.food_details.serving_quantity.toDouble()).toString()
+        holder.tvFiber.text = (model.food_details.meal_fibre.toDouble()* model.food_details.serving_quantity.toDouble()).toString()
+        holder.tvSodium.text = (model.food_details.meal_sodium.toDouble()* model.food_details.serving_quantity.toDouble()).toString()
+        holder.tvSugar.text = (model.food_details.meal_sugar.toDouble()* model.food_details.serving_quantity.toDouble()).toString()
         holder.tvServingSize.text = model.food_details.serving_size
         holder.edNoOfServing.text = model.food_details.serving_quantity
         holder.tvName.text = model.food_details.meal_title
-        holder.itemView.setOnClickListener {
+        holder.lnDelete.setOnClickListener {
             mListener.onClickArea(position)
         }
 
@@ -67,6 +68,7 @@ class NutritionFoodDetailAdapter(
         val tvServingSize: TextView = itemView.findViewById(R.id.spinner);
         val edNoOfServing: TextView = itemView.findViewById(R.id.edNoOfServing);
         val tvName: TextView = itemView.findViewById(R.id.tvName);
+        val lnDelete: LinearLayout = itemView.findViewById(R.id.lnDelete);
 
     }
 

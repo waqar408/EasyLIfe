@@ -17,6 +17,7 @@ import com.easylife.easylifes.model.BaseResponse
 import com.easylife.easylifes.model.allworkouts.WorkoutRepsAndRestModel
 import com.easylife.easylifes.model.getuserworkouts.UserWorkoutRepsDataModel
 import com.easylife.easylifes.model.getuserworkouts.UserWorkoutVideoListModel
+import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
 import com.easylife.easylifes.trainerside.activities.clientdetail.AllWorkoutsActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -59,8 +60,18 @@ class UserWorkoutDetailVideoAdapter(
         holder.rvRepsAndRest.setRecycledViewPool(viewPool)
 
 
-        holder.itemView.setOnClickListener {
+        holder.layoutDelete.setOnClickListener {
             mListener.onClickArea(position)
+        }
+        holder.lnVideo.setOnClickListener {
+            val intent = Intent(context, FullScreenVideoActivity::class.java)
+            intent.putExtra("videourl", model.media)
+            context.startActivity(intent)
+        }
+        holder.imgProfile.setOnClickListener {
+            val intent = Intent(context, FullScreenVideoActivity::class.java)
+            intent.putExtra("videourl", model.media)
+            context.startActivity(intent)
         }
         holder.layoutComplete.setOnClickListener {
             bottomsheetreps(
@@ -195,6 +206,7 @@ class UserWorkoutDetailVideoAdapter(
         val rvRepsAndRest: RecyclerView = itemView.findViewById(R.id.rvRepsAndRest)
         val layoutComplete: RelativeLayout = itemView.findViewById(R.id.layoutComplete)
         val layoutDelete: RelativeLayout = itemView.findViewById(R.id.layoutDelete)
+        val lnVideo: LinearLayout = itemView.findViewById(R.id.lnVideo)
 
     }
 

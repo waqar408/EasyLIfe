@@ -84,8 +84,6 @@ class ChatAdapter(
             val millis = date!!.time
             datetime = p.format(Date(millis))
             holder.tvMessageTime.text = datetime
-
-
         } catch (e: ParseException) {
             e.printStackTrace()
         }

@@ -12,11 +12,11 @@ import com.easylife.easylifes.model.chat.messenger.MessengerResponseModel
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
 import com.easylife.easylifes.model.mealplan.CreateMealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
-import com.easylife.easylifes.model.mealtime.MealTimesResponseModel
 import com.easylife.easylifes.model.search.SearchResponseModel
 import com.easylife.easylifes.model.signup.SignupResponseModel
 import com.easylife.easylifes.model.trainerdetail.TrainerDetailResponseModel
 import com.easylife.easylifes.model.trainerhome.TrainerHomeResponseModel
+import com.easylife.easylifes.model.trainerportfolio.TrainerPortfolioResponseModel
 import com.easylife.easylifes.model.userworkoutcategories.UserCategoryDataModel
 import com.easylife.easylifes.model.userworkoutcategories.UserCategoryResponseModel
 import com.easylife.easylifes.model.verifydata.VerifyDataResponseModel
@@ -233,9 +233,14 @@ interface ApiService {
     @GET
     fun messageSeen(@Url url: String): Call<BaseResponse>
 
+
+
+
     @Headers("Accept: application/json")
     @GET
-    fun mealTime(@Url url: String): Call<MealTimesResponseModel>
+    fun trainerPortfolio(@Url url: String): Call<TrainerPortfolioResponseModel>
+
+
 
 
     @Headers("Accept: application/json")
@@ -349,4 +354,32 @@ interface ApiService {
         @Field("workout_video_id") workout_video_id: String
     ):
             Call<MealPlanResponseModel>
+
+
+
+    @Multipart
+    @POST("add-trainer-video")
+    fun addTrainerVideo(
+        @Part("trainer_id") trainer_id: RequestBody,
+        @Part file: MultipartBody.Part?,
+
+        ):
+            Call<BaseResponse>
+
+
+    @Headers("Accept: application/json")
+    @POST("meal-times")
+    @FormUrlEncoded
+    fun mealTimes(
+        @Field("action") action: String,
+        @Field("user_meal_plan_id") user_meal_plan_id: String,
+        @Field("meal_time") meal_time: String,
+        @Field("meal_time_id") meal_time_id: String
+    ):
+            Call<com.easylife.easylifes.model.mealtimes.MealTimesResponseModel>
+
+    @Headers("Accept: application/json")
+    @GET
+    fun deletePortfolio(@Url url: String): Call<BaseResponse>
+
 }

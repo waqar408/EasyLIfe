@@ -55,6 +55,9 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
 
     fun onClicks() {
         binding.layoutBackArrow.setOnClickListener {
+            val intent = Intent(this@UserWorkoutDetailActivity,AllWorkoutsActivity::class.java)
+            intent.putExtra("clientid",clientid)
+            startActivity(intent)
             finish()
         }
         binding.layoutDelete.setOnClickListener {
@@ -65,10 +68,19 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
             intent.putExtra("categoryid",categoryid)
             intent.putExtra("from",from)
             intent.putExtra("clientid",clientid)
-            intent.putExtra("workoutCategoryName",categoryname)
+            intent.putExtra("categoryName",categoryname)
+            intent.putExtra("position",position)
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this@UserWorkoutDetailActivity,AllWorkoutsActivity::class.java)
+        intent.putExtra("clientid",clientid)
+        startActivity(intent)
+        finish()
     }
 
     private fun initViews() {
@@ -94,6 +106,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
 
     private fun userWorkoutDetail() {
         if (utilities.isConnectingToInternet(this@UserWorkoutDetailActivity)) {
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().getUserWorkoutDetail(
                 trainerId, clientid
             )
@@ -103,6 +116,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
                         call: Call<GetUserWorkoutsResponseModel>,
                         response: Response<GetUserWorkoutsResponseModel>
                     ) {
+                        binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
                             if (signupResponse?.status!!.equals(true)) {
@@ -137,6 +151,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
 
                     override fun onFailure(call: Call<GetUserWorkoutsResponseModel>, t: Throwable) {
                         // Error logging in
+                        binding.dotloader.visibility = View.GONE
                         utilities.showFailureToast(this@UserWorkoutDetailActivity, t.message)
                     }
                 })
@@ -147,9 +162,6 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
 
     override fun onClickArea(position: Int) {
         val model = list1.get(position)
-        /*val intent = Intent(this@UserWorkoutDetailActivity, FullScreenVideoActivity::class.java)
-        intent.putExtra("videourl", model.media)
-        startActivity(intent)*/
         deleteWorkoutVideo(model.id.toString())
     }
 
@@ -173,6 +185,9 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
                             if (signupResponse?.status!!.equals(true)) {
                                 utilities.showSuccessToast(this@UserWorkoutDetailActivity,signupResponse.message)
                                 Handler(Looper.myLooper()!!).postDelayed({
+                                    val intent = Intent(this@UserWorkoutDetailActivity,AllWorkoutsActivity::class.java)
+                                    intent.putExtra("clientid",clientid)
+                                    startActivity(intent)
                                     finish()
                                 },1000)
 
@@ -221,6 +236,9 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
                             if (signupResponse?.status!!.equals(true)) {
                                 utilities.showSuccessToast(this@UserWorkoutDetailActivity,signupResponse.message)
                                 Handler(Looper.myLooper()!!).postDelayed({
+                                    val intent = Intent(this@UserWorkoutDetailActivity,AllWorkoutsActivity::class.java)
+                                    intent.putExtra("clientid",clientid)
+                                    startActivity(intent)
                                     finish()
                                 },1000)
 

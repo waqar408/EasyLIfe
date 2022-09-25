@@ -141,9 +141,10 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
             {
                 val intent = Intent(this@AllWorkoutsActivity,WorkoutSelectionActivity::class.java)
                 intent.putExtra("clientid",clientId)
-                intent.putExtra("workoutCategoryName",workoutCategoryName)
+                intent.putExtra("categoryName",workoutCategoryName)
                 intent.putExtra("from","workout")
                 startActivity(intent)
+                finish()
                 dialog.dismiss()
             }else{
                 utilities.showFailureToast(this@AllWorkoutsActivity,"Please Enter Workout Name")
@@ -161,8 +162,8 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
         intent.putExtra("categoryid",model.id.toString())
         intent.putExtra("categoryName",model.title)
         intent.putExtra("position",position.toString())
-
         startActivity(intent)
+        finish()
     }
 
 

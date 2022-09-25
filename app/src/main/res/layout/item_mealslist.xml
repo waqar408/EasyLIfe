@@ -33,7 +33,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/meal"
+                    android:src="@drawable/ic_diets"
+                    android:padding="@dimen/_16sdp"
+                    android:tint="@color/white"
                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize16Percent" />
             </RelativeLayout>
 

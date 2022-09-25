@@ -1,6 +1,7 @@
 package com.easylife.easylifes.trainerside.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.easylife.easylifes.R
 import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
 import com.easylife.easylifes.model.categoryvideos.CategoryVideoDataModel
+import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
 
 
 class SelectedWorkoutAdapter(
@@ -40,6 +42,16 @@ class SelectedWorkoutAdapter(
             adapter.notifyDataSetChanged()
             adapter.notifyItemRangeChanged(position, allClientsList.size)*/
         }
+        holder.lnVideo.setOnClickListener {
+            val intent = Intent(context, FullScreenVideoActivity::class.java)
+            intent.putExtra("videourl", model.media)
+            context.startActivity(intent)
+        }
+        holder.imgProfile.setOnClickListener {
+            val intent = Intent(context, FullScreenVideoActivity::class.java)
+            intent.putExtra("videourl", model.media)
+            context.startActivity(intent)
+        }
     }
 
 
@@ -54,6 +66,7 @@ class SelectedWorkoutAdapter(
         val tvDescription2: TextView = itemView.findViewById(R.id.tvDescription2);
         val imgProfile: ImageView = itemView.findViewById(R.id.imgProfile);
         val rlDelete: RelativeLayout = itemView.findViewById(R.id.rlDelete);
+        val lnVideo: RelativeLayout = itemView.findViewById(R.id.lnVideo);
 
     }
 

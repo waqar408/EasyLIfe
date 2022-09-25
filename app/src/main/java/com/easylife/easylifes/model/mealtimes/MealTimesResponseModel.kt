@@ -1,6 +1,5 @@
-package com.easylife.easylifes.model.mealtime
+package com.easylife.easylifes.model.mealtimes
 
-import com.easylife.easylifes.model.mealplan.MealTimeDataModel
 import com.google.gson.annotations.SerializedName
 
 data class MealTimesResponseModel(
@@ -8,8 +7,8 @@ data class MealTimesResponseModel(
     var status : Boolean,
 
     @SerializedName("message")
-    var message :String,
+    var message : String,
 
     @SerializedName("data")
-    var data : ArrayList<MealTimeDataModel>
+    var data : ArrayList<MealTimesDataModel>
 )

@@ -1,6 +1,7 @@
 package com.easylife.easylifes.trainerside.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
 import com.easylife.easylifes.model.allworkouts.WorkoutRepsAndRestModel
+import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.imageview.ShapeableImageView
@@ -48,6 +50,16 @@ class SelectedWorkoutListAdapter(
         holder.layoutComplete.setOnClickListener {
             bottomsheetreps(position, model, holder.rvRepsAndRest,holder.tvName,holder.tvDescription,holder.imgProfile)
 
+        }
+        holder.lnVideo.setOnClickListener {
+            val intent = Intent(context, FullScreenVideoActivity::class.java)
+            intent.putExtra("videourl", model.media)
+            context.startActivity(intent)
+        }
+        holder.imgProfile.setOnClickListener {
+            val intent = Intent(context, FullScreenVideoActivity::class.java)
+            intent.putExtra("videourl", model.media)
+            context.startActivity(intent)
         }
 
     }
@@ -141,6 +153,7 @@ class SelectedWorkoutListAdapter(
         val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
         val rvRepsAndRest: RecyclerView = itemView.findViewById(R.id.rvRepsAndRest)
         val layoutComplete: RelativeLayout = itemView.findViewById(R.id.layoutComplete)
+        val lnVideo: LinearLayout = itemView.findViewById(R.id.lnVideo)
 
     }
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
+        <LinearLayout
+            android:layout_marginVertical="@dimen/_6sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvMealTimeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Egg Yolk"
+                android:layout_weight="0.4"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/haiti"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/tvServings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 Cup"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/greycolorfordots"
+                android:fontFamily="@font/barlow_bold"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="400 kcal"
+            android:textColor="@color/appColor"
+            android:textSize="@dimen/_13sdp" />
+
+
+
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:background="@color/grayviewcolor"
+        />
+</LinearLayout>

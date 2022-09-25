@@ -1,4 +1,4 @@
-package com.easylife.easylifes.userside.activities.profile
+package com.easylife.easylifes.trainerside.activities.profile
 
 import android.app.Activity
 import android.content.Intent
@@ -12,9 +12,10 @@ import android.view.WindowInsetsController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.databinding.ActivityEditProfileBinding
+import com.easylife.easylifes.databinding.ActivityEditTrainerProfileBinding
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.signup.SignupResponseModel
+import com.easylife.easylifes.trainerside.activities.TrainerPortfolioActivity
 import com.easylife.easylifes.utils.Utilities
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.gson.Gson
@@ -28,8 +29,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-class EditProfileActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityEditProfileBinding
+class EditTrainerProfileActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityEditTrainerProfileBinding
     lateinit var selected_img_bitmap: Bitmap
     private lateinit var utilities: Utilities
     var profileImage = ""
@@ -47,7 +48,7 @@ class EditProfileActivity : AppCompatActivity() {
     lateinit var imageFileToUpload: MultipartBody.Part
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEditProfileBinding.inflate(layoutInflater)
+        binding = ActivityEditTrainerProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initViews()
@@ -56,10 +57,10 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        utilities = Utilities(this@EditProfileActivity)
+        utilities = Utilities(this@EditTrainerProfileActivity)
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        val drawable = CircularProgressDrawable(this@EditProfileActivity)
+        val drawable = CircularProgressDrawable(this@EditTrainerProfileActivity)
         drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor)
         drawable.setCenterRadius(25f)
         drawable.setStrokeWidth(6f)
@@ -74,7 +75,7 @@ class EditProfileActivity : AppCompatActivity() {
             address = obj.address
             phoneCode = obj.country_code
             phoneNumber= obj.phone
-            Glide.with(this@EditProfileActivity).load(profileImage).placeholder(drawable).into(binding.profileImage)
+            Glide.with(this@EditTrainerProfileActivity).load(profileImage).placeholder(drawable).into(binding.profileImage)
             binding.edName.text = Editable.Factory.getInstance().newEditable(name)
             binding.edUserName.text = Editable.Factory.getInstance().newEditable(username)
             binding.tvPhoneNumber.text = phoneCode+" "+phoneNumber
@@ -101,7 +102,9 @@ class EditProfileActivity : AppCompatActivity() {
                 updateWithoutImage()
             }
         }
-
+        binding.layoutPorfolio.setOnClickListener {
+            startActivity(Intent(this@EditTrainerProfileActivity,TrainerPortfolioActivity::class.java))
+        }
     }
 
     private fun updateImage() {
@@ -134,11 +137,11 @@ class EditProfileActivity : AppCompatActivity() {
         location: String,
         address: String
     ) {
-        if (utilities.isConnectingToInternet(this@EditProfileActivity)) {
-            utilities.showProgressDialog(this@EditProfileActivity, "Please wait...")
+        if (utilities.isConnectingToInternet(this@EditTrainerProfileActivity)) {
+            utilities.showProgressDialog(this@EditTrainerProfileActivity, "Please wait...")
             apiClient.getApiService().updateProfile(
                 userId, name, userName,
-                 "",
+                "",
                 "", "", "", "",
                 "", "", "",
                 "", "", "",
@@ -155,16 +158,16 @@ class EditProfileActivity : AppCompatActivity() {
                         utilities.hideProgressDialog()
                         if (response.isSuccessful) {
                             if (signupResponse?.status!!.equals(true)) {
-                                utilities.showSuccessToast(this@EditProfileActivity, signupResponse.message)
+                                utilities.showSuccessToast(this@EditTrainerProfileActivity, signupResponse.message)
                                 val gson = Gson()
                                 val json = gson.toJson(signupResponse.data)
-                                utilities.saveString(this@EditProfileActivity, "loginResponse", json)
+                                utilities.saveString(this@EditTrainerProfileActivity, "loginResponse", json)
                                 profileImage = signupResponse.data.profile_image
                                 username = signupResponse.data.username
                                 val name1 = signupResponse.data.name
                                 val location1 = signupResponse.data.location
                                 val address1 = signupResponse.data.address
-                                Glide.with(this@EditProfileActivity).load(profileImage).into(binding.profileImage)
+                                Glide.with(this@EditTrainerProfileActivity).load(profileImage).into(binding.profileImage)
                                 binding.edName.text = Editable.Factory.getInstance().newEditable(name1)
                                 binding.edUserName.text = Editable.Factory.getInstance().newEditable(username)
                                 binding.edLocation.text = Editable.Factory.getInstance().newEditable(location1)
@@ -173,13 +176,13 @@ class EditProfileActivity : AppCompatActivity() {
                                 binding.tvLocation.text = location1
                             } else {
                                 utilities.showFailureToast(
-                                    this@EditProfileActivity,
+                                    this@EditTrainerProfileActivity,
                                     signupResponse.message
                                 )
                             }
                         } else {
                             utilities.showFailureToast(
-                                this@EditProfileActivity,
+                                this@EditTrainerProfileActivity,
                                 signupResponse!!.message
                             )
                         }
@@ -189,13 +192,13 @@ class EditProfileActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
                         // Error logging in
                         utilities.hideProgressDialog()
-                        utilities.showFailureToast(this@EditProfileActivity, t.message)
+                        utilities.showFailureToast(this@EditTrainerProfileActivity, t.message)
 
                     }
 
                 })
         } else {
-            utilities.showNoInternetToast(this@EditProfileActivity)
+            utilities.showNoInternetToast(this@EditTrainerProfileActivity)
         }
     }
     fun withProfileImageApi(
@@ -212,7 +215,7 @@ class EditProfileActivity : AppCompatActivity() {
         val address: RequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
         val requestBody: RequestBody = RequestBody.create("*/*".toMediaTypeOrNull(), imagefile!!)
         imageFileToUpload = MultipartBody.Part.createFormData("profile_image", imagefile!!.name, requestBody)
-        utilities.showProgressDialog(this@EditProfileActivity,"Please wait...")
+        utilities.showProgressDialog(this@EditTrainerProfileActivity,"Please wait...")
         apiClient.getApiService().editProfile(
             userId,
             name,
@@ -250,16 +253,16 @@ class EditProfileActivity : AppCompatActivity() {
                         if (status.equals(true)) {
                             val signupResponse = response.body()
                             val message: String = response.body()!!.message
-                            utilities.showSuccessToast(this@EditProfileActivity,message)
+                            utilities.showSuccessToast(this@EditTrainerProfileActivity,message)
                             val gson = Gson()
                             val json = gson.toJson(signupResponse!!.data)
-                            utilities.saveString(this@EditProfileActivity, "loginResponse", json)
+                            utilities.saveString(this@EditTrainerProfileActivity, "loginResponse", json)
                             profileImage = signupResponse.data.profile_image
                             username = signupResponse.data.username
                             val name1 = signupResponse.data.name
                             val location1 = signupResponse.data.location
                             val address1 = signupResponse.data.address
-                            Glide.with(this@EditProfileActivity).load(profileImage).into(binding.profileImage)
+                            Glide.with(this@EditTrainerProfileActivity).load(profileImage).into(binding.profileImage)
                             binding.edName.text = Editable.Factory.getInstance().newEditable(name1)
                             binding.edUserName.text = Editable.Factory.getInstance().newEditable(username)
                             binding.edLocation.text = Editable.Factory.getInstance().newEditable(location1)
@@ -271,19 +274,19 @@ class EditProfileActivity : AppCompatActivity() {
                         } else {
                             val message: String = response.body()!!.message
 
-                            utilities.showFailureToast(this@EditProfileActivity,message.toString())
+                            utilities.showFailureToast(this@EditTrainerProfileActivity,message.toString())
 
                         }
                     } else {
                         val message: String = response.body()!!.message
-                        utilities.showFailureToast(this@EditProfileActivity,message.toString())
+                        utilities.showFailureToast(this@EditTrainerProfileActivity,message.toString())
 
                     }
                 }
 
                 override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
                     utilities.hideProgressDialog()
-                    utilities.showFailureToast(this@EditProfileActivity,t.message.toString())
+                    utilities.showFailureToast(this@EditTrainerProfileActivity,t.message.toString())
 
                 }
             })
@@ -314,7 +317,7 @@ class EditProfileActivity : AppCompatActivity() {
 
 
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            utilities.showFailureToast(this@EditProfileActivity,ImagePicker.getError(data))
+            utilities.showFailureToast(this@EditTrainerProfileActivity, ImagePicker.getError(data))
 
         } else {
             //do nothing here

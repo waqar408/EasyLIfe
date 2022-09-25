@@ -5,19 +5,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.trainerhome.TrainerUserDataModel
-import com.easylife.easylifes.trainerside.activities.clientdetail.AllWorkoutsActivity
 import com.easylife.easylifes.trainerside.activities.nutrition.AllNutritionsActivity
-import com.easylife.easylifes.trainerside.activities.nutrition.MealTimesActivity
 import com.google.android.material.imageview.ShapeableImageView
-import org.w3c.dom.Text
 
 
 class AllClientsListAdapter(
@@ -58,7 +53,7 @@ class AllClientsListAdapter(
     class ViewHolder(itemView: View,listener: onAllClientDetailClick) :
         RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvUserName: TextView = itemView.findViewById(R.id.tvUserName);
+        val tvUserName: TextView = itemView.findViewById(R.id.tvusername);
         val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
         val rlWorkout: RelativeLayout = itemView.findViewById(R.id.rlWorkout);
         val tvNutrition: TextView = itemView.findViewById(R.id.rlNutrition);

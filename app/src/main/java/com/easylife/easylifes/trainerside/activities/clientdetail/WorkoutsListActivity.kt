@@ -41,6 +41,7 @@ class WorkoutsListActivity : AppCompatActivity(),
     var workoutid = ""
     val apiClient = ApiClient()
     var categoryid = ""
+    var position = ""
     var from : String?= null
     lateinit var navHostFragment : NavHostFragment
     lateinit var navController : NavController
@@ -49,10 +50,36 @@ class WorkoutsListActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         initViews()
+        onClicks()
 
+    }
+
+    fun onClicks()
+    {
+        binding.layoutBackArrow.setOnClickListener {
+            val intent = Intent(this@WorkoutsListActivity,SelectedWorkoutActivity::class.java)
+            intent.putExtra("clientid",clientid)
+            intent.putExtra("categoryName",tvWorkoutCategory)
+            intent.putExtra("categoryid",categoryid)
+            intent.putExtra("from",from)
+            intent.putExtra("position",position)
+            startActivity(intent)
+            finish()
+        }
+
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this@WorkoutsListActivity,SelectedWorkoutActivity::class.java)
+        intent.putExtra("clientid",clientid)
+        intent.putExtra("categoryName",tvWorkoutCategory)
+        intent.putExtra("categoryid",categoryid)
+        intent.putExtra("from",from)
+        intent.putExtra("position",position)
+        startActivity(intent)
+        finish()
 
     }
 
@@ -66,10 +93,11 @@ class WorkoutsListActivity : AppCompatActivity(),
         val intent = intent
 //        allWorkoutList = intent.getParcelableArrayListExtra("list")!!
         allWorkoutList = UtilityClass.instance!!.list
-        tvWorkoutCategory = intent.getStringExtra("workoutCategoryName").toString()
+        tvWorkoutCategory = intent.getStringExtra("categoryName").toString()
         clientid = intent.getStringExtra("clientid").toString()
         from = intent.getStringExtra("from").toString()
         categoryid = intent.getStringExtra("categoryid").toString()
+        position = intent.getStringExtra("position").toString()
         binding.workoutCategoryName.text = tvWorkoutCategory
 
         val gsonn = Gson()

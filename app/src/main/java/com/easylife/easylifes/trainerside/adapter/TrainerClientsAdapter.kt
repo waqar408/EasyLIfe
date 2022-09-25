@@ -2,21 +2,17 @@ package com.easylife.easylifes.trainerside.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.shapes.Shape
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.model.home.CategoriesDataModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.trainerhome.TrainerUserDataModel
 import com.easylife.easylifes.userside.activities.inbox.InboxActivity
-import com.easylife.easylifes.userside.activities.instructor.InstructorActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.Gson
@@ -69,7 +65,7 @@ class TrainerClientsAdapter(
         RecyclerView.ViewHolder(itemView) {
         val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
         val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvUserName: TextView = itemView.findViewById(R.id.tvUserName);
+        val tvUserName: TextView = itemView.findViewById(R.id.tvusername);
         val rlChat: RelativeLayout = itemView.findViewById(R.id.rlChat);
 
     }

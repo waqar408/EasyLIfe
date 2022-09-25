@@ -2,6 +2,8 @@ package com.easylife.easylifes.trainerside.activities.nutrition
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -33,7 +35,6 @@ class NutritionSelectedActivity : AppCompatActivity() {
     var mealid = ""
     var nutritionName = ""
     var clientid = ""
-    var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNutritionSelectedBinding.inflate(layoutInflater)
@@ -48,10 +49,9 @@ class NutritionSelectedActivity : AppCompatActivity() {
         binding.layoutBackArrow.setOnClickListener {
             val intent = Intent(this@NutritionSelectedActivity, SearchMealActivity::class.java)
             intent.putExtra("mealtimeid",mealtimeid.toString())
-            intent.putExtra("planid",planid.toString())
-            intent.putExtra("nutritionName",nutritionName)
+            intent.putExtra("mealplanid",planid.toString())
+            intent.putExtra("mealname",nutritionName)
             intent.putExtra("clientid",clientid)
-            intent.putExtra("from",from)
             startActivity(intent)
             finish()
         }
@@ -100,10 +100,14 @@ class NutritionSelectedActivity : AppCompatActivity() {
                         val status = response.body()!!.status
                         utilities.showSuccessToast(this@NutritionSelectedActivity,response.message())
                         if (status == true) {
-                            val intent = Intent(this@NutritionSelectedActivity, AllNutritionsActivity::class.java)
-                            intent.putExtra("clientid", clientid)
-                            startActivity(intent)
-                            finish()
+                            Handler(Looper.myLooper()!!).postDelayed({
+                                val intent = Intent(this@NutritionSelectedActivity, ClientNutritionActivity::class.java)
+                                intent.putExtra("mealplanid", planid)
+                                intent.putExtra("clientid",clientid)
+                                startActivity(intent)
+                                finish()
+                            },1000)
+
                         } else {
                             utilities.showFailureToast(
                                 this@NutritionSelectedActivity,
@@ -133,12 +137,10 @@ class NutritionSelectedActivity : AppCompatActivity() {
         utilities = Utilities(this@NutritionSelectedActivity)
         utilities.setGrayBar(this@NutritionSelectedActivity)
         val intent = intent
-        planid = intent.getStringExtra("planid").toString()
+        planid = intent.getStringExtra("mealplanid").toString()
         mealtimeid = intent.getStringExtra("mealtimeid").toString()
         clientid = intent.getStringExtra("clientid").toString()
         nutritionName = intent.getStringExtra("nutritionName").toString()
-        mealid = intent.getStringExtra("mealId").toString()
-        from = intent.getStringExtra("from").toString()
         binding.tvNames.text = nutritionName
         val gson = Gson()
         searchDataModel =
@@ -182,10 +184,9 @@ class NutritionSelectedActivity : AppCompatActivity() {
         super.onBackPressed()
         val intent = Intent(this@NutritionSelectedActivity, SearchMealActivity::class.java)
         intent.putExtra("mealtimeid",mealtimeid.toString())
-        intent.putExtra("planid",planid.toString())
-        intent.putExtra("nutritionName",nutritionName)
+        intent.putExtra("mealplanid",planid.toString())
+        intent.putExtra("mealname",nutritionName)
         intent.putExtra("clientid",clientid)
-        intent.putExtra("from",from)
         startActivity(intent)
         finish()
     }

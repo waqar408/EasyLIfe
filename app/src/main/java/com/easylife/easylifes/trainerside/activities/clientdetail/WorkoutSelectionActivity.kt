@@ -42,6 +42,7 @@ class WorkoutSelectionActivity : AppCompatActivity() {
     var clientid = ""
     var categoryid = ""
     var from = ""
+    var position = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,13 +59,17 @@ class WorkoutSelectionActivity : AppCompatActivity() {
                 val intent = Intent(this@WorkoutSelectionActivity,UserWorkoutDetailActivity::class.java)
                 intent.putExtra("categoryid",categoryid)
                 intent.putExtra("from",from)
+                intent.putExtra("categoryName",workoutCategoryName)
+                intent.putExtra("position",position)
                 intent.putExtra("clientid",clientid)
+                startActivity(intent)
                 finish()
             }else{
                 val intent = Intent(this@WorkoutSelectionActivity,AllWorkoutsActivity::class.java)
                 intent.putExtra("categoryid",categoryid)
                 intent.putExtra("from",from)
                 intent.putExtra("clientid",clientid)
+                startActivity(intent)
                 finish()
             }
 
@@ -105,10 +110,11 @@ class WorkoutSelectionActivity : AppCompatActivity() {
                 }
                 val intent = Intent(this@WorkoutSelectionActivity, SelectedWorkoutActivity::class.java)
                 intent.putExtra("clientid",clientid)
-                intent.putExtra("workoutCategoryName",workoutCategoryName)
+                intent.putExtra("categoryName",workoutCategoryName)
                 intent.putExtra("workoutCategoryId",workoutCategoryId.toString())
                 intent.putExtra("categoryid",categoryid)
                 intent.putExtra("from",from)
+                intent.putExtra("position",position)
                 startActivity(intent)
                 finish()
 
@@ -130,13 +136,17 @@ class WorkoutSelectionActivity : AppCompatActivity() {
             val intent = Intent(this@WorkoutSelectionActivity,UserWorkoutDetailActivity::class.java)
             intent.putExtra("categoryid",categoryid)
             intent.putExtra("from",from)
+            intent.putExtra("categoryName",workoutCategoryName)
+            intent.putExtra("position",position)
             intent.putExtra("clientid",clientid)
+            startActivity(intent)
             finish()
         }else{
             val intent = Intent(this@WorkoutSelectionActivity,AllWorkoutsActivity::class.java)
             intent.putExtra("categoryid",categoryid)
             intent.putExtra("from",from)
             intent.putExtra("clientid",clientid)
+            startActivity(intent)
             finish()
         }
     }
@@ -170,8 +180,9 @@ class WorkoutSelectionActivity : AppCompatActivity() {
         clientid = intent.getStringExtra("clientid").toString()
         workoutCategoryId = intent.getStringExtra("workoutCategoryId").toString()
         categoryid = intent.getStringExtra("categoryid").toString()
-        workoutCategoryName = intent.getStringExtra("workoutCategoryName").toString()
+        workoutCategoryName = intent.getStringExtra("categoryName").toString()
         from = intent.getStringExtra("from").toString()
+        position = intent.getStringExtra("position").toString()
         binding.workoutName.text = workoutCategoryName
         cagtegoryVideos()
 

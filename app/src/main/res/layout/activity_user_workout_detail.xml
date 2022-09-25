@@ -7,18 +7,7 @@
     android:background="@color/porcelain"
     tools:context=".trainerside.activities.clientdetail.UserWorkoutDetailActivity">
 
-    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
-        android:id="@+id/dotloader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:trailingcircular_animDelay="600"
-        app:trailingcircular_animDuration="1200"
-        app:trailingcircular_bigCircleRadius="24dp"
-        android:visibility="gone"
-        app:trailingcircular_dotsColor="@color/appColor"
-        app:trailingcircular_dotsRadius="@dimen/_5sdp"
-        app:trailingcircular_noOfTrailingDots="5" />
+
     <RelativeLayout
         android:id="@+id/layout_backArrow"
         android:layout_width="@dimen/_30sdp"
@@ -75,7 +64,6 @@
         android:layout_marginEnd="@dimen/_12sdp"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/_18sdp"
-        android:background="@drawable/btn_green_back_8dp"
         >
 
         <ImageView
@@ -85,9 +73,9 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_marginEnd="@dimen/_2sdp"
             android:layout_marginBottom="@dimen/_2sdp"
-            android:padding="@dimen/_6sdp"
+            android:padding="@dimen/_2sdp"
             android:src="@drawable/delete"
-            app:tint="@color/white" />
+             />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -471,4 +459,16 @@
         </RelativeLayout>
 
     </RelativeLayout>
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:trailingcircular_animDelay="600"
+        android:visibility="gone"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_5sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
 </RelativeLayout>

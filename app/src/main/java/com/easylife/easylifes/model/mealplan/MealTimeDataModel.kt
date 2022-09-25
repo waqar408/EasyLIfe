@@ -11,6 +11,9 @@ data class MealTimeDataModel(
     @SerializedName("meal_time")
     var meal_time : String,
 
+    @SerializedName("user_meal_plan_id")
+    var user_meal_plan_id : String,
+
     @SerializedName("foods")
     var foods :  ArrayList<FoodDataModel>
 )

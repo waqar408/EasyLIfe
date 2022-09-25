@@ -2,6 +2,7 @@ package com.easylife.easylifes.trainerside.adapter
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
@@ -20,6 +21,7 @@ import com.easylife.easylifes.R
 import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
 import com.easylife.easylifes.model.categoryvideos.CategoryVideoDataModel
+import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.imageview.ShapeableImageView
@@ -69,6 +71,8 @@ class WorkoutSelectionAdpater(
         private val imgTick: ImageView
         private val imgProfile: ShapeableImageView
         private val rl: RelativeLayout
+        private val rlSelection : RelativeLayout
+        private val lnVideo : LinearLayout
         fun bind(employee: AllWorkoutsDataListModel) {
             val drawable = CircularProgressDrawable(context)
             drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor);
@@ -79,8 +83,18 @@ class WorkoutSelectionAdpater(
             textView.setText(employee.title)
             tvDescription.text = employee.description
             Glide.with(context).load(employee.media).placeholder(drawable).into(imgProfile)
+            imgProfile.setOnClickListener{
+                val intent = Intent(context, FullScreenVideoActivity::class.java)
+                intent.putExtra("videourl", employee.media)
+                context.startActivity(intent)
+            }
+            lnVideo.setOnClickListener {
+                val intent = Intent(context, FullScreenVideoActivity::class.java)
+                intent.putExtra("videourl", employee.media)
+                context.startActivity(intent)
+            }
             imgTick.visibility = if (!employee.isChecked) View.VISIBLE else View.GONE
-            itemView.setOnClickListener(View.OnClickListener {
+            rlSelection.setOnClickListener(View.OnClickListener {
                 employee.isChecked = !employee.isChecked
                 if (employee.isChecked) {
                     rl.setBackgroundResource(R.drawable.selected_greenback)
@@ -103,6 +117,8 @@ class WorkoutSelectionAdpater(
             imgProfile = itemView.findViewById(R.id.imgProfile)
             imgTick = itemView.findViewById(R.id.img)
             rl = itemView.findViewById(R.id.rl)
+            rlSelection = itemView.findViewById(R.id.rlSelection)
+            lnVideo =itemView.findViewById(R.id.lnVideo)
 
         }
     }

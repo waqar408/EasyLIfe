@@ -81,6 +81,7 @@
                 android:background="@null"
                 android:fontFamily="@font/barlow_medium"
                 android:hint="Search here..."
+                android:textCursorDrawable="@drawable/cursor"
                 android:textColor="@color/haiti"
                 android:textSize="@dimen/_12sdp" />
 

@@ -72,12 +72,8 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
     override fun onClickArea(position: Int) {
         val model = plansList[position]
         val intent = Intent(this@AllNutritionsActivity, ClientNutritionActivity::class.java)
-        val gson = Gson()
-        val mySelectMeal = gson.toJson(model)
         intent.putExtra("mealplanid",model.id.toString())
-        intent.putExtra("myplan", mySelectMeal)
         intent.putExtra("clientid", clientId)
-        intent.putExtra("from","from")
         startActivity(intent)
         finish()
     }
@@ -137,24 +133,6 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
         }
     }
 
-    private fun addNutritionDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_add_nutrition)
-        val lp = WindowManager.LayoutParams()
-        lp.copyFrom(dialog.window!!.attributes)
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-        lp.gravity = Gravity.CENTER
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.attributes = lp
-        val cardAddWorkout = dialog.findViewById<CardView>(R.id.cardAddWorkout)
-        cardAddWorkout.setOnClickListener {
-            createNewNutrition()
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
 
     private fun createNewNutrition() {
         val dialog = Dialog(this)

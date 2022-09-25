@@ -18,17 +18,19 @@
         android:theme="@style/Theme.EasyLifes"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".trainerside.activities.nutrition.MacronutrientsDetailActivity"
+            android:name=".trainerside.activities.profile.EditTrainerProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".trainerside.activities.nutrition.NutritionFoodDetailActivity"
+            android:name=".trainerside.activities.TrainerPortfolioActivity"
             android:exported="false" />
+        <activity
+            android:name=".trainerside.activities.nutrition.MacronutrientsDetailActivity"
+            android:exported="false" />
+
         <activity
             android:name=".trainerside.activities.nutrition.SearchMealActivity"
             android:exported="false" />
-        <activity
-            android:name=".trainerside.activities.nutrition.MealTimesActivity"
-            android:exported="false" />
+
         <activity
             android:name=".trainerside.activities.FullScreenVideoActivity"
             android:exported="false" />
@@ -47,9 +49,7 @@
         <activity
             android:name=".trainerside.activities.clientdetail.WorkoutSelectionActivity"
             android:exported="false" />
-        <activity
-            android:name=".trainerside.activities.clientdetail.AllClientDetailActivity"
-            android:exported="false" />
+
         <activity
             android:name=".trainerside.activities.nutrition.ClientNutritionActivity"
             android:exported="false" />
@@ -59,9 +59,7 @@
         <activity
             android:name=".trainerside.activities.nutrition.NutritionSelectedActivity"
             android:exported="false" />
-        <activity
-            android:name=".trainerside.activities.nutrition.NutritionSelectionActivity"
-            android:exported="false" />
+
         <activity
             android:name=".trainerside.activities.nutrition.AllNutritionsActivity"
             android:exported="false" />

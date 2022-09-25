@@ -15,6 +15,7 @@ import com.easylife.easylifes.model.mealplan.CreateMealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.userside.activities.MainActivity
+import com.easylife.easylifes.userside.activities.auth.GenderSelectionActivity
 import com.easylife.easylifes.userside.activities.clientnutrition.ClientNutritionsActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
@@ -48,9 +49,7 @@ class CreateNutrtionActivity : AppCompatActivity() {
     }
 
     private fun onClicks() {
-        /*binding.layoutCreateWorkout.setOnClickListener {
-            startActivity(Intent(this@CreateNutrtionActivity, ClientNutritionActivity::class.java))
-        }*/
+
         binding.layoutBackArrow.setOnClickListener {
             val intent = Intent(this@CreateNutrtionActivity, AllNutritionsActivity::class.java)
             intent.putExtra("clientid",clientId)
@@ -118,14 +117,14 @@ class CreateNutrtionActivity : AppCompatActivity() {
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
                             if (signupResponse?.status!!.equals(true)) {
-                                val intent = Intent(this@CreateNutrtionActivity, MealTimesActivity::class.java)
-                                intent.putExtra("mealId",signupResponse.data.id.toString())
-                                intent.putExtra("nutritionName",nutritionName)
-                                intent.putExtra("clientid",clientId)
-                                intent.putExtra("from","nutrition")
+                                utilities.showSuccessToast(this@CreateNutrtionActivity,signupResponse.message)
+                                Handler(Looper.myLooper()!!).postDelayed({
+                                    val intent = Intent(this@CreateNutrtionActivity, AllNutritionsActivity::class.java)
+                                    intent.putExtra("clientid",clientId)
+                                    startActivity(intent)
+                                    finish()
+                                },800)
 
-                                startActivity(intent)
-                                finish()
                             } else {
                                 utilities.showFailureToast(
                                     this@CreateNutrtionActivity,
@@ -162,7 +161,6 @@ class CreateNutrtionActivity : AppCompatActivity() {
         val intent = intent
         nutritionName = intent.getStringExtra("nutritionName").toString()
         clientId = intent.getStringExtra("clientid").toString()
-        from = intent.getStringExtra("from").toString()
         binding.tvNames.text = nutritionName
     }
 

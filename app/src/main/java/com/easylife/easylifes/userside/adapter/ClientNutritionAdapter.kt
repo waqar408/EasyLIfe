@@ -38,7 +38,7 @@ class ClientNutritionAdapter(
         {
             calories = (listMeal[i].food_details.meal_calories.toInt() * listMeal[i].food_details.serving_quantity.toInt()) + calories
         }
-        holder.tvDescription.text = "("+calories.toString()+") calories"
+        holder.tvDescription.text = "("+calories.toString()+" calories)"
         holder.itemView.setOnClickListener {
             model.isChecked = !model.isChecked
             if (model.isChecked) {

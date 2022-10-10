@@ -39,8 +39,8 @@ import retrofit2.Response
 
 class ClientNutritionActivity : AppCompatActivity(),
     UserNutritionDetailAdapter.onSelectedWorkoutClick,UserNutritionDetailAdapter.onAddMealClick {
-    private lateinit var utilities: Utilities
     private lateinit var binding: ActivityClientNutritionBinding
+    private lateinit var utilities: Utilities
     private lateinit var mealTimesList: ArrayList<MealTimesDataModel>
     var clientid = ""
     var mealPlanId = ""

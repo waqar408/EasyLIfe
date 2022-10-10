@@ -33,6 +33,19 @@ data class TrainerDetailDataModel(
     @SerializedName("total_reviews")
     var total_reviews : Int,
 
+    @SerializedName("workout_assigned")
+    var workout_assigned : Boolean,
+
+
+    @SerializedName("meal_plan_assigned")
+    var meal_plan_assigned : Boolean,
+
+    @SerializedName("videos")
+    var videos : ArrayList<VideoListDataModel>,
+
+    @SerializedName("subscription_packages")
+    var subscription_packages : ArrayList<SubscriptionPackageDataModel>,
+
     @SerializedName("five_stars")
     var five_stars : Int,
 

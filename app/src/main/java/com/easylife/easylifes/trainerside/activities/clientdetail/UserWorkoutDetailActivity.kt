@@ -30,7 +30,6 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
     private lateinit var binding: ActivityUserWorkoutDetailBinding
     var clientid = ""
     var categoryid = ""
-    var categoryimage = ""
     var categoryname = ""
     var trainerId = ""
     var position = ""

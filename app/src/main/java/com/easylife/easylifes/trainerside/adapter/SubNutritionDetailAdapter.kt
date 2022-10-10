@@ -11,11 +11,7 @@ import com.easylife.easylifes.model.getuserworkouts.UserWorkoutRepsDataModel
 import com.easylife.easylifes.model.mealtimes.MealTimeFoodsDataModel
 
 
-class SubNutritionDetailAdapter(
-    val context: Context,
-    val list: ArrayList<MealTimeFoodsDataModel>?,
-) :
-    RecyclerView.Adapter<SubNutritionDetailAdapter.ViewHolder>() {
+class SubNutritionDetailAdapter(val context: Context, val list: ArrayList<MealTimeFoodsDataModel>?) : RecyclerView.Adapter<SubNutritionDetailAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
@@ -44,8 +40,4 @@ class SubNutritionDetailAdapter(
         val tvCal: TextView = itemView.findViewById(R.id.tvCal)
 
     }
-
-
-
-
 }

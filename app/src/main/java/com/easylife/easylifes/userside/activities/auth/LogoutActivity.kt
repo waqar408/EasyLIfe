@@ -3,6 +3,7 @@ package com.easylife.easylifes.userside.activities.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.easylife.easylifes.databinding.ActivityLogoutBinding
 import com.easylife.easylifes.model.BaseResponse
 import com.easylife.easylifes.model.forgotpassword.ForgotPasswordResponseModel
@@ -52,7 +53,7 @@ class LogoutActivity : AppCompatActivity() {
     private fun logoutApi() {
         if (utilities.isConnectingToInternet(this@LogoutActivity)) {
             val url = apiClient.BASE_URL + "logout/"+userId
-            utilities.showProgressDialog(this@LogoutActivity,"Please wait...")
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().logout(url)
                 .enqueue(object : Callback<BaseResponse> {
 
@@ -61,7 +62,7 @@ class LogoutActivity : AppCompatActivity() {
                         response: Response<BaseResponse>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful) {
                             if (signupResponse?.status!!.equals(true)) {
                                 utilities.clearSharedPref(this@LogoutActivity)
@@ -71,7 +72,6 @@ class LogoutActivity : AppCompatActivity() {
                                     )
                                     startActivity(intent)
                                     finishAffinity()
-                                    finish()
 
                             } else {
                                 utilities.showFailureToast(
@@ -90,7 +90,7 @@ class LogoutActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         utilities.showFailureToast(this@LogoutActivity, t.message)
 
                     }

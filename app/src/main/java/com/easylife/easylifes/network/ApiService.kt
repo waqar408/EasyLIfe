@@ -14,6 +14,8 @@ import com.easylife.easylifes.model.mealplan.CreateMealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.search.SearchResponseModel
 import com.easylife.easylifes.model.signup.SignupResponseModel
+import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerResponseModel
+import com.easylife.easylifes.model.toptrainers.TopTrainersResponseModel
 import com.easylife.easylifes.model.trainerdetail.TrainerDetailResponseModel
 import com.easylife.easylifes.model.trainerhome.TrainerHomeResponseModel
 import com.easylife.easylifes.model.trainerportfolio.TrainerPortfolioResponseModel
@@ -382,4 +384,12 @@ interface ApiService {
     @GET
     fun deletePortfolio(@Url url: String): Call<BaseResponse>
 
+    @Headers("Accept: application/json")
+    @GET
+    fun subscribedTrainer(@Url url: String): Call<SubscribedTrainerResponseModel>
+
+
+    @Headers("Accept: application/json")
+    @GET
+    fun topTrainerList(@Url url: String): Call<TopTrainersResponseModel>
 }

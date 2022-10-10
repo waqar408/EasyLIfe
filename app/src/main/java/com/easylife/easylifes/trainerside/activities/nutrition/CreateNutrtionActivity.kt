@@ -16,7 +16,6 @@ import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.userside.activities.MainActivity
 import com.easylife.easylifes.userside.activities.auth.GenderSelectionActivity
-import com.easylife.easylifes.userside.activities.clientnutrition.ClientNutritionsActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient

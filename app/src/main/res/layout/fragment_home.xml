@@ -28,8 +28,8 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/text_todo"
                 android:scaleType="fitXY"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                android:src="@drawable/ic_pic" />
+                android:src="@drawable/ic_pic"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
         </RelativeLayout>
 
@@ -53,7 +53,7 @@
             android:fontFamily="@font/barlow_semibold"
             android:text="Good Morning"
             android:textColor="@color/appColor"
-            android:textSize="@dimen/_17sdp" />
+            android:textSize="@dimen/_15sdp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
         android:visibility="gone"
         app:trailingcircular_animDelay="600"
         app:trailingcircular_animDuration="1200"
-        app:trailingcircular_bigCircleRadius="40dp"
+        app:trailingcircular_bigCircleRadius="24dp"
         app:trailingcircular_dotsColor="@color/appColor"
         app:trailingcircular_dotsRadius="@dimen/_7sdp"
         app:trailingcircular_noOfTrailingDots="5" />

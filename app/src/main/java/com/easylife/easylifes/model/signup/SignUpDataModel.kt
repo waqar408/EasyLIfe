@@ -95,5 +95,23 @@ data class SignUpDataModel(
     var type : String,
 
     @SerializedName("is_profile_complete")
-    var is_profile_complete : Boolean
+    var is_profile_complete : Boolean,
+
+    @SerializedName("per_hour_rate")
+    var per_hour_rate : String,
+
+    @SerializedName("per_hour_rate_currency")
+    var per_hour_rate_currency :String,
+
+    @SerializedName("card_number")
+    var card_number :String,
+
+    @SerializedName("expiry_month")
+    var expiry_month :String,
+
+    @SerializedName("expiry_year")
+    var expiry_year :String,
+
+    @SerializedName("cvv")
+    var cvv :String
 )

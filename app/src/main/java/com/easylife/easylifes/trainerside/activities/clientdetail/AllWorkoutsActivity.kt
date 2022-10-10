@@ -43,7 +43,6 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     var workoutCategoryId = ""
     var workoutCategoryName = ""
     var useridd = ""
-    var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAllWorkoutsBinding.inflate(layoutInflater)
@@ -81,10 +80,8 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     private fun getUserWorkouts() {
         val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(this@AllWorkoutsActivity)) {
-
             binding.dotloader.visibility = View.VISIBLE
-            apiClient.getApiService().getUserWorkouts(useridd,clientId)
-                .enqueue(object : Callback<GetUserWorkoutsResponseModel> {
+            apiClient.getApiService().getUserWorkouts(useridd,clientId).enqueue(object : Callback<GetUserWorkoutsResponseModel> {
                     override fun onResponse(
                         call: Call<GetUserWorkoutsResponseModel>,
                         response: Response<GetUserWorkoutsResponseModel>
@@ -167,97 +164,6 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     }
 
 
-    /*private fun workoutCategories() {
-        val apiClient = ApiClient()
-        if (utilities.isConnectingToInternet(this@AllWorkoutsActivity)) {
-            val url = apiClient.BASE_URL + "workout-categories"
-            apiClient.getApiService().workoutCategories(url)
-                .enqueue(object : Callback<UserCategoryResponseModel> {
-                    override fun onResponse(
-                        call: Call<UserCategoryResponseModel>,
-                        response: Response<UserCategoryResponseModel>
-                    ) {
-                        val signupResponse = response.body()
-                        if (signupResponse!!.status) {
-                            //categories data
-                            workoutCategoriesList = ArrayList()
-                            workoutCategoriesList = response.body()!!.data
-                        } else {
-                            utilities.showFailureToast(
-                                this@AllWorkoutsActivity,
-                                signupResponse.message
-                            )
-                        }
-                    }
 
-                    override fun onFailure(call: Call<UserCategoryResponseModel>, t: Throwable) {
-                        utilities.showFailureToast(this@AllWorkoutsActivity, t.message!!)
-                    }
-                })
-        } else {
-            utilities.showFailureToast(
-                this@AllWorkoutsActivity,
-                resources.getString(R.string.checkinternet)
-            )
-        }
-
-    }*/
-
-    /*private fun creatWorkoutNow() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_create_workout)
-        val lp = WindowManager.LayoutParams()
-        lp.copyFrom(dialog.window!!.attributes)
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-        lp.gravity = Gravity.CENTER
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.attributes = lp
-        val layout_send = dialog.findViewById<RelativeLayout>(R.id.layout_send)
-        val workoutCategoriesSpinner = dialog.findViewById<Spinner>(R.id.workoutCategoriesSpinner)
-
-        val item = java.util.ArrayList<String>()
-        for (i in 0..workoutCategoriesList.size - 1) {
-            item.add(workoutCategoriesList.get(i).category_name)
-
-        }
-        if (item != null) {
-            val adapter = ArrayAdapter(
-                this@AllWorkoutsActivity,
-                R.layout.spinner_text,
-                item
-            )
-
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            workoutCategoriesSpinner.setAdapter(adapter)
-        }
-        workoutCategoriesSpinner.setOnItemSelectedListener(object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                workoutCategoryName = workoutCategoriesList.get(position).category_name
-                workoutCategoryId = workoutCategoriesList.get(position).id.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
-
-        layout_send.setOnClickListener {
-            if (!workoutCategoryId.equals(""))
-            {
-                val intent = Intent(this@AllWorkoutsActivity,WorkoutSelectionActivity::class.java)
-                intent.putExtra("clientid",clientId)
-                intent.putExtra("workoutCategoryId",workoutCategoryId.toString())
-                intent.putExtra("workoutCategoryName",workoutCategoryName)
-                startActivity(intent)
-            }
-
-        }
-        dialog.show()
-    }*/
 
 }

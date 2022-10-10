@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -37,10 +38,6 @@ class SelectedWorkoutAdapter(
         Glide.with(context).load(model.media).into(holder.imgProfile)
         holder.rlDelete.setOnClickListener {
             mListener.onClickArea(position,holder)
-            /*allClientsList.removeAt(position)
-            adapter.notifyItemRemoved(position)
-            adapter.notifyDataSetChanged()
-            adapter.notifyItemRangeChanged(position, allClientsList.size)*/
         }
         holder.lnVideo.setOnClickListener {
             val intent = Intent(context, FullScreenVideoActivity::class.java)
@@ -66,7 +63,7 @@ class SelectedWorkoutAdapter(
         val tvDescription2: TextView = itemView.findViewById(R.id.tvDescription2);
         val imgProfile: ImageView = itemView.findViewById(R.id.imgProfile);
         val rlDelete: RelativeLayout = itemView.findViewById(R.id.rlDelete);
-        val lnVideo: RelativeLayout = itemView.findViewById(R.id.lnVideo);
+        val lnVideo: LinearLayout = itemView.findViewById(R.id.lnVideo);
 
     }
 

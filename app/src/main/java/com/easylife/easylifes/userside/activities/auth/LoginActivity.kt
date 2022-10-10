@@ -146,13 +146,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginWithGoogle(googleId: String, name: String, email: String, token: String) {
 
-        utilities.showProgressDialog(this@LoginActivity, "Please wait....")
+        binding.dotloader.visibility = View.VISIBLE
         apiClient.getApiService().loginWithGoogle(googleId, name, email, "android", token,userType)
             .enqueue(object : Callback<SignupResponseModel> {
 
                 override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
 
-                    utilities.hideProgressDialog()
+                    binding.dotloader.visibility = View.GONE
                     utilities.showFailureToast(this@LoginActivity, t.message.toString())
 
                 }
@@ -162,7 +162,7 @@ class LoginActivity : AppCompatActivity() {
                     response: Response<SignupResponseModel>
                 ) {
                     val signupResponse = response.body()
-                    utilities.hideProgressDialog()
+                    binding.dotloader.visibility = View.GONE
                     if (signupResponse!!.status == true) {
                         if (signupResponse.message.equals("You'll be Login after Admin Approval")) {
                             utilities.showSuccessToast(
@@ -219,7 +219,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginApi(email: String, password: String) {
         if (utilities.isConnectingToInternet(this@LoginActivity)) {
-            utilities.showProgressDialog(this@LoginActivity, "Please wait...")
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().login(email, password)
                 .enqueue(object : Callback<SignupResponseModel> {
 
@@ -228,7 +228,7 @@ class LoginActivity : AppCompatActivity() {
                         response: Response<SignupResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful) {
                             if (signupResponse?.status!!.equals(true)) {
                                 utilities.showSuccessToast(
@@ -296,7 +296,7 @@ class LoginActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         utilities.showFailureToast(this@LoginActivity, t.message)
 
                     }

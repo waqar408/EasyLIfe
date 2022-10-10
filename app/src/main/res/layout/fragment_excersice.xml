@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".userside.fragment.ExcersiceFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/layout_profileName"
         android:layout_width="wrap_content"
@@ -29,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/text_todo"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_pic" />
+                />
 
         </RelativeLayout>
 
@@ -40,11 +43,11 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_toEndOf="@+id/layout_profileImage"
             android:fontFamily="@font/barlow_medium"
-            android:text="Hi, Lucy"
             android:textColor="@color/haiti"
             android:textSize="@dimen/_11sdp" />
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_name"
@@ -53,7 +56,7 @@
             android:fontFamily="@font/barlow_semibold"
             android:text="Good Morning"
             android:textColor="@color/appColor"
-            android:textSize="@dimen/_17sdp" />
+            android:textSize="@dimen/_15sdp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -164,41 +167,74 @@
         app:progressMode="true"
         app:selectedDotColor="@color/appColor" />
 
-    <TextView
-        android:id="@+id/tvPlans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dots_indicator"
-        android:layout_marginHorizontal="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:text="My Plans"
-        android:textColor="@color/haiti"
-        android:textSize="@dimen/_15sdp" />
+        <TextView
+            android:id="@+id/tvPlans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dots_indicator"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/barlow_bold"
+            android:text="My Plans"
+            android:textColor="@color/haiti"
+            android:textSize="@dimen/_15sdp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="@dimen/_16sdp"
-        android:id="@+id/rvPlans"
-        tools:listitem="@layout/item_plans"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:itemCount="1"
-        android:layout_marginHorizontal="@dimen/_16sdp"
-        android:layout_below="@+id/tvPlans" />
+        <RelativeLayout
+            android:id="@+id/rls"
+            android:layout_below="@+id/tvPlans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgPic"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:src="@drawable/myplanicon"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize16Percent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgPic"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="Workouts And Plans"
+                android:textColor="@color/haiti"
+                android:textSize="@dimen/_11sdp" />
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/rvPlans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPlans"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_plans" />
     <RelativeLayout
         android:id="@+id/rl2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rvPlans"
+        android:layout_below="@+id/rls"
         android:layout_marginTop="@dimen/_12sdp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/barlow_bold"
             android:text="Top Instructor"
             android:textColor="@color/haiti"
             android:textSize="@dimen/_15sdp" />
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16sdp"
@@ -220,4 +256,17 @@
         android:layout_marginBottom="@dimen/_12sdp"
         tools:listitem="@layout/item_top_instructor"/>
     </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_7sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
+</RelativeLayout>

@@ -5,20 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/porcelain"
-    tools:context=".userside.activities.workout.WorkoutActivity">
-
-        <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
-            android:id="@+id/dotloader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            app:trailingcircular_animDelay="600"
-            app:trailingcircular_animDuration="1200"
-            app:trailingcircular_bigCircleRadius="24dp"
-            android:visibility="gone"
-            app:trailingcircular_dotsColor="@color/appColor"
-            app:trailingcircular_dotsRadius="@dimen/_5sdp"
-            app:trailingcircular_noOfTrailingDots="5" />
+    tools:context=".userside.activities.clientnutrition.NutritionDetailActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/layout_backArrow"
@@ -44,19 +34,37 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_22sdp"
             android:fontFamily="@font/barlow_semibold"
-            android:text="All Workouts"
+            android:text="Client Nutrition"
             android:textColor="@color/haiti"
             android:textSize="@dimen/_14sdp" />
 
 
 
+
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAllWorkout"
+            android:id="@+id/rvClientNutrition"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/layout_backArrow"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_backArrow"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             tools:itemCount="1"
-            tools:listitem="@layout/item_all_workout" />
+            tools:listitem="@layout/item_nutrition_detail" />
+
+
+    </RelativeLayout>
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        android:visibility="gone"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_5sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
+
 </RelativeLayout>

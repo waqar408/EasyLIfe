@@ -18,6 +18,12 @@
         android:theme="@style/Theme.EasyLifes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".userside.activities.clientnutrition.NutritionDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userside.activities.subscribedtrainer.SubscribedTrainerActivity"
+            android:exported="false" />
+        <activity
             android:name=".trainerside.activities.profile.EditTrainerProfileActivity"
             android:exported="false" />
         <activity
@@ -26,11 +32,9 @@
         <activity
             android:name=".trainerside.activities.nutrition.MacronutrientsDetailActivity"
             android:exported="false" />
-
         <activity
             android:name=".trainerside.activities.nutrition.SearchMealActivity"
             android:exported="false" />
-
         <activity
             android:name=".trainerside.activities.FullScreenVideoActivity"
             android:exported="false" />
@@ -49,7 +53,6 @@
         <activity
             android:name=".trainerside.activities.clientdetail.WorkoutSelectionActivity"
             android:exported="false" />
-
         <activity
             android:name=".trainerside.activities.nutrition.ClientNutritionActivity"
             android:exported="false" />
@@ -59,7 +62,6 @@
         <activity
             android:name=".trainerside.activities.nutrition.NutritionSelectedActivity"
             android:exported="false" />
-
         <activity
             android:name=".trainerside.activities.nutrition.AllNutritionsActivity"
             android:exported="false" />
@@ -133,7 +135,7 @@
             android:name="com.easylife.easylifes.userside.activities.setting.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.clientnutrition.ClientNutritionsActivity"
+            android:name=".userside.activities.clientnutrition.ClientNutritionsActivity"
             android:exported="false" />
         <activity
             android:name="com.easylife.easylifes.userside.activities.notification.NotificationActiivty"

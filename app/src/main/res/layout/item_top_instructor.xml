@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/_70sdp"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/_12sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<com.google.android.material.imageview.ShapeableImageView
-    android:id="@+id/imgTrainer"
-    android:layout_width="@dimen/_70sdp"
-    android:layout_height="@dimen/_70sdp"
-    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-    android:src="@drawable/myplanicon"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgTrainer"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/myplanicon"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+   <TextView
+       android:id="@+id/trainerName"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/imgTrainer"
+       android:text="Trainer Name"
+       android:layout_marginTop="@dimen/_4sdp"
+       android:layout_centerInParent="true"
+       android:textSize="@dimen/_11sdp"
+       android:textColor="@color/haiti"
+       android:fontFamily="@font/barlow_regular"/>
 </RelativeLayout>

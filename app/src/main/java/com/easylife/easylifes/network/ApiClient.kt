@@ -1,5 +1,6 @@
 package com.tabadol.tabadol.data.network
 
+import com.easylife.easylifes.network.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

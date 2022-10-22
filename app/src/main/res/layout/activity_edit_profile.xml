@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".userside.activities.profile.EditProfileActivity">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cons"
@@ -315,13 +317,14 @@
                                 android:text="Phone No"
                                 android:textColor="@color/colorc" />
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/tvPhoneNumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:gravity="end|center_vertical"
                                 android:text="+91 232323 32323"
+                                android:background="@null"
                                 android:textColor="@color/haiti"
                                 android:textSize="@dimen/_13sdp" />
 
@@ -419,3 +422,16 @@
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_5sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
+</RelativeLayout>

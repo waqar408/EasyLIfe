@@ -16,7 +16,7 @@ class HowOldAdapter(
     var mListener: onClick
 ) :
     RecyclerView.Adapter<HowOldAdapter.ViewHolder>() {
-    var singleItemSelectPosition = -1
+    private var singleItemSelectPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
@@ -25,7 +25,7 @@ class HowOldAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: HowOldModel = list.get(position)
+        val model: HowOldModel = list[position]
         holder.tvWeight.text = model.number
 
         if (singleItemSelectPosition == position) {
@@ -54,9 +54,9 @@ class HowOldAdapter(
         return list.size
     }
 
-    class ViewHolder(itemView: View, listener: HowOldAdapter.onClick) :
+    class ViewHolder(itemView: View, listener: onClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvWeight: TextView = itemView.findViewById(R.id.tvWeight);
+        val tvWeight: TextView = itemView.findViewById(R.id.tvWeight)
 
 
     }

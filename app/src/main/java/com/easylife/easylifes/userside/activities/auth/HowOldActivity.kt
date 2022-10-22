@@ -45,14 +45,14 @@ class HowOldActivity : AppCompatActivity(),HowOldAdapter.onClick {
         binding.rv.adapter = HowOldAdapter(this@HowOldActivity,list,this)
 
         binding.layoutSend.setOnClickListener {
-            if(age.equals(""))
+            if(age == "")
             {
                 utils.showFailureToast(this@HowOldActivity,"Please select your age")
             }else{
-                val intent = Intent(this@HowOldActivity,WeightActivity::class.java)
-                intent.putExtra("gender",gender)
-                intent.putExtra("age",age)
-                startActivity(intent)
+                val intentWeight = Intent(this@HowOldActivity,WeightActivity::class.java)
+                intentWeight.putExtra("gender",gender)
+                intentWeight.putExtra("age",age)
+                startActivity(intentWeight)
             }
         }
         binding.layoutBackArrow.setOnClickListener {
@@ -61,7 +61,7 @@ class HowOldActivity : AppCompatActivity(),HowOldAdapter.onClick {
     }
 
     override fun onClick(position: Int) {
-        val model  =list.get(position)
+        val model  = list[position]
         age =model.number
     }
 }

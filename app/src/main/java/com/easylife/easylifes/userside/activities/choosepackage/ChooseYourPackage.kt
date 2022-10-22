@@ -1,6 +1,5 @@
 package com.easylife.easylifes.userside.activities.choosepackage
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +35,7 @@ class ChooseYourPackage : AppCompatActivity() {
         utilities.setGrayBar(this@ChooseYourPackage)
         packageList=  ArrayList()
         val intent = intent
-        packageList = intent.getParcelableArrayListExtra<SubscriptionPackageDataModel>("packagelist")!!
+        packageList = intent.getParcelableArrayListExtra("packagelist")!!
 
         binding.rvPackages.layoutManager = LinearLayoutManager(this@ChooseYourPackage)
         binding.rvPackages.adapter = PackageAdapter(this@ChooseYourPackage,packageList)

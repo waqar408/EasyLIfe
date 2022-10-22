@@ -1,11 +1,7 @@
 package com.easylife.easylifes.trainerside.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +14,6 @@ import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
 import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
-import com.easylife.easylifes.utils.Utilities
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.imageview.ShapeableImageView
 
 
@@ -29,20 +23,20 @@ class WorkoutSelectionAdpater(
 ) :
     RecyclerView.Adapter<WorkoutSelectionAdpater.MultiViewHolder?>() {
     private var employees: ArrayList<AllWorkoutsDataListModel>
-    private var reps = ""
+    /*private var reps = ""
     private var minutes = ""
     private var seconds = ""
 
     private var reps1 = 0
     private var minutes1 = 0
-    private var seconds1 = 0
+    private var seconds1 = 0*/
 
 
-    fun setEmployees(employees: ArrayList<AllWorkoutsDataListModel>) {
+    /*fun setEmployees(employees: ArrayList<AllWorkoutsDataListModel>) {
         this.employees = ArrayList<AllWorkoutsDataListModel>()
         this.employees = employees
         notifyDataSetChanged()
-    }
+    }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MultiViewHolder {
         val view: View =
@@ -71,12 +65,12 @@ class WorkoutSelectionAdpater(
         private val lnVideo : LinearLayout
         fun bind(employee: AllWorkoutsDataListModel) {
             val drawable = CircularProgressDrawable(context)
-            drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor);
-            drawable.setCenterRadius(25f);
-            drawable.setStrokeWidth(6f);
-            drawable.start();
+            drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor)
+            drawable.centerRadius = 25f
+            drawable.strokeWidth = 6f
+            drawable.start()
             imgTick.visibility = if (employee.isChecked) View.VISIBLE else View.GONE
-            textView.setText(employee.title)
+            textView.text = employee.title
             tvDescription.text = employee.description
             Glide.with(context).load(employee.media).placeholder(drawable).into(imgProfile)
             imgProfile.setOnClickListener{
@@ -90,7 +84,7 @@ class WorkoutSelectionAdpater(
                 context.startActivity(intent)
             }
             imgTick.visibility = if (!employee.isChecked) View.VISIBLE else View.GONE
-            rlSelection.setOnClickListener(View.OnClickListener {
+            rlSelection.setOnClickListener {
                 employee.isChecked = !employee.isChecked
                 if (employee.isChecked) {
                     rl.setBackgroundResource(R.drawable.selected_greenback)
@@ -103,7 +97,7 @@ class WorkoutSelectionAdpater(
                 //bottomsheetreps(position,employee,rl,imgTick,tvDescription,tvDescription2)
 
 
-            })
+            }
         }
 
         init {
@@ -119,7 +113,7 @@ class WorkoutSelectionAdpater(
         }
     }
 
-    private fun bottomsheetreps(position: Int,employee : AllWorkoutsDataListModel,
+    /*private fun bottomsheetreps(position: Int,employee : AllWorkoutsDataListModel,
                                 rl : RelativeLayout,imgTick : ImageView,
                                 tvDescription : TextView,tvDescription2: TextView) {
         val utilities = Utilities(context)
@@ -173,14 +167,14 @@ class WorkoutSelectionAdpater(
         }
 
         bottomSheetDialog.show()
-    }
+    }*/
 
     val all: ArrayList<AllWorkoutsDataListModel>
         get() = employees
 
     val selected: ArrayList<AllWorkoutsDataListModel>
         get() {
-            val selected: ArrayList<AllWorkoutsDataListModel> = ArrayList<AllWorkoutsDataListModel>()
+            val selected: ArrayList<AllWorkoutsDataListModel> = ArrayList()
             for (i in employees.indices) {
                 if (employees[i].isChecked) {
 

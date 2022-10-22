@@ -1,20 +1,13 @@
 package com.easylife.easylifes.userside.activities.workout
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easylife.easylifes.databinding.ActivityWorkoutDetailBinding
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
 import com.easylife.easylifes.model.getuserworkouts.UserWorkoutVideoListModel
-import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.trainerside.activities.clientdetail.AllWorkoutsActivity
-import com.easylife.easylifes.trainerside.activities.clientdetail.WorkoutSelectionActivity
-import com.easylife.easylifes.trainerside.adapter.UserWorkoutDetailVideoAdapter
 import com.easylife.easylifes.userside.adapter.WorkoutDetailAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
@@ -25,8 +18,8 @@ import retrofit2.Response
 
 class WorkoutDetailActivity : AppCompatActivity() {
     var clientid = ""
-    var categoryid = ""
-    var categoryname = ""
+    private var categoryid = ""
+    private var categoryname = ""
     var trainerId = ""
     var position = ""
     var from  = ""
@@ -62,7 +55,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
 
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             trainerId = java.lang.String.valueOf(obj.id)
         }
@@ -92,7 +85,7 @@ class WorkoutDetailActivity : AppCompatActivity() {
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 allVideoList = ArrayList()
                                 list1= ArrayList()
                                 list1.addAll(signupResponse.data.data[position.toInt()].user_workout_videos)

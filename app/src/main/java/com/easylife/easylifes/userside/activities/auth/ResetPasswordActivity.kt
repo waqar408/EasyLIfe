@@ -21,9 +21,9 @@ class ResetPasswordActivity : AppCompatActivity() {
     private lateinit var utilities : Utilities
     private var passwordVisibile = false
     private var passwordVisibile2 = false
-    var emailAddress = ""
+    private var emailAddress = ""
     var password = ""
-    var confirmPassword = ""
+    private var confirmPassword = ""
     val apiClient =  ApiClient()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,18 +55,18 @@ class ResetPasswordActivity : AppCompatActivity() {
         binding.layoutSend.setOnClickListener {
             password  =binding.editPassword.text.toString()
             confirmPassword = binding.editConfirmpassword.text.toString()
-            if (password.equals(""))
+            if (password == "")
             {
                 utilities.showFailureToast(this@ResetPasswordActivity,"Please Enter Password")
             }else if (password.length<6)
             {
                 utilities.showFailureToast(this@ResetPasswordActivity,"Password Length Must Be Greater Than 6")
 
-            }else if (confirmPassword.equals(""))
+            }else if (confirmPassword == "")
             {
                 utilities.showFailureToast(this@ResetPasswordActivity,"Please Confirm Your Password")
 
-            }else if (!confirmPassword.equals(password))
+            }else if (confirmPassword != password)
             {
                 utilities.showFailureToast(this@ResetPasswordActivity,"Password Does Not Match")
             }else{
@@ -90,7 +90,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                         utilities.hideProgressDialog()
                         if (response.isSuccessful)
                         {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(this@ResetPasswordActivity,signupResponse.message)
                                 Handler(Looper.myLooper()!!).postDelayed({
                                     val intent = Intent(this@ResetPasswordActivity,PasswordSuccessActivity::class.java)

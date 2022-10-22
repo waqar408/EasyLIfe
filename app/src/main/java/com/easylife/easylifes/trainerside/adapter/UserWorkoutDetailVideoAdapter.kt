@@ -14,12 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.model.BaseResponse
-import com.easylife.easylifes.model.allworkouts.WorkoutRepsAndRestModel
 import com.easylife.easylifes.model.getuserworkouts.UserWorkoutRepsDataModel
 import com.easylife.easylifes.model.getuserworkouts.UserWorkoutVideoListModel
 import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
-import com.easylife.easylifes.trainerside.activities.clientdetail.AllWorkoutsActivity
-import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.JsonArray
@@ -37,8 +34,7 @@ class UserWorkoutDetailVideoAdapter(
 ) :
     RecyclerView.Adapter<UserWorkoutDetailVideoAdapter.ViewHolder>() {
     private var viewPool = RecyclerView.RecycledViewPool()
-    var user_WorkoutId = ""
-    private var listForReps: ArrayList<WorkoutRepsAndRestModel> = ArrayList()
+    private var user_WorkoutId = ""
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
             LayoutInflater.from(context).inflate(R.layout.item_workout_videodetail, parent, false)
@@ -46,12 +42,11 @@ class UserWorkoutDetailVideoAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: UserWorkoutVideoListModel = list.get(position)
+        val model: UserWorkoutVideoListModel = list[position]
         holder.tvName.text = model.title
         Glide.with(context).load(model.media).into(holder.imgProfile)
         holder.tvDescription.text = model.description
-        var list: ArrayList<UserWorkoutRepsDataModel> = ArrayList()
-        list = model.data
+        val list: ArrayList<UserWorkoutRepsDataModel> = model.data
         val layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         holder.rvRepsAndRest.layoutManager = layoutManager
@@ -77,7 +72,6 @@ class UserWorkoutDetailVideoAdapter(
             bottomsheetreps(
                 position,
                 model,
-                list,
                 holder.rvRepsAndRest,
                 holder.tvName,
                 holder.tvDescription,
@@ -92,15 +86,12 @@ class UserWorkoutDetailVideoAdapter(
     private fun bottomsheetreps(
         position: Int,
         model: UserWorkoutVideoListModel,
-        list: ArrayList<UserWorkoutRepsDataModel>,
         rv: RecyclerView,
         name: TextView,
         description: TextView,
         imgProfile: ShapeableImageView
     ) {
-        val utilities = Utilities(context)
-        val bottomSheetDialog: BottomSheetDialog
-        bottomSheetDialog = BottomSheetDialog(context)
+        val bottomSheetDialog = BottomSheetDialog(context)
         bottomSheetDialog.setContentView(R.layout.bottom_reps)
         bottomSheetDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val canelBtn = bottomSheetDialog.findViewById<RelativeLayout>(R.id.layout_backArrow)
@@ -110,26 +101,26 @@ class UserWorkoutDetailVideoAdapter(
         val edRestMinutes = bottomSheetDialog.findViewById<EditText>(R.id.edRestMinutes)
         val edRestSeconds = bottomSheetDialog.findViewById<EditText>(R.id.edRestSeconds)
         val btnDone = bottomSheetDialog.findViewById<TextView>(R.id.btnDone)
-        var reps = ""
-        var repMinutes = ""
-        var repsSeconds = ""
-        var restMinute = ""
-        var restSeconds = ""
+        var reps: String
+        var repMinutes: String
+        var repsSeconds: String
+        var restMinute: String
+        var restSeconds: String
         btnDone!!.setOnClickListener {
             reps = edNoOfReps!!.text.toString()
             restSeconds = edRestSeconds!!.text.toString()
             restMinute = edRestMinutes!!.text.toString()
             repMinutes = edRepsMinutes!!.text.toString()
             repsSeconds = edRepsSeconds!!.text.toString()
-            if (reps.equals("")) {
+            if (reps == "") {
                 Toast.makeText(context, "Please Enter Reps", Toast.LENGTH_SHORT).show()
-            } else if (repMinutes.equals("")) {
+            } else if (repMinutes == "") {
                 Toast.makeText(context, "Please Enter Reps Minutes", Toast.LENGTH_SHORT).show()
-            } else if (repsSeconds.equals("")) {
+            } else if (repsSeconds == "") {
                 Toast.makeText(context, "Please Enter Reps Seconds", Toast.LENGTH_SHORT).show()
-            } else if (restMinute.equals("")) {
+            } else if (restMinute == "") {
                 Toast.makeText(context, "Please Enter Rest Minutes", Toast.LENGTH_SHORT).show()
-            } else if (repsSeconds.equals("")) {
+            } else if (repsSeconds == "") {
                 Toast.makeText(context, "Please Enter Rest Seconds", Toast.LENGTH_SHORT).show()
             } else {
 
@@ -174,13 +165,6 @@ class UserWorkoutDetailVideoAdapter(
 
                 createWorkout(model, obj.data)
 
-
-//                adapter.add(item)
-
-                /*val list1 : ArrayList<WorkoutRepsAndRestModel> = ArrayList()
-                list1.add(item)
-                model.listReps?.add(item1)*/
-
                 bottomSheetDialog.dismiss()
                 Log.d("positionss", position.toString())
             }
@@ -200,9 +184,9 @@ class UserWorkoutDetailVideoAdapter(
 
     class ViewHolder(itemView: View, listener: onSelectedWorkoutClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription);
-        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
+        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile)
         val rvRepsAndRest: RecyclerView = itemView.findViewById(R.id.rvRepsAndRest)
         val layoutComplete: RelativeLayout = itemView.findViewById(R.id.layoutComplete)
         val layoutDelete: RelativeLayout = itemView.findViewById(R.id.layoutDelete)
@@ -214,20 +198,17 @@ class UserWorkoutDetailVideoAdapter(
         fun onClickArea(position: Int)
     }
 
-    fun createWorkout(model: UserWorkoutVideoListModel, data: ArrayList<UserWorkoutRepsDataModel>) {
+    private fun createWorkout(model: UserWorkoutVideoListModel, data: ArrayList<UserWorkoutRepsDataModel>) {
         val apiClient = ApiClient()
-        var array1 = JsonArray()
-        var array2 = JsonArray()
-        var workoutid = ""
+        val array1 = JsonArray()
+        val array2 = JsonArray()
         for (i in 0 until data.size) {
 
-            val id = data.get(i).id
-            val user_workout_video_id = data.get(i).user_workout_video_id
-            val rep = data.get(i).reps
-            val repsMinutes = data.get(i).reps_minutes
-            val reps_second = data.get(i).reps_seconds
-            val res_minutes = data.get(i).rest_minutes
-            val rest_Seconds = data.get(i).rest_seconds
+            val rep = data[i].reps
+            val repsMinutes = data[i].reps_minutes
+            val reps_second = data[i].reps_seconds
+            val res_minutes = data[i].rest_minutes
+            val rest_Seconds = data[i].rest_seconds
 
             val obj1 = JsonObject()
             obj1.addProperty("id", 0)
@@ -257,8 +238,8 @@ class UserWorkoutDetailVideoAdapter(
                     response: Response<BaseResponse?>
                 ) {
                     if (response.body() != null) {
-                        val status = response.body()!!.status
-                        
+                       val status = response.body()!!.status
+                        Log.d("context",status.toString())
                     }
                 }
 

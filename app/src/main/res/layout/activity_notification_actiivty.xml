@@ -32,37 +32,27 @@
         android:text="Notifications"
         android:textColor="@color/haiti"
         android:textSize="@dimen/_14sdp" />
-    <RelativeLayout
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_weight="1">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_bell_home" />
 
-    </RelativeLayout>
-    <TextView
-        android:id="@+id/tvNew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_backArrow"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:fontFamily="@font/barlow_semibold"
-        android:text="New"
-        android:textColor="@color/haiti"
-        android:textSize="@dimen/_17sdp" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNotification"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tvNew"
+        android:layout_below="@+id/layout_backArrow"
         android:layout_marginTop="@dimen/_12sdp"
         tools:listitem="@layout/item_notification" />
+
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_5sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
+
 </RelativeLayout>

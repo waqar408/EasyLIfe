@@ -11,11 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.userside.activities.follower.FollowerFollowingActivity
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerDataModel
-import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerResponseModel
-import com.easylife.easylifes.userside.activities.instructor.InstructorActivity
 import com.easylife.easylifes.userside.activities.instructor.InstructorDetailActivity
 
 
@@ -32,13 +28,13 @@ class TopTrainerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: SubscribedTrainerDataModel = list.get(position)
+        val model: SubscribedTrainerDataModel = list[position]
         val drawable = CircularProgressDrawable(context)
         drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor)
-        drawable.setCenterRadius(25f)
-        drawable.setStrokeWidth(6f)
+        drawable.centerRadius = 25f
+        drawable.strokeWidth = 6f
         drawable.start()
-        Glide.with(context).load(model.profile_image).placeholder(drawable).into(holder.image_home)
+        Glide.with(context).load(model.profile_image).placeholder(drawable).into(holder.imageHome)
         holder.itemView.setOnClickListener {
             val intent = Intent(context, InstructorDetailActivity::class.java)
             intent.putExtra("id",model.id.toString())
@@ -57,8 +53,8 @@ class TopTrainerAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val image_home: ImageView = itemView.findViewById(R.id.imgTrainer);
-        val trainerName: TextView = itemView.findViewById(R.id.trainerName);
+        val imageHome: ImageView = itemView.findViewById(R.id.imgTrainer)
+        val trainerName: TextView = itemView.findViewById(R.id.trainerName)
 
     }
 

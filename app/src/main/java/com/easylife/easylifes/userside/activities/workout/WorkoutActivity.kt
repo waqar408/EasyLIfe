@@ -10,8 +10,6 @@ import com.easylife.easylifes.databinding.ActivityWorkoutBinding
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutDataListModel
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.model.userworkoutcategories.UserCategoryDataModel
-import com.easylife.easylifes.trainerside.activities.clientdetail.UserWorkoutDetailActivity
 import com.easylife.easylifes.trainerside.adapter.AllWorkoutsAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
@@ -23,9 +21,8 @@ import retrofit2.Response
 class WorkoutActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutClick {
     private lateinit var binding : ActivityWorkoutBinding
     private lateinit var allWorkoutCategoriesList: ArrayList<GetUserWorkoutDataListModel>
-    private lateinit var workoutCategoriesList: ArrayList<UserCategoryDataModel>
     var clientId = ""
-    var useridd = ""
+    private var useridd = ""
     private lateinit var utilities: Utilities
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +66,7 @@ class WorkoutActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutClick
                 ) {
                     binding.dotloader.visibility = View.GONE
                     val signupResponse = response.body()
-                    if (signupResponse!!.status ==  true) {
+                    if (signupResponse!!.status) {
                         //banner list data
                         //categories data
                         allWorkoutCategoriesList = ArrayList()
@@ -95,9 +92,9 @@ class WorkoutActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutClick
     }
 
     override fun onClickArea(position: Int) {
-        val model = allWorkoutCategoriesList.get(position)
+        val model = allWorkoutCategoriesList[position]
         val intent =  Intent(this@WorkoutActivity, WorkoutDetailActivity::class.java)
-        intent.putExtra("clientid",clientId.toString())
+        intent.putExtra("clientid", clientId)
         intent.putExtra("categoryid",model.id.toString())
         intent.putExtra("categoryName",model.title)
         intent.putExtra("position",position.toString())

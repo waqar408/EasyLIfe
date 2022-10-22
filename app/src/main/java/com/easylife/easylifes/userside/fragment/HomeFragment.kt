@@ -1,7 +1,9 @@
 package com.easylife.easylifes.userside.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +16,12 @@ import com.easylife.easylifes.userside.activities.notification.NotificationActii
 import com.easylife.easylifes.userside.adapter.CategoriesAdapter
 import com.easylife.easylifes.userside.adapter.HomeSliderAdapter
 import com.easylife.easylifes.databinding.FragmentHomeBinding
+import com.easylife.easylifes.model.BaseResponse
 import com.easylife.easylifes.model.home.BannersDataModel
 import com.easylife.easylifes.model.home.CategoriesDataModel
 import com.easylife.easylifes.model.home.HomeResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
+import com.easylife.easylifes.userside.activities.profile.UserProfileActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient
@@ -34,6 +38,8 @@ class HomeFragment : Fragment() {
     private lateinit var utilities: Utilities
     var profileImage = ""
     var userName = ""
+    var userId = ""
+    private var firebaseToken = ""
     private lateinit var bannerList: ArrayList<BannersDataModel>
     private lateinit var categoriesList: ArrayList<CategoriesDataModel>
     override fun onCreateView(
@@ -59,16 +65,28 @@ class HomeFragment : Fragment() {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             profileImage = obj.profile_image
             userName = obj.name
+            userId = obj.id.toString()
 
             Glide.with(this@HomeFragment).load(profileImage).into(binding.imageProfile)
             binding.textName.text = "Hi $userName"
 
         }
+        //firebase token to send and recieve notification
+        val sharedPref = context?.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        firebaseToken = sharedPref?.getString("FCM_TOKEN", "").toString()
+        Log.d("tokennnnnnns", firebaseToken)
+
+        updateFcm(userId, firebaseToken)
     }
 
     private fun onClicks() {
         binding.rlNotification.setOnClickListener {
             startActivity(Intent(requireContext(),NotificationActiivty::class.java))
+        }
+        binding.layoutProfileName.setOnClickListener {
+            val intent = Intent(requireContext(),UserProfileActivity::class.java)
+            intent.putExtra("id",userId)
+            startActivity(intent)
         }
     }
 
@@ -180,6 +198,53 @@ class HomeFragment : Fragment() {
         binding.recyclerViewFitness.layoutManager =LinearLayoutManager(requireContext())
         binding.recyclerViewFitness.adapter = CategoriesAdapter(requireContext(),categoriesList)
 
+    }
+
+    private fun updateFcm(
+        userId: String,
+        token: String
+    ) {
+        if (utilities.isConnectingToInternet(requireContext())) {
+            val apiClient = ApiClient()
+            apiClient.getApiService().updateFcmToken(
+                userId, "android", token
+            )
+                .enqueue(object : Callback<BaseResponse> {
+
+                    override fun onResponse(
+                        call: Call<BaseResponse>,
+                        response: Response<BaseResponse>
+                    ) {
+                        val signupResponse = response.body()
+                        if (response.isSuccessful) {
+                            if (signupResponse?.status!!) {
+//                                homeData()
+                            } else {
+                                utilities.showFailureToast(
+                                    requireActivity(),
+                                    signupResponse.message
+                                )
+                            }
+                        } else {
+                            utilities.showFailureToast(
+                                requireActivity(),
+                                signupResponse!!.message
+                            )
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                        // Error logging in
+                        utilities.hideProgressDialog()
+                        //   utilities.showFailureToast(requireActivity(), t.message)
+
+                    }
+
+                })
+        } else {
+            utilities.showNoInternetToast(requireActivity())
+        }
     }
 
 }

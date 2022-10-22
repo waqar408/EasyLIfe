@@ -21,10 +21,10 @@ class OtpVerificationActivity : AppCompatActivity() {
     var email = ""
     var password = ""
     var experience = ""
-    var phoneCode = ""
-    var phoneNumber = ""
-    var otp :String? = null
-    var userType = ""
+    private var phoneCode = ""
+    private var phoneNumber = ""
+    private var otp :String? = null
+    private var userType = ""
     var apiClient = ApiClient()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,9 +83,9 @@ class OtpVerificationActivity : AppCompatActivity() {
                         utilities.hideProgressDialog()
                         if (response.isSuccessful)
                         {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(this@OtpVerificationActivity,signupResponse.message)
-                                if(signupResponse.data.type.equals("1"))
+                                if(signupResponse.data.type == "1")
                                 {
                                     val gson = Gson()
                                     val json = gson.toJson(signupResponse.data)

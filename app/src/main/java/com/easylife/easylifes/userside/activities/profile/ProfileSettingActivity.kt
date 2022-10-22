@@ -16,18 +16,10 @@ import com.easylife.easylifes.userside.activities.Support.SupportActivity
 import com.easylife.easylifes.userside.activities.auth.LogoutActivity
 import com.easylife.easylifes.databinding.ActivityProfileSettingBinding
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.model.signup.SignupResponseModel
 import com.easylife.easylifes.utils.Utilities
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.gson.Gson
-import com.tabadol.tabadol.data.network.ApiClient
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.File
 
 class ProfileSettingActivity : AppCompatActivity() {
@@ -37,9 +29,7 @@ class ProfileSettingActivity : AppCompatActivity() {
     var userId = ""
     var userName = ""
     var location = ""
-    var countrCode = ""
-    var imagefile: File? = null
-    lateinit var imageFileToUpload: MultipartBody.Part
+    private var imagefile: File? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileSettingBinding.inflate(layoutInflater)
@@ -205,7 +195,7 @@ class ProfileSettingActivity : AppCompatActivity() {
         utilities = Utilities(this@ProfileSettingActivity)
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             profileImage = obj.profile_image
             userId = obj.id.toString()
@@ -219,11 +209,10 @@ class ProfileSettingActivity : AppCompatActivity() {
     }
     private fun statusbarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow()
-                .setStatusBarColor(getColor(R.color.haiti))
+            window.statusBarColor = getColor(R.color.haiti)
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            getWindow().getDecorView().getWindowInsetsController()!!
+            window.decorView.windowInsetsController!!
                 .setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS)
         }
     }
@@ -231,97 +220,101 @@ class ProfileSettingActivity : AppCompatActivity() {
     //imagepicker
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            //Image Uri will not be null for RESULT_OK
-            val uri: Uri = data?.data!!
-            binding.profileImage.setImageURI(uri)
-            val photoFile = File(uri.path!!)
-            imagefile = photoFile
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                //Image Uri will not be null for RESULT_OK
+                val uri: Uri = data?.data!!
+                binding.profileImage.setImageURI(uri)
+                val photoFile = File(uri.path!!)
+                imagefile = photoFile
 
 
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            utilities.showFailureToast(this@ProfileSettingActivity,ImagePicker.getError(data))
+            }
+            ImagePicker.RESULT_ERROR -> {
+                utilities.showFailureToast(this@ProfileSettingActivity,ImagePicker.getError(data))
 
-        } else {
-            //do nothing here
+            }
+            else -> {
+                //do nothing here
 
+            }
         }
     }
 
-    fun withProfileImageApi() {
-        val apiClient: ApiClient = ApiClient()
-        val userId: RequestBody = userId.toRequestBody("text/plain".toMediaTypeOrNull())
-        val countryCode: RequestBody = countrCode.toRequestBody("text/plain".toMediaTypeOrNull())
-        val requestBody: RequestBody = RequestBody.create("*/*".toMediaTypeOrNull(), imagefile!!)
-        imageFileToUpload = MultipartBody.Part.createFormData("profile_image", imagefile!!.name, requestBody)
-        utilities.showProgressDialog(this@ProfileSettingActivity,"Please wait...")
-        apiClient.getApiService().editProfile(
-            userId,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            countryCode,
-            imageFileToUpload
-        )
-            .enqueue(object : Callback<SignupResponseModel> {
-                override fun onResponse(
-                    call: Call<SignupResponseModel>,
-                    response: Response<SignupResponseModel>
-                ) {
-                    utilities.hideProgressDialog()
-                    if (response.isSuccessful) {
-                        val status: Boolean = response.body()!!.status
-                        if (status.equals(true)) {
-                            val signupResponse = response.body()
-                            val message: String = response.body()!!.message
-                            utilities.showSuccessToast(this@ProfileSettingActivity,message)
-                            val gson = Gson()
-                            val json = gson.toJson(signupResponse!!.data)
-                            utilities.saveString(this@ProfileSettingActivity, "loginResponse", json)
-                            profileImage = signupResponse.data.profile_image
-                            Glide.with(this@ProfileSettingActivity).load(profileImage).into(binding.profileImage)
-
-
-                        } else {
-                            val message: String = response.body()!!.message
-
-                            utilities.showFailureToast(this@ProfileSettingActivity,message.toString())
-
-                        }
-                    } else {
-                        val message: String = response.body()!!.message
-                        utilities.showFailureToast(this@ProfileSettingActivity,message.toString())
-
-                    }
-                }
-
-                override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
-                    utilities.hideProgressDialog()
-                    utilities.showFailureToast(this@ProfileSettingActivity,t.message.toString())
-
-                }
-            })
-
-
-    }
+//    fun withProfileImageApi() {
+//        val apiClient: ApiClient = ApiClient()
+//        val userId: RequestBody = userId.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val countryCode: RequestBody = countrCode.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val requestBody: RequestBody = RequestBody.create("*/*".toMediaTypeOrNull(), imagefile!!)
+//        imageFileToUpload = MultipartBody.Part.createFormData("profile_image", imagefile!!.name, requestBody)
+//        utilities.showProgressDialog(this@ProfileSettingActivity,"Please wait...")
+//        apiClient.getApiService().editProfile(
+//            userId,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            countryCode,
+//            imageFileToUpload
+//        )
+//            .enqueue(object : Callback<SignupResponseModel> {
+//                override fun onResponse(
+//                    call: Call<SignupResponseModel>,
+//                    response: Response<SignupResponseModel>
+//                ) {
+//                    utilities.hideProgressDialog()
+//                    if (response.isSuccessful) {
+//                        val status: Boolean = response.body()!!.status
+//                        if (status.equals(true)) {
+//                            val signupResponse = response.body()
+//                            val message: String = response.body()!!.message
+//                            utilities.showSuccessToast(this@ProfileSettingActivity,message)
+//                            val gson = Gson()
+//                            val json = gson.toJson(signupResponse!!.data)
+//                            utilities.saveString(this@ProfileSettingActivity, "loginResponse", json)
+//                            profileImage = signupResponse.data.profile_image
+//                            Glide.with(this@ProfileSettingActivity).load(profileImage).into(binding.profileImage)
+//
+//
+//                        } else {
+//                            val message: String = response.body()!!.message
+//
+//                            utilities.showFailureToast(this@ProfileSettingActivity,message.toString())
+//
+//                        }
+//                    } else {
+//                        val message: String = response.body()!!.message
+//                        utilities.showFailureToast(this@ProfileSettingActivity,message.toString())
+//
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
+//                    utilities.hideProgressDialog()
+//                    utilities.showFailureToast(this@ProfileSettingActivity,t.message.toString())
+//
+//                }
+//            })
+//
+//
+//    }
 
 
 }

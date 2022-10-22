@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:cardCornerRadius="@dimen/_24sdp"
+        app:cardElevation="@dimen/_6sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/personprofileicon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/imgProfile"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:id="@+id/lnVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_weight="0.3"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTrainername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:text="3/4 Setup"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_13sdp" />
+                    <TextView
+                        android:id="@+id/tvPackageType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:text="3/4 Setup"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_13sdp" />
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/mypayments"/>
+                        <TextView
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:id="@+id/tvPackagePrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_medium"
+                            android:lines="1"
+                            android:text="500 AED"
+                            android:textColor="@color/haiti"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_bold"
+                            android:lines="1"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:text="Duration:"
+                            android:textColor="@color/haiti"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <TextView
+                            android:id="@+id/tvDescription2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_medium"
+                            android:lines="1"
+                            android:text="00 mins: 00 secs"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:textColor="@color/haiti"
+                            android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rlDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:elevation="@dimen/_16sdp"
+                        android:outlineAmbientShadowColor="@color/black"
+                        android:outlineSpotShadowColor="@color/black" >
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/imgTick"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:src="@drawable/tcik" />
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/imgClose"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:src="@drawable/close" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/timer"/>
+                        <TextView
+                            android:id="@+id/tvDuration"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="3/mo"
+                            android:gravity="center_vertical"
+                            android:textSize="@dimen/_11sdp"
+                            android:textColor="@color/haiti"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

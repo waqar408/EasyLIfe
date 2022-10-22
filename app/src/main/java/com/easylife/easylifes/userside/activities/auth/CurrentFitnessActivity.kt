@@ -13,12 +13,12 @@ class CurrentFitnessActivity : AppCompatActivity() {
     var gender = ""
     var age = ""
     var weight = ""
-    var weightUnit = ""
+    private var weightUnit = ""
     var height = ""
-    var heightUnit = ""
-    var interest = ""
-    var achieve = ""
-    var currentFitnessLevel = ""
+    private var heightUnit = ""
+    private var interest = ""
+    private var achieve = ""
+    private var currentFitnessLevel = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCurrentFitnessBinding.inflate(layoutInflater)
@@ -88,7 +88,7 @@ class CurrentFitnessActivity : AppCompatActivity() {
 
         }
         binding.layoutSend.setOnClickListener {
-            if (currentFitnessLevel.equals(""))
+            if (currentFitnessLevel == "")
             {
                 utilities.showFailureToast(this@CurrentFitnessActivity,"Please Select Your Current Fitness Level")
             }else{

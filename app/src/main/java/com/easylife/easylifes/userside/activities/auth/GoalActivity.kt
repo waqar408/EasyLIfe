@@ -9,13 +9,13 @@ import com.easylife.easylifes.utils.Utilities
 
 class GoalActivity : AppCompatActivity() {
     private lateinit var binding : ActivityGoalBinding
-    var interest = ""
+    private var interest = ""
     var gender = ""
     var age = ""
     var weight = ""
-    var weightUnit = ""
+    private var weightUnit = ""
     var height = ""
-    var heightUnit = ""
+    private var heightUnit = ""
     private lateinit var utilities: Utilities
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,19 +109,19 @@ class GoalActivity : AppCompatActivity() {
             finish()
         }
         binding.layoutSend.setOnClickListener {
-            if (interest.equals(""))
+            if (interest == "")
             {
                 utilities.showFailureToast(this@GoalActivity,"Please Select Your Goal")
             }else{
-                val intent = Intent(this@GoalActivity,AchieveGoalActivity::class.java)
-                intent.putExtra("gender",gender)
-                intent.putExtra("age",age)
-                intent.putExtra("wUnit",weightUnit)
-                intent.putExtra("weight",weight)
-                intent.putExtra("height",height)
-                intent.putExtra("hunit",heightUnit)
-                intent.putExtra("interest",interest)
-                startActivity(intent)
+                val intentGoal = Intent(this@GoalActivity,AchieveGoalActivity::class.java)
+                intentGoal.putExtra("gender",gender)
+                intentGoal.putExtra("age",age)
+                intentGoal.putExtra("wUnit",weightUnit)
+                intentGoal.putExtra("weight",weight)
+                intentGoal.putExtra("height",height)
+                intentGoal.putExtra("hunit",heightUnit)
+                intentGoal.putExtra("interest",interest)
+                startActivity(intentGoal)
             }
         }
 

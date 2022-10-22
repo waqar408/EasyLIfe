@@ -28,5 +28,23 @@ data class SubscribedTrainerDataModel(
     var workout_assigned : Boolean,
 
     @SerializedName("meal_plan_assigned")
-    var meal_plan_assigned : Boolean
+    var meal_plan_assigned : Boolean,
+
+    @SerializedName("package_name")
+    var package_name : String,
+
+    @SerializedName("package_price")
+    var package_price :String,
+
+    @SerializedName("price_currency")
+    var price_currency : String,
+
+    @SerializedName("validity_days")
+    var validity_days :String,
+
+    @SerializedName("remaining_days")
+    var remaining_days : Int,
+
+    @SerializedName("is_expired")
+    var is_expired : Boolean
 )

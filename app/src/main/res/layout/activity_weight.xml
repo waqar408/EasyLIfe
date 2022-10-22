@@ -110,14 +110,7 @@
            android:layout_weight="0.5"/>
    </LinearLayout>
 
-    <ImageView
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
-        android:layout_below="@+id/ln"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:src="@drawable/weightselect" />
+
 
     <RelativeLayout
         android:id="@+id/rl"

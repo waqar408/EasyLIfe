@@ -2,7 +2,6 @@ package com.easylife.easylifes.trainerside.activities.nutrition
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityMacronutrientsDetailBinding
 import com.easylife.easylifes.model.mealplan.MealPlansDataModel
 import com.easylife.easylifes.utils.Utilities

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import com.easylife.easylifes.databinding.ActivityLogoutBinding
 import com.easylife.easylifes.model.BaseResponse
-import com.easylife.easylifes.model.forgotpassword.ForgotPasswordResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
@@ -43,7 +42,7 @@ class LogoutActivity : AppCompatActivity() {
         utilities.setLightGreenBar(this@LogoutActivity)
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             userId = java.lang.String.valueOf(obj.id)
         }
@@ -64,7 +63,7 @@ class LogoutActivity : AppCompatActivity() {
                         val signupResponse = response.body()
                         binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.clearSharedPref(this@LogoutActivity)
                                     val intent = Intent(
                                         this@LogoutActivity,

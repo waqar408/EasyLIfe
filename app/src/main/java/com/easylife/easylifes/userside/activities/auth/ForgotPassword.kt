@@ -15,7 +15,7 @@ class ForgotPassword : AppCompatActivity() {
     private lateinit var binding : ActivityForgotPasswordBinding
     private lateinit var utilities: Utilities
     var apiClient = ApiClient()
-    var emailAddress = ""
+    private var emailAddress = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
@@ -38,7 +38,7 @@ class ForgotPassword : AppCompatActivity() {
             emailAddress = binding.editPhoneNumber.text.toString().trim()
             val isValidEmail: Boolean = utilities.isValidEmail(emailAddress)
 
-            if (emailAddress.equals(""))
+            if (emailAddress == "")
             {
                 utilities.showFailureToast(this@ForgotPassword,"Please Enter Your Registered Email Address To Get Otp Code")
             }else if (!isValidEmail)
@@ -65,7 +65,7 @@ class ForgotPassword : AppCompatActivity() {
                         val signupResponse = response.body()
                         utilities.hideProgressDialog()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 val email1 = signupResponse.data.email
                                 val code = signupResponse.data.code
                                 val intent=  Intent(this@ForgotPassword,EmailOtpVerficationActivity::class.java)

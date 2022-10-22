@@ -7,16 +7,11 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.easylife.easylifes.databinding.ActivityUserWorkoutDetailBinding
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
 import com.easylife.easylifes.model.getuserworkouts.UserWorkoutVideoListModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.model.signup.SignupResponseModel
-import com.easylife.easylifes.model.workoutdetial.UserWorkoutDetailDataModel
-import com.easylife.easylifes.model.workoutdetial.UserWorkoutDetailResponseModel
-import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
 import com.easylife.easylifes.trainerside.adapter.UserWorkoutDetailVideoAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
@@ -29,8 +24,8 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
     UserWorkoutDetailVideoAdapter.onSelectedWorkoutClick {
     private lateinit var binding: ActivityUserWorkoutDetailBinding
     var clientid = ""
-    var categoryid = ""
-    var categoryname = ""
+    private var categoryid = ""
+    private var categoryname = ""
     var trainerId = ""
     var position = ""
     var from  = ""
@@ -38,7 +33,6 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
     val apiClient = ApiClient()
     var allVideoList: ArrayList<UserWorkoutVideoListModel> = ArrayList()
     var list1: ArrayList<UserWorkoutVideoListModel> = ArrayList()
-    private var videoList: ArrayList<UserWorkoutVideoListModel> = java.util.ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,7 +81,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
         utilities.setGrayBar(this@UserWorkoutDetailActivity)
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             trainerId = java.lang.String.valueOf(obj.id)
         }
@@ -118,7 +112,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 allVideoList = ArrayList()
                                 list1= ArrayList()
                                 list1.addAll(signupResponse.data.data[position.toInt()].user_workout_videos)
@@ -160,7 +154,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
     }
 
     override fun onClickArea(position: Int) {
-        val model = list1.get(position)
+        val model = list1[position]
         deleteWorkoutVideo(model.id.toString())
     }
 
@@ -181,7 +175,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(this@UserWorkoutDetailActivity,signupResponse.message)
                                 Handler(Looper.myLooper()!!).postDelayed({
                                     val intent = Intent(this@UserWorkoutDetailActivity,AllWorkoutsActivity::class.java)
@@ -232,7 +226,7 @@ class UserWorkoutDetailActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(this@UserWorkoutDetailActivity,signupResponse.message)
                                 Handler(Looper.myLooper()!!).postDelayed({
                                     val intent = Intent(this@UserWorkoutDetailActivity,AllWorkoutsActivity::class.java)

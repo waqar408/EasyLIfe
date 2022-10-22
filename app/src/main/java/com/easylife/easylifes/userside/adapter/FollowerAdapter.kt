@@ -26,9 +26,9 @@ class FollowerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: JobsDataModel = list.get(position)
+        val model: JobsDataModel = list[position]
         holder.tvWeight.text = model.name
-        holder.image_home.setImageResource(model.image)
+        holder.imageHome.setImageResource(model.image)
         holder.itemView.setOnClickListener {
             context.startActivity(Intent(context, ReviewListActivity::class.java))
         }
@@ -42,8 +42,8 @@ class FollowerAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val tvWeight: TextView = itemView.findViewById(R.id.tvName);
-        val image_home: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
+        val tvWeight: TextView = itemView.findViewById(R.id.tvName)
+        val imageHome: ShapeableImageView = itemView.findViewById(R.id.imgProfile)
 
     }
 

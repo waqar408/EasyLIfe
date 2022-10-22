@@ -2,6 +2,7 @@ package com.easylife.easylifes.userside.activities.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.easylife.easylifes.R
@@ -11,8 +12,8 @@ import com.easylife.easylifes.utils.Utilities
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding : ActivityOnBoardingBinding
-    var images: ArrayList<Int>? = null
-    var adpter: SplashAdapter? = null
+    private var images: ArrayList<Int>? = null
+    private var adpter: SplashAdapter? = null
     private lateinit var utilities : Utilities
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,7 @@ class OnBoardingActivity : AppCompatActivity() {
         adpter = SplashAdapter(this, images!!)
         binding.viewPager.currentItem = 0
         binding.viewPager.adapter = adpter
-        binding.dotsIndicator.setViewPager(binding.viewPager)
+        binding.dotsIndicator.attachTo(binding.viewPager)
         binding.viewPager.clipToPadding = false
         binding.viewPager.clipChildren = false
         binding.viewPager.offscreenPageLimit = 3
@@ -47,8 +48,10 @@ class OnBoardingActivity : AppCompatActivity() {
             ) {
                 if (position == 0) {
                     // viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                    Log.d("postion",position.toString())
                 }
                 if (position == 1) {
+                    Log.d("postion",position.toString())
 
                 }
                 if (position == 2){

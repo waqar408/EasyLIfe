@@ -26,11 +26,11 @@ class WorkoutCategoryActivity : AppCompatActivity() {
         utilities = Utilities(this@WorkoutCategoryActivity)
         utilities.setGrayBar(this@WorkoutCategoryActivity)
         workoutCartegoryList = ArrayList()
+        /*workoutCartegoryList.add(JobsDataModel(R.drawable.imgcategory,""))
         workoutCartegoryList.add(JobsDataModel(R.drawable.imgcategory,""))
         workoutCartegoryList.add(JobsDataModel(R.drawable.imgcategory,""))
         workoutCartegoryList.add(JobsDataModel(R.drawable.imgcategory,""))
-        workoutCartegoryList.add(JobsDataModel(R.drawable.imgcategory,""))
-        workoutCartegoryList.add(JobsDataModel(R.drawable.imgcategory,""))
+        workoutCartegoryList.add(JobsDataModel(R.drawable.imgcategory,""))*/
         binding.rlWorkoutCategories.layoutManager = GridLayoutManager(this@WorkoutCategoryActivity,2)
         binding.rlWorkoutCategories.adapter = WorkoutCategoriesAdapter(this@WorkoutCategoryActivity,workoutCartegoryList)
     }

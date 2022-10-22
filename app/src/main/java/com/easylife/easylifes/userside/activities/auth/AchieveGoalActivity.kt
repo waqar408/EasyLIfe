@@ -12,11 +12,11 @@ class AchieveGoalActivity : AppCompatActivity() {
     var gender = ""
     var age = ""
     var weight = ""
-    var weightUnit = ""
+    private var weightUnit = ""
     var height = ""
-    var heightUnit = ""
-    var interest = ""
-    var achieve = ""
+    private var heightUnit = ""
+    private var interest = ""
+    private var achieve = ""
     private lateinit var utilities: Utilities
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,20 +67,20 @@ class AchieveGoalActivity : AppCompatActivity() {
 
         }
         binding.layoutSend.setOnClickListener {
-            if (achieve.equals(""))
+            if (achieve == "")
             {
                 utilities.showFailureToast(this@AchieveGoalActivity,"Please Let Us Know How You Want To Acheive This Goal")
             }else{
-                val intent = Intent(this@AchieveGoalActivity,CurrentFitnessActivity::class.java)
-                intent.putExtra("gender",gender)
-                intent.putExtra("age",age)
-                intent.putExtra("wUnit",weightUnit)
-                intent.putExtra("weight",weight)
-                intent.putExtra("height",height)
-                intent.putExtra("hunit",heightUnit)
-                intent.putExtra("interest",interest)
-                intent.putExtra("goal",achieve)
-                startActivity(intent)
+                val intents = Intent(this@AchieveGoalActivity,CurrentFitnessActivity::class.java)
+                intents.putExtra("gender",gender)
+                intents.putExtra("age",age)
+                intents.putExtra("wUnit",weightUnit)
+                intents.putExtra("weight",weight)
+                intents.putExtra("height",height)
+                intents.putExtra("hunit",heightUnit)
+                intents.putExtra("interest",interest)
+                intents.putExtra("goal",achieve)
+                startActivity(intents)
             }
         }
         binding.layoutBackArrow.setOnClickListener {

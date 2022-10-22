@@ -1,5 +1,6 @@
 package com.easylife.easylifes.userside.activities.auth
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,9 +34,10 @@ class LoginActivity : AppCompatActivity() {
     var email = ""
     var password = ""
     var apiClient = ApiClient()
-    var userType = ""
-    lateinit var mGoogleSignInClient: GoogleSignInClient
-    var RC_SIGN_IN: Int = 100
+    private var userType = ""
+    var firebaseToken = ""
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private var RC_SIGN_IN: Int = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,10 +55,14 @@ class LoginActivity : AppCompatActivity() {
         utilities = Utilities(this@LoginActivity)
         utilities.setWhiteBars(this@LoginActivity)
         userType = utilities.getString(this@LoginActivity,"usertype")
+        //firebase token to send and recieve notification
+        val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        firebaseToken = sharedPref?.getString("FCM_TOKEN", "").toString()
+        Log.d("token", firebaseToken)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this@LoginActivity, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this@LoginActivity, gso)
 
     }
 
@@ -72,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
             password = binding.editPassword.text.toString()
             val isValidEmail: Boolean = utilities.isValidEmail(email)
 
-            if (email.equals("")) {
+            if (email == "") {
                 utilities.showFailureToast(this@LoginActivity, "Required!", "Please Enter Email")
             } else if (!isValidEmail) {
                 utilities.showFailureToast(
@@ -80,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                     "Required!",
                     "Please Enter Valid Email"
                 )
-            } else if (password.equals("")) {
+            } else if (password == "") {
                 utilities.showFailureToast(this@LoginActivity, "Required!", "Please Enter Password")
             } else if (password.length < 6) {
                 utilities.showFailureToast(
@@ -163,16 +169,16 @@ class LoginActivity : AppCompatActivity() {
                 ) {
                     val signupResponse = response.body()
                     binding.dotloader.visibility = View.GONE
-                    if (signupResponse!!.status == true) {
-                        if (signupResponse.message.equals("You'll be Login after Admin Approval")) {
+                    if (signupResponse!!.status) {
+                        if (signupResponse.message == "You'll be Login after Admin Approval") {
                             utilities.showSuccessToast(
                                 this@LoginActivity,
                                 signupResponse.message
                             )
                         } else {
 
-                            if (signupResponse.data.type.equals("1")) {
-                                if (signupResponse.data.is_profile_complete == true) {
+                            if (signupResponse.data.type == "1") {
+                                if (signupResponse.data.is_profile_complete) {
 
                                     val gson = Gson()
                                     val json = gson.toJson(signupResponse.data)
@@ -230,20 +236,20 @@ class LoginActivity : AppCompatActivity() {
                         val signupResponse = response.body()
                         binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(
                                     this@LoginActivity,
                                     signupResponse.message
                                 )
-                                if (signupResponse.message.equals("You'll be Login after Admin Approval")) {
+                                if (signupResponse.message == "You'll be Login after Admin Approval") {
                                     utilities.showSuccessToast(
                                         this@LoginActivity,
                                         signupResponse.message
                                     )
                                 } else {
 
-                                    if (signupResponse.data.type.equals("1")) {
-                                        if (signupResponse.data.is_profile_complete == true) {
+                                    if (signupResponse.data.type == "1") {
+                                        if (signupResponse.data.is_profile_complete) {
 
                                             val gson = Gson()
                                             val json = gson.toJson(signupResponse.data)

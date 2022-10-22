@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/porcelain"
     tools:context=".userside.activities.review.ReviewListActivity">
+
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:id="@+id/layout_backArrow"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/bg_white_rounded_8dp"
-            android:elevation="@dimen/_15sdp"
-            android:outlineAmbientShadowColor="@color/black"
-            android:outlineSpotShadowColor="@color/black">
-
-            <ImageView
-                android:layout_width="@dimen/_8sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_centerInParent="true"
-                android:contentDescription="@string/text_todo"
-                android:src="@drawable/ic_back_arrow" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/text_verifyMobile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_22sdp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="Reviews"
-            android:textColor="@color/hintcolor"
-            android:textSize="@dimen/_13sdp" />
+        android:id="@+id/layout_backArrow"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_8dp"
+        android:elevation="@dimen/_15sdp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black">
 
         <ImageView
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:padding="@dimen/_8sdp"
-            android:src="@drawable/editicon">
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_back_arrow" />
 
-        </ImageView>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_verifyMobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="Reviews"
+        android:textColor="@color/hintcolor"
+        android:textSize="@dimen/_13sdp" />
+
+    <ImageView
+        android:id="@+id/imgWriteReviews"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:padding="@dimen/_8sdp"
+        android:src="@drawable/editicon">
+
+    </ImageView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_below="@+id/layout_backArrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_30sdp"
+        android:layout_below="@+id/layout_backArrow"
         android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_24sdp"
-        android:elevation="@dimen/_8sdp">
+        android:elevation="@dimen/_8sdp"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/_30sdp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <RelativeLayout
                 android:id="@+id/rl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:background="@drawable/upper_white_curve"
                 android:elevation="@dimen/_12sdp">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/con"
                     android:layout_width="wrap_content"
@@ -89,72 +93,77 @@
                         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
                     <ImageView
-                        android:visibility="gone"
                         android:layout_width="@dimen/_17sdp"
                         android:layout_height="@dimen/_17sdp"
-                        android:src="@drawable/online_icon"
                         android:layout_marginTop="-20dp"
+                        android:src="@drawable/online_icon"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="@+id/imgProfile"
                         app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
                     android:layout_toEndOf="@+id/con"
+                    android:orientation="horizontal"
                     android:weightSum="1">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.3"
-                        android:orientation="vertical"
                         android:layout_marginStart="@dimen/_8sdp"
-                        android:gravity="center_vertical">
+                        android:layout_weight="0.3"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tvName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_semibold"
                             android:text="Mikey Lecan"
                             android:textColor="@color/haiti"
-                            android:textSize="@dimen/_13sdp"
-                            android:fontFamily="@font/barlow_semibold"
-                            />
+                            android:textSize="@dimen/_13sdp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:fontFamily="@font/barlow_semibold"
+                            android:lines="1"
                             android:text="Hi, I want to talk about..."
                             android:textColor="@color/haiti50percent"
-                            android:textSize="@dimen/_13sdp"
-                            android:layout_marginTop="@dimen/_4sdp"
-                            android:lines="1"
-                            android:fontFamily="@font/barlow_semibold"
-                            />
+                            android:textSize="@dimen/_13sdp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.7"
-                        android:orientation="vertical"
                         android:gravity="center_vertical|end"
-                        >
+                        android:orientation="vertical">
+
                         <RelativeLayout
                             android:layout_width="@dimen/_45sdp"
                             android:layout_height="@dimen/_45sdp"
-                            android:elevation="@dimen/_20sdp"
                             android:layout_marginEnd="@dimen/_12sdp"
+                            android:background="@drawable/rounded_light_pink"
+                            android:elevation="@dimen/_20sdp"
                             android:outlineAmbientShadowColor="@color/pink"
-                            android:outlineSpotShadowColor="@color/pink"
-                            android:background="@drawable/rounded_light_pink">
+                            android:outlineSpotShadowColor="@color/pink">
+
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="@dimen/_8sdp"
                                 android:background="@drawable/rounded_white">
+
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/hearticon"
-                                    android:layout_margin="@dimen/_8sdp"/>
+                                    android:layout_margin="@dimen/_8sdp"
+                                    android:src="@drawable/hearticon" />
                             </RelativeLayout>
                         </RelativeLayout>
                     </LinearLayout>
@@ -276,32 +285,37 @@ Many desktop publishing packages and web page editors now use search for 'lorem 
                 android:textSize="@dimen/_12sdp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardWriteComment"
-        android:layout_below="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_30sdp"
+        android:layout_below="@+id/card"
         android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_24sdp"
-        android:elevation="@dimen/_8sdp">
+        android:elevation="@dimen/_8sdp"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/_30sdp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <RelativeLayout
                 android:id="@+id/rl12"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:background="@drawable/upper_white_curve"
                 android:elevation="@dimen/_12sdp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Write a Comment"
+                    android:layout_marginStart="@dimen/_24sdp"
                     android:gravity="center_vertical"
+                    android:text="Write a Comment"
                     android:textColor="@color/haiti"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_marginStart="@dimen/_24sdp"/>
+                    android:textSize="@dimen/_13sdp" />
             </RelativeLayout>
 
 
@@ -339,14 +353,65 @@ Many desktop publishing packages and web page editors now use search for 'lorem 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvComment"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/idNestedSV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_backArrow"
+        android:layout_marginTop="@dimen/_12sdp">
+        <!--linear layout for displaying
+            our recycler view-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/cardWriteComment"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_24sdp"
-            tools:itemCount="1"
-            tools:listitem="@layout/item_comment" />
-    </RelativeLayout>
-</ScrollView>
+            android:orientation="vertical">
+
+            <!--recycler view for displaying our list of data
+                and we are making nested scroll for our
+                recycler view as false-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_reviews" />
+
+            <!--we are adding progress bar
+                for the purpose of loading-->
+            <ProgressBar
+                android:id="@+id/idPBLoading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:progressTint="@color/white"
+                android:theme="@style/progressBarBlue"
+                android:visibility="gone" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/tvNoViewFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_backArrow"
+        android:layout_margin="12dp"
+        android:textSize="@dimen/_13sdp"
+        android:text= "No Reviews Found"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:fontFamily="@font/barlow_bold"
+        android:visibility="gone"/>
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_5sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
+</RelativeLayout>

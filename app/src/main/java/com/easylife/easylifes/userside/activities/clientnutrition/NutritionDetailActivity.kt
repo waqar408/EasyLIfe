@@ -1,28 +1,13 @@
 package com.easylife.easylifes.userside.activities.clientnutrition
 
-import android.app.Dialog
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.view.Gravity
 import android.view.View
-import android.view.WindowManager
-import android.widget.EditText
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityNutritionDetailBinding
-import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.mealtimes.MealTimesDataModel
 import com.easylife.easylifes.model.mealtimes.MealTimesResponseModel
-import com.easylife.easylifes.trainerside.activities.nutrition.AllNutritionsActivity
-import com.easylife.easylifes.trainerside.activities.nutrition.SearchMealActivity
-import com.easylife.easylifes.trainerside.adapter.UserNutritionDetailAdapter
 import com.easylife.easylifes.userside.adapter.NutritionDetailAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.tabadol.tabadol.data.network.ApiClient
@@ -36,7 +21,7 @@ class NutritionDetailActivity : AppCompatActivity()
     private lateinit var utilities: Utilities
     private lateinit var mealTimesList: ArrayList<MealTimesDataModel>
     var clientid = ""
-    var mealPlanId = ""
+    private var mealPlanId = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNutritionDetailBinding.inflate(layoutInflater)
@@ -86,7 +71,7 @@ class NutritionDetailActivity : AppCompatActivity()
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 mealTimesList = ArrayList()
                                 mealTimesList = signupResponse.data
                                 binding.rvClientNutrition.layoutManager =

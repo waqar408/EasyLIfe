@@ -23,7 +23,7 @@ class GoalsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: JobsDataModel = list.get(position)
+        val model: JobsDataModel = list[position]
         holder.tvWeight.text = model.name
 
     }
@@ -35,7 +35,7 @@ class GoalsAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val tvWeight: TextView = itemView.findViewById(R.id.tvName);
+        val tvWeight: TextView = itemView.findViewById(R.id.tvName)
 
     }
 

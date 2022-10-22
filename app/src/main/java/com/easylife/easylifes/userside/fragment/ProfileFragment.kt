@@ -10,13 +10,15 @@ import android.view.ViewGroup
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.easylife.easylifes.BuildConfig
 import com.easylife.easylifes.R
-import com.easylife.easylifes.userside.activities.address.AddNewAddress
-import com.easylife.easylifes.userside.activities.choosepackage.ChooseYourPackage
-import com.easylife.easylifes.userside.activities.profile.ProfileSettingActivity
 import com.easylife.easylifes.userside.activities.setting.SettingsActivity
 import com.easylife.easylifes.databinding.FragmentProfileBinding
 import com.easylife.easylifes.model.signup.SignUpDataModel
+import com.easylife.easylifes.userside.activities.Support.SupportActivity
+import com.easylife.easylifes.userside.activities.address.MyAddressActivity
+import com.easylife.easylifes.userside.activities.bodymeasurement.BodyMeasurementsActivity
+import com.easylife.easylifes.userside.activities.choosepackage.MyPaymentsActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
 
@@ -45,13 +47,13 @@ class ProfileFragment : Fragment() {
         utilities = Utilities(requireContext())
         val gsonn = Gson()
         val jsonn: String = utilities.getString(requireContext(), "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             profileImage = obj.profile_image
             userName = obj.username
             location = obj.location
             Glide.with(this@ProfileFragment).load(profileImage).into(binding.profileImage)
-            binding.userName.text= userName
+            binding.userName.text = userName
             binding.tvLocation.text = location
 
         }
@@ -59,11 +61,10 @@ class ProfileFragment : Fragment() {
 
     private fun statusbarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requireActivity().getWindow()
-                .setStatusBarColor(requireActivity().getColor(R.color.haiti))
+            requireActivity().window.statusBarColor = requireActivity().getColor(R.color.haiti)
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            requireActivity().getWindow().getDecorView().getWindowInsetsController()!!
+            requireActivity().window.decorView.windowInsetsController!!
                 .setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS)
         }
     }
@@ -77,7 +78,7 @@ class ProfileFragment : Fragment() {
                     requireContext(),
                     R.color.white
                 )
-            );
+            )
             binding.tvGoals.setTextColor(resources.getColor(R.color.white))
             binding.rlBodyMeasurement.setBackgroundResource(R.color.white)
             binding.rlBodyMeasurement2.setBackgroundResource(R.drawable.round_white)
@@ -144,7 +145,7 @@ class ProfileFragment : Fragment() {
                     requireContext(),
                     R.color.statusbarcolor
                 )
-            );
+            )
             binding.tvGoals.setTextColor(resources.getColor(R.color.haiti))
             binding.rlBodyMeasurement.setBackgroundResource(R.color.appColor)
             binding.rlBodyMeasurement2.setBackgroundResource(R.drawable.round_blue)
@@ -200,9 +201,10 @@ class ProfileFragment : Fragment() {
                 )
             )
             binding.tvSettings.setTextColor(resources.getColor(R.color.haiti))
+
+            startActivity(Intent(requireContext(), BodyMeasurementsActivity::class.java))
         }
         binding.cardMyPayments.setOnClickListener {
-
             binding.rlMyGoals.setBackgroundResource(R.color.white)
             binding.rlMyGoals2.setBackgroundResource(R.drawable.round_white)
             binding.imgGoalsIcon.setColorFilter(
@@ -210,7 +212,7 @@ class ProfileFragment : Fragment() {
                     requireContext(),
                     R.color.statusbarcolor
                 )
-            );
+            )
             binding.tvGoals.setTextColor(resources.getColor(R.color.haiti))
             binding.rlBodyMeasurement.setBackgroundResource(R.color.white)
             binding.rlBodyMeasurement2.setBackgroundResource(R.drawable.round_white)
@@ -266,7 +268,7 @@ class ProfileFragment : Fragment() {
                 )
             )
             binding.tvSettings.setTextColor(resources.getColor(R.color.haiti))
-            startActivity(Intent(requireContext(),ChooseYourPackage::class.java))
+            startActivity(Intent(requireContext(), MyPaymentsActivity::class.java))
         }
         binding.cardInviteFriend.setOnClickListener {
             binding.rlMyGoals.setBackgroundResource(R.color.white)
@@ -276,7 +278,7 @@ class ProfileFragment : Fragment() {
                     requireContext(),
                     R.color.statusbarcolor
                 )
-            );
+            )
             binding.tvGoals.setTextColor(resources.getColor(R.color.haiti))
             binding.rlBodyMeasurement.setBackgroundResource(R.color.white)
             binding.rlBodyMeasurement2.setBackgroundResource(R.drawable.round_white)
@@ -332,6 +334,23 @@ class ProfileFragment : Fragment() {
                 )
             )
             binding.tvSettings.setTextColor(resources.getColor(R.color.haiti))
+
+
+            try {
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.type = "text/plain"
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Tabadoul")
+                var shareMessage = "\nLet me recommend you this application::\n"
+                shareMessage =
+                    """
+                    ${shareMessage}https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}
+                    """.trimIndent()
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+                startActivity(Intent.createChooser(shareIntent, "choose one"))
+            } catch (e: Exception) {
+                //e.toString();
+            }
+
         }
         binding.cardEditAccount.setOnClickListener {
             binding.rlMyGoals.setBackgroundResource(R.color.white)
@@ -341,7 +360,7 @@ class ProfileFragment : Fragment() {
                     requireContext(),
                     R.color.statusbarcolor
                 )
-            );
+            )
             binding.tvGoals.setTextColor(resources.getColor(R.color.haiti))
             binding.rlBodyMeasurement.setBackgroundResource(R.color.white)
             binding.rlBodyMeasurement2.setBackgroundResource(R.drawable.round_white)
@@ -398,7 +417,7 @@ class ProfileFragment : Fragment() {
             )
             binding.tvSettings.setTextColor(resources.getColor(R.color.haiti))
 
-            startActivity(Intent(requireContext(),ProfileSettingActivity::class.java))
+            startActivity(Intent(requireContext(), SupportActivity::class.java))
         }
         binding.cardMyAddress.setOnClickListener {
             binding.rlMyGoals.setBackgroundResource(R.color.white)
@@ -408,7 +427,7 @@ class ProfileFragment : Fragment() {
                     requireContext(),
                     R.color.statusbarcolor
                 )
-            );
+            )
             binding.tvGoals.setTextColor(resources.getColor(R.color.haiti))
             binding.rlBodyMeasurement.setBackgroundResource(R.color.white)
             binding.rlBodyMeasurement2.setBackgroundResource(R.drawable.round_white)
@@ -465,7 +484,7 @@ class ProfileFragment : Fragment() {
             )
             binding.tvSettings.setTextColor(resources.getColor(R.color.haiti))
 
-            startActivity(Intent(context,AddNewAddress::class.java))
+            startActivity(Intent(context, MyAddressActivity::class.java))
         }
         binding.cardSettings.setOnClickListener {
             binding.rlMyGoals.setBackgroundResource(R.color.white)
@@ -475,7 +494,7 @@ class ProfileFragment : Fragment() {
                     requireContext(),
                     R.color.statusbarcolor
                 )
-            );
+            )
             binding.tvGoals.setTextColor(resources.getColor(R.color.haiti))
             binding.rlBodyMeasurement.setBackgroundResource(R.color.white)
             binding.rlBodyMeasurement2.setBackgroundResource(R.drawable.round_white)
@@ -532,7 +551,7 @@ class ProfileFragment : Fragment() {
                 )
             )
             binding.tvSettings.setTextColor(resources.getColor(R.color.white))
-            startActivity(Intent(requireContext(),SettingsActivity::class.java))
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
     }
 }

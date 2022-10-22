@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.easylife.easylifes.R
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.mealplan.MealPlansDataModel
 
 
@@ -42,8 +41,8 @@ class AllNutritionsAdapter(
 
     class ViewHolder(itemView: View, listener: onAllClientDetailClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvPlans);
-        val imgProfile: ImageView = itemView.findViewById(R.id.imgPic);
+        val tvName: TextView = itemView.findViewById(R.id.tvPlans)
+        val imgProfile: ImageView = itemView.findViewById(R.id.imgPic)
 
     }
 

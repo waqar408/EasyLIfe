@@ -4,18 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityWorkoutsListBinding
 import com.easylife.easylifes.model.BaseResponse
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
-import com.easylife.easylifes.model.allworkouts.WorkoutRepsAndRestModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.trainerside.adapter.SelectedWorkoutListAdapter
 import com.easylife.easylifes.utils.Utilities
@@ -32,10 +25,8 @@ class WorkoutsListActivity : AppCompatActivity(),
     SelectedWorkoutListAdapter.onSelectedWorkoutClick {
     private lateinit var binding: ActivityWorkoutsListBinding
     private lateinit var utilities: Utilities
-    private lateinit var listSelectedWorkoutList: ArrayList<AllWorkoutsDataListModel>
     private var allWorkoutList: ArrayList<AllWorkoutsDataListModel> = ArrayList()
     var tvWorkoutCategory = ""
-    var workoutCategoryName = ""
     var clientid = ""
     var trainerid = ""
     var workoutid = ""
@@ -43,9 +34,6 @@ class WorkoutsListActivity : AppCompatActivity(),
     var categoryid = ""
     var position = ""
     var from : String?= null
-    lateinit var navHostFragment : NavHostFragment
-    lateinit var navController : NavController
-    private var listWorkoutRepsAndRest: ArrayList<WorkoutRepsAndRestModel> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutsListBinding.inflate(layoutInflater)
@@ -102,7 +90,7 @@ class WorkoutsListActivity : AppCompatActivity(),
 
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             trainerid = obj.id.toString()
 
@@ -124,14 +112,14 @@ class WorkoutsListActivity : AppCompatActivity(),
     }
 
     override fun onClickArea(position: Int) {
-        val model = listSelectedWorkoutList.get(position)
+//        val model = listSelectedWorkoutList.get(position)
     }
 
     fun createWorkout() {
         val jsonObject = JsonObject()
 
-        var array2 = JsonArray()
-        var jsonObject2 = JsonObject()
+        val array2 = JsonArray()
+        var jsonObject2: JsonObject
         if (allWorkoutList.size > 0) {
 
             for (i in 0 until allWorkoutList.size) {
@@ -143,18 +131,18 @@ class WorkoutsListActivity : AppCompatActivity(),
                 workoutid = allWorkoutList.get(i).id.toString()
                 for (j in 0 until allWorkoutList.get(i).listReps.size)
                 {
-                    val rep = allWorkoutList.get(i).listReps.get(j).reps.toString()
-                    val repsMinutes = allWorkoutList.get(i).listReps.get(j).reps_minutes.toString()
-                    val reps_second = allWorkoutList.get(i).listReps.get(j).reps_Second.toString()
-                    val res_minutes = allWorkoutList.get(i).listReps.get(j).rest_minutes
-                    val rest_Seconds = allWorkoutList.get(i).listReps.get(j).reps_Second
+                    val rep = allWorkoutList.get(i).listReps.get(j).reps
+                    val repsMinutes = allWorkoutList.get(i).listReps.get(j).reps_minutes
+                    val repsSecond = allWorkoutList.get(i).listReps.get(j).reps_Second
+                    val resminutes = allWorkoutList.get(i).listReps.get(j).rest_minutes
+                    val restSeconds = allWorkoutList.get(i).listReps.get(j).reps_Second
 
                     val obj1 = JsonObject()
                     obj1.addProperty("reps", rep.toInt())
                     obj1.addProperty("reps_minutes", repsMinutes.toInt())
-                    obj1.addProperty("reps_seconds", reps_second.toInt())
-                    obj1.addProperty("rest_minutes", res_minutes.toInt())
-                    obj1.addProperty("rest_seconds", rest_Seconds.toInt())
+                    obj1.addProperty("reps_seconds", repsSecond.toInt())
+                    obj1.addProperty("rest_minutes", resminutes.toInt())
+                    obj1.addProperty("rest_seconds", restSeconds.toInt())
                     array1.add(obj1)
 
                 }
@@ -179,7 +167,7 @@ class WorkoutsListActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         if (response.body() != null) {
                             val status = response.body()!!.status
-                            if (status == true) {
+                            if (status) {
                                 val intent = Intent(
                                     this@WorkoutsListActivity,
                                     AllWorkoutsActivity::class.java
@@ -218,7 +206,7 @@ class WorkoutsListActivity : AppCompatActivity(),
     fun addMoreWorkout() {
         val jsonObject = JsonObject()
         val array2 = JsonArray()
-        var jsonObject2 = JsonObject()
+        var jsonObject2: JsonObject
         if (allWorkoutList.size > 0) {
             for (i in 0 until allWorkoutList.size) {
                 /*while (array1.size()>0)
@@ -229,16 +217,16 @@ class WorkoutsListActivity : AppCompatActivity(),
                 workoutid = allWorkoutList.get(i).id.toString()
                 for (j in 0 until allWorkoutList.get(i).listReps.size)
                 {
-                    val rep = allWorkoutList.get(i).listReps.get(j).reps.toString()
-                    val repsMinutes = allWorkoutList.get(i).listReps.get(j).reps_minutes.toString()
-                    val reps_second = allWorkoutList.get(i).listReps.get(j).reps_Second.toString()
+                    val rep = allWorkoutList.get(i).listReps.get(j).reps
+                    val repsMinutes = allWorkoutList.get(i).listReps.get(j).reps_minutes
+                    val repsSeconfs = allWorkoutList.get(i).listReps.get(j).reps_Second
                     val res_minutes = allWorkoutList.get(i).listReps.get(j).rest_minutes
                     val rest_Seconds = allWorkoutList.get(i).listReps.get(j).reps_Second
 
                     val obj1 = JsonObject()
                     obj1.addProperty("reps", rep.toInt())
                     obj1.addProperty("reps_minutes", repsMinutes.toInt())
-                    obj1.addProperty("reps_seconds", reps_second.toInt())
+                    obj1.addProperty("reps_seconds", repsSeconfs.toInt())
                     obj1.addProperty("rest_minutes", res_minutes.toInt())
                     obj1.addProperty("rest_seconds", rest_Seconds.toInt())
                     array1.add(obj1)
@@ -263,7 +251,7 @@ class WorkoutsListActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         if (response.body() != null) {
                             val status = response.body()!!.status
-                            if (status == true) {
+                            if (status) {
                                 val intent = Intent(
                                     this@WorkoutsListActivity,
                                     AllWorkoutsActivity::class.java

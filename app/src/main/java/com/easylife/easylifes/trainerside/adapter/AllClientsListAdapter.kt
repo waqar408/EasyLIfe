@@ -52,11 +52,11 @@ class AllClientsListAdapter(
 
     class ViewHolder(itemView: View,listener: onAllClientDetailClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvUserName: TextView = itemView.findViewById(R.id.tvusername);
-        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
-        val rlWorkout: RelativeLayout = itemView.findViewById(R.id.rlWorkout);
-        val tvNutrition: TextView = itemView.findViewById(R.id.rlNutrition);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvUserName: TextView = itemView.findViewById(R.id.tvusername)
+        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile)
+        val rlWorkout: RelativeLayout = itemView.findViewById(R.id.rlWorkout)
+        val tvNutrition: TextView = itemView.findViewById(R.id.rlNutrition)
 
     }
 

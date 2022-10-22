@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.easylife.easylifes.R
-import com.easylife.easylifes.databinding.ActivityMainBinding
 import com.easylife.easylifes.databinding.ActivityTrianerMainBinding
 import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.bottomnavigation.BottomNavigationView

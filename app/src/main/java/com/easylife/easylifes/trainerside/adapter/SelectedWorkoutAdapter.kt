@@ -12,9 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
-import com.easylife.easylifes.model.categoryvideos.CategoryVideoDataModel
 import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
 
 
@@ -32,7 +30,7 @@ class SelectedWorkoutAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: AllWorkoutsDataListModel = list.get(position)
+        val model: AllWorkoutsDataListModel = list[position]
         holder.tvName.text = model.title
         holder.tvDescription.text = model.description
         Glide.with(context).load(model.media).into(holder.imgProfile)
@@ -58,12 +56,12 @@ class SelectedWorkoutAdapter(
 
     class ViewHolder(itemView: View,listener: onCategoryVideoClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription);
-        val tvDescription2: TextView = itemView.findViewById(R.id.tvDescription2);
-        val imgProfile: ImageView = itemView.findViewById(R.id.imgProfile);
-        val rlDelete: RelativeLayout = itemView.findViewById(R.id.rlDelete);
-        val lnVideo: LinearLayout = itemView.findViewById(R.id.lnVideo);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
+        val imgProfile: ImageView = itemView.findViewById(R.id.imgProfile)
+        val rlDelete: RelativeLayout = itemView.findViewById(R.id.rlDelete)
+        val lnVideo: LinearLayout = itemView.findViewById(R.id.lnVideo)
+
 
     }
 

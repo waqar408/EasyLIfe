@@ -1,7 +1,6 @@
 package com.easylife.easylifes.trainerside.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutDataListModel
-import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutDataModel
-import com.easylife.easylifes.model.userworkoutcategories.UserCategoryDataModel
-import com.easylife.easylifes.trainerside.activities.clientdetail.UserWorkoutDetailActivity
 
 
 class AllWorkoutsAdapter(
@@ -47,8 +42,8 @@ class AllWorkoutsAdapter(
 
     class ViewHolder(itemView: View,listener: onAllWorkoutClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvWorkoutCategoryName: TextView = itemView.findViewById(R.id.tvPlans);
-        val imgWorkoutCategory: ImageView = itemView.findViewById(R.id.imgPic);
+        val tvWorkoutCategoryName: TextView = itemView.findViewById(R.id.tvPlans)
+        val imgWorkoutCategory: ImageView = itemView.findViewById(R.id.imgPic)
 
     }
 

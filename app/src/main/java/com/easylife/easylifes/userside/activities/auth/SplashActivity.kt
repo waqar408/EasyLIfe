@@ -15,9 +15,9 @@ import com.google.gson.Gson
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
     private lateinit var utilities: Utilities
-    var loggedIn =""
-    var userType = ""
-    var profileCompleted = false
+    private var loggedIn =""
+    private var userType = ""
+    private var profileCompleted = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
@@ -35,21 +35,21 @@ class SplashActivity : AppCompatActivity() {
         loggedIn = utilities.getString(this@SplashActivity,"loggedin")
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             profileCompleted = obj.is_profile_complete
             userType  = obj.type
         }
-        if(loggedIn.equals(""))
+        if(loggedIn == "")
         {
             Handler(Looper.myLooper()!!).postDelayed({
                 startActivity(Intent(this@SplashActivity, GetStartedActivity::class.java))
                 finish()
             },3000)
         }else{
-            if (userType.equals("1"))
+            if (userType == "1")
             {
-                if (profileCompleted == true)
+                if (profileCompleted)
                 {
                     Handler(Looper.myLooper()!!).postDelayed({
                         startActivity(Intent(this@SplashActivity, MainActivity::class.java))

@@ -10,8 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.FragmentTrainerChatBinding
 import com.easylife.easylifes.model.chat.messenger.MessengerDataModel
 import com.easylife.easylifes.model.chat.messenger.MessengerResponseModel
@@ -31,7 +29,7 @@ class TrainerChatFragment : Fragment() {
     private var chatList : ArrayList<MessengerDataModel> =ArrayList()
     private lateinit var utilities: Utilities
     var filterList: ArrayList<MessengerDataModel> = ArrayList()
-    var user_idd = ""
+    private var user_idd = ""
     lateinit var adapter : ChatAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +46,7 @@ class TrainerChatFragment : Fragment() {
         adapter = ChatAdapter(requireContext(),chatList)
         utilities = Utilities(requireContext())
         val gsonn = Gson()
-        val jsonn: String = utilities.getString(requireContext(), "loginResponse").toString()
+        val jsonn: String = utilities.getString(requireContext(), "loginResponse")
         val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
         user_idd = obj.id.toString()
         getChatList()
@@ -59,8 +57,7 @@ class TrainerChatFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 filterList.clear()
                 if (s.toString().isEmpty()) {
-                    binding.rvChat.setAdapter(
-                        ChatAdapter(requireContext(), chatList))
+                    binding.rvChat.adapter = ChatAdapter(requireContext(), chatList)
                     adapter.notifyDataSetChanged()
                 } else {
                     try {
@@ -88,7 +85,7 @@ class TrainerChatFragment : Fragment() {
                     filterList.add(post)
                 }
             }
-            binding.rvChat.setAdapter(ChatAdapter(requireContext(), filterList))
+            binding.rvChat.adapter = ChatAdapter(requireContext(), filterList)
             adapter.notifyDataSetChanged()
         } else {
             Toast.makeText(
@@ -114,7 +111,7 @@ class TrainerChatFragment : Fragment() {
                         val signupResponse = response.body()
                         if (this@TrainerChatFragment.isAdded) {
                             binding.dotloader.visibility =View.GONE
-                            if (signupResponse!!.status == true) {
+                            if (signupResponse!!.status) {
                                 if (!signupResponse.data.equals("")) {
                                     //setMessagePusher()
                                     chatList = ArrayList()

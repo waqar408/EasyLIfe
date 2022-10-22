@@ -1,15 +1,14 @@
-package com.easylife.easylifes.model.categoryvideos
+package com.easylife.easylifes.model.notification
 
 import com.google.gson.annotations.SerializedName
 
-data class CategoryVideosResponseModel(
+data class NotificationResponseModel(
     @SerializedName("status")
-    var status : Boolean,
+    val status : Boolean,
 
     @SerializedName("message")
     var message : String,
 
     @SerializedName("data")
-    var data : ArrayList<CategoryVideoDataModel>
+    var data : ArrayList<NotificationDataModel>
 )
-

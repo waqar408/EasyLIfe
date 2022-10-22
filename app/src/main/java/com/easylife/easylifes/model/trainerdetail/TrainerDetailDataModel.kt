@@ -43,6 +43,11 @@ data class TrainerDetailDataModel(
     @SerializedName("videos")
     var videos : ArrayList<VideoListDataModel>,
 
+
+    @SerializedName("is_subscribed")
+    var is_subscribed : Int,
+
+
     @SerializedName("subscription_packages")
     var subscription_packages : ArrayList<SubscriptionPackageDataModel>,
 

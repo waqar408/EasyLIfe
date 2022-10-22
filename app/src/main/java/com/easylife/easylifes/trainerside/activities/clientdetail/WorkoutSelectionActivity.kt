@@ -11,16 +11,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityWorkoutSelectionBinding
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsResponseModel
-import com.easylife.easylifes.model.categoryvideos.CategoryVideoDataModel
-import com.easylife.easylifes.model.categoryvideos.CategoryVideosResponseModel
-import com.easylife.easylifes.model.trainerhome.TrainerUserDataModel
-import com.easylife.easylifes.model.userworkoutcategories.UserCategoryResponseModel
-import com.easylife.easylifes.trainerside.adapter.AllClientsListAdapter
 import com.easylife.easylifes.trainerside.adapter.WorkoutSelectionAdpater
-import com.easylife.easylifes.userside.adapter.CustomizeInterestAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.easylife.easylifes.utils.UtilityClass
 import com.tabadol.tabadol.data.network.ApiClient
@@ -36,11 +29,11 @@ class WorkoutSelectionActivity : AppCompatActivity() {
     private var categoryVideoList: ArrayList<AllWorkoutsDataListModel> = ArrayList()
     var filterList: ArrayList<AllWorkoutsDataListModel> = ArrayList()
     lateinit var adapter: WorkoutSelectionAdpater
-    var customizeList: ArrayList<AllWorkoutsDataListModel> = ArrayList()
-    var workoutCategoryId = ""
-    var workoutCategoryName = ""
+    private var customizeList: ArrayList<AllWorkoutsDataListModel> = ArrayList()
+    private var workoutCategoryId = ""
+    private var workoutCategoryName = ""
     var clientid = ""
-    var categoryid = ""
+    private var categoryid = ""
     var from = ""
     var position = ""
 
@@ -54,7 +47,7 @@ class WorkoutSelectionActivity : AppCompatActivity() {
 
     private fun onClicks() {
         binding.layoutBackArrow.setOnClickListener {
-            if (from.equals("from"))
+            if (from == "from")
             {
                 val intent = Intent(this@WorkoutSelectionActivity,UserWorkoutDetailActivity::class.java)
                 intent.putExtra("categoryid",categoryid)
@@ -111,7 +104,7 @@ class WorkoutSelectionActivity : AppCompatActivity() {
                 val intent = Intent(this@WorkoutSelectionActivity, SelectedWorkoutActivity::class.java)
                 intent.putExtra("clientid",clientid)
                 intent.putExtra("categoryName",workoutCategoryName)
-                intent.putExtra("workoutCategoryId",workoutCategoryId.toString())
+                intent.putExtra("workoutCategoryId",workoutCategoryId)
                 intent.putExtra("categoryid",categoryid)
                 intent.putExtra("from",from)
                 intent.putExtra("position",position)
@@ -131,7 +124,7 @@ class WorkoutSelectionActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         categoryVideoList.clear()
-        if (from.equals("from"))
+        if (from == "from")
         {
             val intent = Intent(this@WorkoutSelectionActivity,UserWorkoutDetailActivity::class.java)
             intent.putExtra("categoryid",categoryid)

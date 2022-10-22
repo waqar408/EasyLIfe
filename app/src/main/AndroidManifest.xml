@@ -18,6 +18,15 @@
         android:theme="@style/Theme.EasyLifes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".userside.activities.profile.UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userside.activities.choosepackage.MyPaymentsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userside.activities.bodymeasurement.BodyMeasurementsActivity"
+            android:exported="false" />
+        <activity
             android:name=".userside.activities.clientnutrition.NutritionDetailActivity"
             android:exported="false" />
         <activity
@@ -90,13 +99,13 @@
             android:name="com.easylife.easylifes.userside.activities.follower.FollowerFollowingActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.choosepackage.PaymentSuccessActivity"
+            android:name=".userside.activities.choosepackage.PaymentSuccessActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.choosepackage.AddNewCardActivity"
+            android:name=".userside.activities.choosepackage.AddNewCardActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.choosepackage.PaymentActivity"
+            android:name=".userside.activities.choosepackage.PaymentActivity"
             android:exported="false" />
         <activity
             android:name="com.easylife.easylifes.userside.activities.workout.FullImageWorkoutActivity"
@@ -105,7 +114,7 @@
             android:name="com.easylife.easylifes.userside.activities.workout.WorkoutCategoryActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.choosepackage.ChooseYourPackage"
+            android:name=".userside.activities.choosepackage.ChooseYourPackage"
             android:exported="false" />
         <activity
             android:name="com.easylife.easylifes.userside.activities.Support.PrivacyPolicyActivity"
@@ -117,10 +126,10 @@
             android:name="com.easylife.easylifes.userside.activities.Support.SupportActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.profile.EditProfileActivity"
+            android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.profile.ProfileSettingActivity"
+            android:name=".ProfileSettingActivity"
             android:exported="false" />
         <activity
             android:name="com.easylife.easylifes.userside.activities.auth.LogoutActivity"

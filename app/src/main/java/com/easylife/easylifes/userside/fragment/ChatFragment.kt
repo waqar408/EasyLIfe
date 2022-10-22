@@ -29,7 +29,7 @@ class ChatFragment : Fragment() {
     private var chatList : ArrayList<MessengerDataModel> =ArrayList()
     private lateinit var utilities: Utilities
     var filterList: ArrayList<MessengerDataModel> = ArrayList()
-    var user_idd = ""
+    var userId = ""
     lateinit var adapter : ChatAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +49,11 @@ class ChatFragment : Fragment() {
     }
     private fun initViews() {
         utilities = Utilities(requireContext())
+        adapter  = ChatAdapter(requireContext(),chatList)
         val gsonn = Gson()
-        val jsonn: String = utilities.getString(requireContext(), "loginResponse").toString()
+        val jsonn: String = utilities.getString(requireContext(), "loginResponse")
         val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-        user_idd = obj.id.toString()
+        userId = obj.id.toString()
         getChatList()
 
         binding.edSearch.addTextChangedListener(object : TextWatcher {
@@ -61,13 +62,11 @@ class ChatFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 filterList.clear()
                 if (s.toString().isEmpty()) {
-                    binding.rvChat.setAdapter(
-                        ChatAdapter(requireContext(), chatList)
-                    )
+                    binding.rvChat.adapter = ChatAdapter(requireContext(), chatList)
                     adapter.notifyDataSetChanged()
                 } else {
                     try {
-                        Filter(s.toString())
+                        filter(s.toString())
                     } catch (e: java.lang.Exception) {
                         Toast.makeText(requireContext(), "" + e.message, Toast.LENGTH_SHORT)
                             .show()
@@ -76,7 +75,7 @@ class ChatFragment : Fragment() {
             }
         })
     }
-    private fun Filter(text: String) {
+    private fun filter(text: String) {
         if (chatList.size > 0) {
             for (post in chatList) {
                 if (post.other_user_name.lowercase()
@@ -85,7 +84,7 @@ class ChatFragment : Fragment() {
                     filterList.add(post)
                 }
             }
-            binding.rvChat.setAdapter(ChatAdapter(requireContext(), filterList))
+            binding.rvChat.adapter = ChatAdapter(requireContext(), filterList)
             adapter.notifyDataSetChanged()
         } else {
             Toast.makeText(
@@ -100,7 +99,7 @@ class ChatFragment : Fragment() {
         val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(requireContext())) {
             binding.dotloader.visibility = View.VISIBLE
-            val url = apiClient.BASE_URL + "get_messanger/" + user_idd
+            val url = apiClient.BASE_URL + "get_messanger/" + userId
             apiClient.getApiService().messengerList(url)
                 .enqueue(object : Callback<MessengerResponseModel> {
 
@@ -111,7 +110,7 @@ class ChatFragment : Fragment() {
                         val signupResponse = response.body()
                         if (this@ChatFragment.isAdded) {
                             binding.dotloader.visibility =View.GONE
-                            if (signupResponse!!.status == true) {
+                            if (signupResponse!!.status) {
                                 if (!signupResponse.data.equals("")) {
                                     //setMessagePusher()
                                     chatList = ArrayList()

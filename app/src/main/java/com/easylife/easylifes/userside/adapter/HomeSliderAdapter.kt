@@ -26,7 +26,7 @@ class HomeSliderAdapter(private val context: Context, private val list: ArrayLis
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view: View = LayoutInflater.from(context).inflate(R.layout.item_homeslider, null)
         val imageView = view.findViewById<ImageView>(R.id.imageview)
-        val model = list.get(position)
+        val model = list[position]
         Glide.with(context).asBitmap().load(model.banner_image).into(imageView)
         container.addView(view, 0)
         return view

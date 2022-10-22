@@ -28,24 +28,23 @@ class NutritionDetailAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: MealTimesDataModel = list.get(position)
+        val model: MealTimesDataModel = list[position]
         var totalCalories = ""
         holder.tvName.text = model.meal_time
-        var list: ArrayList<MealTimeFoodsDataModel> = ArrayList()
-        list = model.foods
+        val list: ArrayList<MealTimeFoodsDataModel> = model.foods
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         holder.rvRepsAndRest.layoutManager = layoutManager
         val adapter = SubNutritionDetailAdapter(context, list)
         for (i in 0 until  list.size)
         {
-            totalCalories = list.get(position).food_details.meal_calories
+            totalCalories = list[position].food_details.meal_calories
         }
-        if(totalCalories.equals(""))
+        if(totalCalories == "")
         {
             holder.tvTotalCalories.text = totalCalories +"0 Kcal"
 
         }else{
-            holder.tvTotalCalories.text = totalCalories +" Kcal"
+            holder.tvTotalCalories.text = "$totalCalories Kcal"
         }
         holder.rvRepsAndRest.adapter = adapter
         holder.rvRepsAndRest.setRecycledViewPool(viewPool)
@@ -65,9 +64,9 @@ class NutritionDetailAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription);
-        val tvTotalCalories: TextView = itemView.findViewById(R.id.tvTotalCalories);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
+        val tvTotalCalories: TextView = itemView.findViewById(R.id.tvTotalCalories)
         val rvRepsAndRest: RecyclerView = itemView.findViewById(R.id.rvRepsAndRest)
         val layoutComplete: RelativeLayout = itemView.findViewById(R.id.layoutComplete)
         val lnVideo: LinearLayout = itemView.findViewById(R.id.lnVideo)

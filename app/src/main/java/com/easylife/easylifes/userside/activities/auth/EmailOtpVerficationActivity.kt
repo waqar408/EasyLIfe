@@ -9,9 +9,9 @@ import com.easylife.easylifes.utils.Utilities
 class EmailOtpVerficationActivity : AppCompatActivity() {
     private lateinit var binding : ActivityEmailOtpVerficationBinding
     private lateinit var utilities: Utilities
-    var otpCode = ""
-    var emailAddress  = ""
-    var edCode = ""
+    private var otpCode = ""
+    private var emailAddress  = ""
+    private var edCode = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEmailOtpVerficationBinding.inflate(layoutInflater)
@@ -26,7 +26,9 @@ class EmailOtpVerficationActivity : AppCompatActivity() {
         val intent= intent
         otpCode = intent.getStringExtra("code").toString()
         emailAddress = intent.getStringExtra("email").toString()
-        utilities.showSuccessToast(this@EmailOtpVerficationActivity,"Please Enter This Otp "+otpCode)
+        utilities.showSuccessToast(this@EmailOtpVerficationActivity,
+            "Please Enter This Otp $otpCode"
+        )
 
 
     }
@@ -38,10 +40,10 @@ class EmailOtpVerficationActivity : AppCompatActivity() {
         }
         binding.layoutSend.setOnClickListener {
             edCode = binding.pinview.text.toString()
-            if (edCode.equals(""))
+            if (edCode == "")
             {
                 utilities.showFailureToast(this@EmailOtpVerficationActivity,"Please Enter Otp")
-            }else if (!edCode.equals(otpCode))
+            }else if (edCode != otpCode)
             {
                 utilities.showFailureToast(this@EmailOtpVerficationActivity,"You Entered Wrong Otp Code")
             }else{

@@ -49,7 +49,7 @@ class GenderSelectionActivity : AppCompatActivity() {
         }
 
         binding.layoutSend.setOnClickListener {
-            if (gender.equals(""))
+            if (gender == "")
             {
                 utils.showFailureToast(this@GenderSelectionActivity,"Please Select Gender")
             }else{

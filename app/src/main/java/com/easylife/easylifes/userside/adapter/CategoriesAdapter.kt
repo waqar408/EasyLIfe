@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.userside.activities.instructor.InstructorActivity
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.home.CategoriesDataModel
 
 
@@ -28,8 +27,8 @@ class CategoriesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: CategoriesDataModel = list.get(position)
-        Glide.with(context).load(model.category_image).into(holder.image_home)
+        val model: CategoriesDataModel = list[position]
+        Glide.with(context).load(model.category_image).into(holder.imageHome)
         holder.trainerCategoryName.text = model.category_name
         holder.itemView.setOnClickListener {
             val intent = Intent(context,InstructorActivity::class.java)
@@ -48,8 +47,8 @@ class CategoriesAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val image_home: ImageView = itemView.findViewById(R.id.image_home);
-        val trainerCategoryName: TextView = itemView.findViewById(R.id.text_trainBody);
+        val imageHome: ImageView = itemView.findViewById(R.id.image_home)
+        val trainerCategoryName: TextView = itemView.findViewById(R.id.text_trainBody)
 
     }
 

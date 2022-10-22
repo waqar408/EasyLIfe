@@ -18,6 +18,7 @@ import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerDataModel
 import com.easylife.easylifes.model.toptrainers.TopTrainersResponseModel
 import com.easylife.easylifes.userside.activities.subscribedtrainer.SubscribedTrainerActivity
+import com.easylife.easylifes.userside.adapter.ExcersideBannerAdapter
 import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient
 import retrofit2.Call
@@ -28,7 +29,7 @@ import kotlin.math.abs
 
 class ExcersiceFragment : Fragment() {
     private lateinit var binding : FragmentExcersiceBinding
-    private var adpter: HomeSliderAdapter? = null
+    private var adpter: ExcersideBannerAdapter? = null
     private lateinit var bannerList: ArrayList<BannersDataModel>
     private lateinit var utilities : com.easylife.easylifes.utils.Utilities
     private lateinit var trainerList : ArrayList<SubscribedTrainerDataModel>
@@ -74,7 +75,7 @@ class ExcersiceFragment : Fragment() {
     fun imageSlider(bannerLists: ArrayList<BannersDataModel>)
     {
 
-        adpter = HomeSliderAdapter(requireContext(),bannerLists)
+        adpter = ExcersideBannerAdapter(requireContext(),bannerLists)
         binding.viewPager.currentItem = 0
         binding.viewPager.adapter = adpter
         binding.dotsIndicator.attachTo(binding.viewPager)

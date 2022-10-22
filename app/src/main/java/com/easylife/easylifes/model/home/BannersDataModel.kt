@@ -9,5 +9,8 @@ data class BannersDataModel(
     @SerializedName("banner_image")
     var banner_image : String,
 
+    @SerializedName("workout_banner")
+    var workout_banner : String
+
 
 )

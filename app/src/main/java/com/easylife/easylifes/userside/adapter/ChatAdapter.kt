@@ -3,7 +3,6 @@ package com.easylife.easylifes.userside.adapter
 import android.content.Context
 import android.content.Intent
 import android.text.format.DateFormat
-import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -39,29 +38,27 @@ class ChatAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: MessengerDataModel = list.get(position)
+        val model: MessengerDataModel = list[position]
         val drawable = CircularProgressDrawable(context)
-        drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor);
-        drawable.setCenterRadius(25f);
-        drawable.setStrokeWidth(6f);
-        drawable.start();
+        drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor)
+        drawable.centerRadius = 25f
+        drawable.strokeWidth = 6f
+        drawable.start()
         Glide.with(context).load(model.other_user_avatar).placeholder(drawable).into(holder.otherUserImage)
-        if(model.other_user_name.equals(""))
+        if(model.other_user_name == "")
         {
             holder.tvName.text = "Unknow User"
         }else{
             holder.tvName.text = model.other_user_name
         }
         holder.tvLastMessage.text = model.text
-        val time = model.time
         val gsonn = Gson()
         val utilities = Utilities(context)
-        val jsonn: String = utilities.getString(context, "loginResponse").toString()
+        val jsonn: String = utilities.getString(context, "loginResponse")
         val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-        var user_idd = ""
-        user_idd = obj.id.toString()
+        val userId: String = obj.id.toString()
 
-        var datetime =""
+        val datetime: String
         val calendar = Calendar.getInstance(Locale.ENGLISH)
         calendar.timeInMillis = model.time.toLong() * 1000L
         val date = DateFormat.format("yyyy-MM-dd HH:mm:ss", calendar).toString()
@@ -79,9 +76,9 @@ class ChatAdapter(
         val inputPattern = "yyyy-MM-dd HH:mm:ss"
         val inputFormat = java.text.SimpleDateFormat(inputPattern)
         try {
-            val date = inputFormat.parse(date)
+            val date1 = inputFormat.parse(date)
             val p = PrettyTime()
-            val millis = date!!.time
+            val millis = date1!!.time
             datetime = p.format(Date(millis))
             holder.tvMessageTime.text = datetime
         } catch (e: ParseException) {
@@ -97,11 +94,11 @@ class ChatAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            if (model.from_id.equals(user_idd))
+            if (model.from_id == userId)
             {
                 val intent = Intent(context,InboxActivity::class.java)
-                intent.putExtra("myId",user_idd.toString())
-                intent.putExtra("otherUserId",model.to_id.toString())
+                intent.putExtra("myId", userId)
+                intent.putExtra("otherUserId", model.to_id)
                 intent.putExtra("otherUserProfile",model.other_user_avatar)
                 intent.putExtra("otherUserName",model.other_user_name)
                 intent.putExtra("otherUserNicName",model.other_user_name)
@@ -128,10 +125,10 @@ class ChatAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvMessageTime: TextView = itemView.findViewById(R.id.tvMessageTime);
-        val tvLastMessage: TextView = itemView.findViewById(R.id.tvLastMessage);
-        val otherUserImage: ImageView = itemView.findViewById(R.id.imgProfile);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvMessageTime: TextView = itemView.findViewById(R.id.tvMessageTime)
+        val tvLastMessage: TextView = itemView.findViewById(R.id.tvLastMessage)
+        val otherUserImage: ImageView = itemView.findViewById(R.id.imgProfile)
         val rlSeen: RelativeLayout = itemView.findViewById(R.id.rlSeen)
         val tvSeen: TextView = itemView.findViewById(R.id.tvSeen)
 

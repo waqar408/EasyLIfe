@@ -10,13 +10,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivitySubscribedTrainerBinding
-import com.easylife.easylifes.model.allclients.AllClientsResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerDataModel
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerResponseModel
-import com.easylife.easylifes.model.trainerhome.TrainerUserDataModel
-import com.easylife.easylifes.trainerside.activities.clientdetail.AllWorkoutsActivity
-import com.easylife.easylifes.trainerside.adapter.AllClientsListAdapter
 import com.easylife.easylifes.userside.activities.workout.WorkoutActivity
 import com.easylife.easylifes.userside.adapter.SubscribedTrainerAdapter
 import com.easylife.easylifes.utils.Utilities
@@ -46,7 +42,7 @@ class SubscribedTrainerActivity : AppCompatActivity(),
 
     private fun initViews() {
         utilities = Utilities(this@SubscribedTrainerActivity)
-        utilities.setWhiteBars(this@SubscribedTrainerActivity)
+        utilities.setGrayBar(this@SubscribedTrainerActivity)
         getAllClients()
 
         binding.edSearch.addTextChangedListener(object : TextWatcher {
@@ -170,7 +166,7 @@ class SubscribedTrainerActivity : AppCompatActivity(),
     }
 
     override fun onClickArea(position: Int) {
-        val model = subscribedTrainerList.get(position)
+        val model = subscribedTrainerList[position]
         val intent = Intent(this@SubscribedTrainerActivity, WorkoutActivity::class.java)
         intent.putExtra("clientid", model.id.toString())
         startActivity(intent)

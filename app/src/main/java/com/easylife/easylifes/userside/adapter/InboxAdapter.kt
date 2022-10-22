@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.databinding.ActivityAchieveGoalBinding.inflate
 import com.easylife.easylifes.model.chat.inbox.MessageDataListModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.utils.Constant
@@ -21,7 +20,6 @@ import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient
-import kotlinx.android.synthetic.main.progress_loading.view.*
 import org.ocpsoft.prettytime.PrettyTime
 import java.text.ParseException
 import java.util.*
@@ -50,15 +48,19 @@ class InboxAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view: View
-        return if (viewType == Constant.VIEW_TYPE_TEXT) {
-            view = layoutInflater.inflate(R.layout.item_chat_message, parent, false)
-            ViewHolderTextMessage(view)
-        } else if (viewType == Constant.VIEW_TYPE_IMAGE) {
-            view = layoutInflater.inflate(R.layout.item_images_chat, parent, false)
-            ViewHolderImagesMessage(view)
-        } else {
-            val view1 = layoutInflater.inflate(R.layout.progress_loading, parent, false)
-            LoadingViewHolder(view1)
+        return when (viewType) {
+            Constant.VIEW_TYPE_TEXT -> {
+                view = layoutInflater.inflate(R.layout.item_chat_message, parent, false)
+                ViewHolderTextMessage(view)
+            }
+            Constant.VIEW_TYPE_IMAGE -> {
+                view = layoutInflater.inflate(R.layout.item_images_chat, parent, false)
+                ViewHolderImagesMessage(view)
+            }
+            else -> {
+                val view1 = layoutInflater.inflate(R.layout.progress_loading, parent, false)
+                LoadingViewHolder(view1)
+            }
         }
 
     }
@@ -68,9 +70,6 @@ class InboxAdapter(
         notifyDataSetChanged()
     }
 
-    fun getItemAtPosition(position: Int): MessageDataListModel? {
-        return listModel[position]
-    }
 
     fun addLoadingView() {
         //add loading item

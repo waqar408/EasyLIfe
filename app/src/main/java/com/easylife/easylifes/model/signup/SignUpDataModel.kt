@@ -113,5 +113,14 @@ data class SignUpDataModel(
     var expiry_year :String,
 
     @SerializedName("cvv")
-    var cvv :String
+    var cvv :String,
+
+    @SerializedName("is_online")
+    var is_online : String,
+
+    @SerializedName("allow_notifications")
+    var allow_notifications :String,
+
+    @SerializedName("allow_admin_notifications")
+    var allow_admin_notifications : String
 )

@@ -1,17 +1,20 @@
-package com.tabadol.tabadol.data.network
+package com.easylife.easylifes.network
 
+import com.ayurmitra.ayurmitra.model.reviews.ReviewResponseModel
 import com.easylife.easylifes.model.BaseResponse
+import com.easylife.easylifes.model.address.AddressResponseModel
 import com.easylife.easylifes.model.allclients.AllClientsResponseModel
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsResponseModel
 import com.easylife.easylifes.model.categorytrainer.CategoryTrainerResponseModel
-import com.easylife.easylifes.model.categoryvideos.CategoryVideosResponseModel
 import com.easylife.easylifes.model.chat.inbox.MessagesResponseModel
 import com.easylife.easylifes.model.forgotpassword.ForgotPasswordResponseModel
 import com.easylife.easylifes.model.home.HomeResponseModel
 import com.easylife.easylifes.model.chat.messenger.MessengerResponseModel
+import com.easylife.easylifes.model.faq.FaqResponseModel
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
 import com.easylife.easylifes.model.mealplan.CreateMealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
+import com.easylife.easylifes.model.notification.NotificationResponseModel
 import com.easylife.easylifes.model.search.SearchResponseModel
 import com.easylife.easylifes.model.signup.SignupResponseModel
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerResponseModel
@@ -19,10 +22,7 @@ import com.easylife.easylifes.model.toptrainers.TopTrainersResponseModel
 import com.easylife.easylifes.model.trainerdetail.TrainerDetailResponseModel
 import com.easylife.easylifes.model.trainerhome.TrainerHomeResponseModel
 import com.easylife.easylifes.model.trainerportfolio.TrainerPortfolioResponseModel
-import com.easylife.easylifes.model.userworkoutcategories.UserCategoryDataModel
-import com.easylife.easylifes.model.userworkoutcategories.UserCategoryResponseModel
 import com.easylife.easylifes.model.verifydata.VerifyDataResponseModel
-import com.easylife.easylifes.model.workoutdetial.UserWorkoutDetailResponseModel
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -93,6 +93,12 @@ interface ApiService {
         @Field("location") location: String,
         @Field("address") address: String,
         @Field("interests") interests: String,
+        @Field("card_number") card_number : String,
+        @Field("expiry_month") expiry_month : String,
+        @Field("expiry_year") expiry_year : String,
+        @Field("cvv") cvv : String,
+        @Field("card_holder_name") card_holder_name :String,
+        @Field("allow_notifications") allow_notifications :String
     ):
             Call<SignupResponseModel>
 
@@ -195,9 +201,7 @@ interface ApiService {
     ):
             Call<GetUserWorkoutsResponseModel>
 
-    @Headers("Accept: application/json")
-    @GET
-    fun workoutCategories(@Url url: String): Call<UserCategoryResponseModel>
+
 
     @Headers("Accept: application/json")
     @GET
@@ -392,4 +396,79 @@ interface ApiService {
     @Headers("Accept: application/json")
     @GET
     fun topTrainerList(@Url url: String): Call<TopTrainersResponseModel>
+
+
+    @Headers("Accept: application/json")
+    @POST("subscribe-trainer")
+    @FormUrlEncoded
+    fun subscribeTrainer(
+        @Field("user_id") user_id: String,
+        @Field("subscription_package_id") subscription_package_id: String,
+        @Field("card_number") card_number: String,
+        @Field("exp_month") exp_month: String,
+        @Field("exp_year") exp_year: String,
+        @Field("cvv") cvv: String
+    ):
+            Call<BaseResponse>
+
+    @Headers("Accept: application/json")
+    @GET
+    fun trainerReviewsList(@Url url: String): Call<ReviewResponseModel>
+
+
+
+
+    @Headers("Accept: application/json")
+    @POST("user-address")
+    @FormUrlEncoded
+    fun userAddress(
+        @Field("action") action: String,
+        @Field("user_id") user_id: String,
+        @Field("address_title") address_title: String,
+        @Field("phone") phone: String,
+        @Field("email") email: String,
+        @Field("address") address: String
+    ):
+            Call<AddressResponseModel>
+
+
+    @Headers("Accept: application/json")
+    @GET
+    fun getFaq(@Url url: String): Call<FaqResponseModel>
+
+
+    @Headers("Accept: application/json")
+    @GET
+    fun userProfile(@Url url: String): Call<SignupResponseModel>
+
+    @Headers("Accept: application/json")
+    @POST("update-profile")
+    @FormUrlEncoded
+    fun updateAppNotification(
+        @Field("user_id") user_id: String,
+        @Field("allow_notifications") allow_notifications :String):
+            Call<SignupResponseModel>
+
+    @Headers("Accept: application/json")
+    @POST("update-profile")
+    @FormUrlEncoded
+    fun updateAdminNotification(
+        @Field("user_id") user_id: String,
+        @Field("allow_admin_notifications") allow_admin_notifications :String
+    ):
+            Call<SignupResponseModel>
+
+    @Headers("Accept: application/json")
+    @GET
+    fun getNotificationList(@Url url: String): Call<NotificationResponseModel>
+
+    @Headers("Accept: application/json")
+    @POST("update-fcm-token")
+    @FormUrlEncoded
+    fun updateFcmToken(
+        @Field("user_id") user_id: String,
+        @Field("device_type") device_type: String?,
+        @Field("token") token: String?,
+    ):
+            Call<BaseResponse>
 }

@@ -5,33 +5,36 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.easylife.easylifes.R
-import com.easylife.easylifes.userside.activities.instructor.InstructorDetailActivity
-import com.easylife.easylifes.model.JobsDataModel
+import com.easylife.easylifes.model.faq.FaqDataModel
+import com.easylife.easylifes.userside.activities.Support.Support2Activity
 
 
-class CommentAdapter(
+class FaqAdapter(
     val context: Context,
-    val list: ArrayList<JobsDataModel>,
+    val list: ArrayList<FaqDataModel>,
 ) :
-    RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+    RecyclerView.Adapter<FaqAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.item_comment, parent, false)
+            .inflate(R.layout.item_faq, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: JobsDataModel = list.get(position)
-        holder.tvWeight.text = model.name
-        holder.image_home.setImageResource(model.image)
+        val model: FaqDataModel = list.get(position)
+        holder.tvFaq.text = model.question
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context, InstructorDetailActivity::class.java))
+            val intent = Intent(context, Support2Activity::class.java)
+            intent.putExtra("question",model.question)
+            intent.putExtra("answer",model.answer)
+            context.startActivity(intent)
         }
+
+
 
     }
 
@@ -42,8 +45,7 @@ class CommentAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val tvWeight: TextView = itemView.findViewById(R.id.tvName);
-        val image_home: ImageView = itemView.findViewById(R.id.imgProfile);
+        val tvFaq: TextView = itemView.findViewById(R.id.tvFaq);
 
     }
 

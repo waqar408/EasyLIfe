@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,7 +16,6 @@ import com.easylife.easylifes.R
 import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
 import com.easylife.easylifes.model.allworkouts.WorkoutRepsAndRestModel
 import com.easylife.easylifes.trainerside.activities.FullScreenVideoActivity
-import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -31,7 +29,6 @@ class SelectedWorkoutListAdapter(
     RecyclerView.Adapter<SelectedWorkoutListAdapter.ViewHolder>() {
     private var viewPool = RecyclerView.RecycledViewPool()
 
-    private var listForReps: ArrayList<WorkoutRepsAndRestModel> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
             LayoutInflater.from(context).inflate(R.layout.item_selected_workout_list, parent, false)
@@ -39,7 +36,7 @@ class SelectedWorkoutListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: AllWorkoutsDataListModel = list.get(position)
+        val model: AllWorkoutsDataListModel = list[position]
         holder.tvName.text = model.title
         Glide.with(context).load(model.media).into(holder.imgProfile)
         holder.tvDescription.text = model.description
@@ -73,9 +70,7 @@ class SelectedWorkoutListAdapter(
         description : TextView,
         imgProfile : ShapeableImageView
     ) {
-        val utilities = Utilities(context)
-        val bottomSheetDialog: BottomSheetDialog
-        bottomSheetDialog = BottomSheetDialog(context)
+        val bottomSheetDialog = BottomSheetDialog(context)
         bottomSheetDialog.setContentView(R.layout.bottom_reps)
         bottomSheetDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val canelBtn = bottomSheetDialog.findViewById<RelativeLayout>(R.id.layout_backArrow)
@@ -85,26 +80,26 @@ class SelectedWorkoutListAdapter(
         val edRestMinutes = bottomSheetDialog.findViewById<EditText>(R.id.edRestMinutes)
         val edRestSeconds = bottomSheetDialog.findViewById<EditText>(R.id.edRestSeconds)
         val btnDone = bottomSheetDialog.findViewById<TextView>(R.id.btnDone)
-        var reps = ""
-        var repMinutes = ""
-        var repsSeconds = ""
-        var restMinute = ""
-        var restSeconds = ""
+        var reps: String
+        var repMinutes: String
+        var repsSeconds: String
+        var restMinute: String
+        var restSeconds: String
         btnDone!!.setOnClickListener {
             reps = edNoOfReps!!.text.toString()
             restSeconds = edRestSeconds!!.text.toString()
             restMinute = edRestMinutes!!.text.toString()
             repMinutes = edRepsMinutes!!.text.toString()
             repsSeconds = edRepsSeconds!!.text.toString()
-            if (reps.equals("")) {
+            if (reps == "") {
                 Toast.makeText(context, "Please Enter Reps", Toast.LENGTH_SHORT).show()
-            } else if (repMinutes.equals("")) {
+            } else if (repMinutes == "") {
                 Toast.makeText(context, "Please Enter Reps Minutes", Toast.LENGTH_SHORT).show()
-            } else if (repsSeconds.equals("")) {
+            } else if (repsSeconds == "") {
                 Toast.makeText(context, "Please Enter Reps Seconds", Toast.LENGTH_SHORT).show()
-            } else if (restMinute.equals("")) {
+            } else if (restMinute == "") {
                 Toast.makeText(context, "Please Enter Rest Minutes", Toast.LENGTH_SHORT).show()
-            } else if (repsSeconds.equals("")) {
+            } else if (repsSeconds == "") {
                 Toast.makeText(context, "Please Enter Rest Seconds", Toast.LENGTH_SHORT).show()
             } else {
 
@@ -148,9 +143,9 @@ class SelectedWorkoutListAdapter(
 
     class ViewHolder(itemView: View, listener: onSelectedWorkoutClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription);
-        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
+        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile)
         val rvRepsAndRest: RecyclerView = itemView.findViewById(R.id.rvRepsAndRest)
         val layoutComplete: RelativeLayout = itemView.findViewById(R.id.layoutComplete)
         val lnVideo: LinearLayout = itemView.findViewById(R.id.lnVideo)

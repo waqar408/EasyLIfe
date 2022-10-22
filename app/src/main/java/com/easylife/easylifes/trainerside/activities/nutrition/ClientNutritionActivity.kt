@@ -1,6 +1,5 @@
 package com.easylife.easylifes.trainerside.activities.nutrition
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -8,29 +7,20 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityClientNutritionBinding
-import com.easylife.easylifes.model.allworkouts.AllWorkoutsDataListModel
-import com.easylife.easylifes.model.mealplan.FoodDataModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
-import com.easylife.easylifes.model.mealplan.MealPlansDataModel
-import com.easylife.easylifes.model.mealplan.MealTimeDataModel
-import com.easylife.easylifes.model.mealtimes.MealTimeFoodsDataModel
 import com.easylife.easylifes.model.mealtimes.MealTimesDataModel
 import com.easylife.easylifes.model.mealtimes.MealTimesResponseModel
 import com.easylife.easylifes.trainerside.adapter.UserNutritionDetailAdapter
-import com.easylife.easylifes.userside.adapter.ClientNutritionAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -106,7 +96,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!! == true) {
                                 utilities.showSuccessToast(
                                     this@ClientNutritionActivity,
                                     signupResponse.message
@@ -165,7 +155,7 @@ class ClientNutritionActivity : AppCompatActivity(),
         tvHeading.text = "Meal Plan Name"
         layout_send.setOnClickListener {
             val nutritionName1 = nutritionName.text.toString()
-            if (nutritionName1.equals("")) {
+            if (nutritionName1 == "") {
                 utilities.showFailureToast(
                     this@ClientNutritionActivity,
                     "Please enter meal plan name"
@@ -198,7 +188,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!! == true) {
                                 mealTimesList = ArrayList()
                                 mealTimesList = signupResponse.data
                                 binding.rvClientNutrition.layoutManager =
@@ -250,7 +240,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!! == true) {
                                 getMealTimes(mealPlanId)
                             } else {
                                 utilities.showFailureToast(
@@ -297,8 +287,7 @@ class ClientNutritionActivity : AppCompatActivity(),
 
 
     private fun bottomDeleteMealPlan() {
-        val bottomSheetDialog : BottomSheetDialog
-        bottomSheetDialog = BottomSheetDialog(this@ClientNutritionActivity)
+        val bottomSheetDialog  = BottomSheetDialog(this@ClientNutritionActivity)
         bottomSheetDialog.setContentView(R.layout.bottom_delete)
         bottomSheetDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val canelBtn = bottomSheetDialog.findViewById<RelativeLayout>(R.id.layout_backArrow)
@@ -316,8 +305,7 @@ class ClientNutritionActivity : AppCompatActivity(),
     }
 
     private fun bottomDeleteMeal(deleteMeal : String) {
-        val bottomSheetDialog : BottomSheetDialog
-        bottomSheetDialog = BottomSheetDialog(this@ClientNutritionActivity)
+        val bottomSheetDialog = BottomSheetDialog(this@ClientNutritionActivity)
         bottomSheetDialog.setContentView(R.layout.bottom_delete)
         bottomSheetDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val canelBtn = bottomSheetDialog.findViewById<RelativeLayout>(R.id.layout_backArrow)
@@ -353,7 +341,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!! == true) {
                                 getMealTimes(mealPlanId)
                             } else {
                                 utilities.showFailureToast(

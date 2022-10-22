@@ -6,16 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityCreateNutrtionBinding
-import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
-import com.easylife.easylifes.model.getuserworkouts.UserWorkoutVideoListModel
 import com.easylife.easylifes.model.mealplan.CreateMealPlanResponseModel
-import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.userside.activities.MainActivity
-import com.easylife.easylifes.userside.activities.auth.GenderSelectionActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient
@@ -26,14 +19,14 @@ import retrofit2.Response
 class CreateNutrtionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateNutrtionBinding
     private lateinit var utilities: Utilities
-    var nutritionName = ""
+    private var nutritionName = ""
     var calories = ""
-    var protein = ""
-    var carbs = ""
+    private var protein = ""
+    private var carbs = ""
     var fat = ""
-    var fiber = ""
+    private var fiber = ""
     var sodium = ""
-    var sugar = ""
+    private var sugar = ""
     var clientId = ""
     var trainerId = ""
     var from = ""
@@ -63,25 +56,25 @@ class CreateNutrtionActivity : AppCompatActivity() {
             fiber = binding.edFiber.text.toString()
             sodium = binding.edSodium.text.toString()
             sugar = binding.edSugar.text.toString()
-            if (calories.equals(""))
+            if (calories == "")
             {
                 utilities.showFailureToast(this@CreateNutrtionActivity,"Please Enter Calories")
-            }else if (protein.equals(""))
+            }else if (protein == "")
             {
                 utilities.showFailureToast(this@CreateNutrtionActivity,"Please Enter Protein")
-            }else if (carbs.equals(""))
+            }else if (carbs == "")
             {
                 utilities.showFailureToast(this@CreateNutrtionActivity,"Please Enter Carbs")
-            }else if (fat.equals(""))
+            }else if (fat == "")
             {
                 utilities.showFailureToast(this@CreateNutrtionActivity,"Please Enter Fat")
-            }else if (fiber.equals(""))
+            }else if (fiber == "")
             {
                 utilities.showFailureToast(this@CreateNutrtionActivity,"Please Enter Fiber")
-            }else if (sodium.equals(""))
+            }else if (sodium == "")
             {
                 utilities.showFailureToast(this@CreateNutrtionActivity,"Please Enter Sodium")
-            }else if (sugar.equals(""))
+            }else if (sugar == "")
             {
                 utilities.showFailureToast(this@CreateNutrtionActivity,"Please Enter Sugar")
             }else{
@@ -115,7 +108,7 @@ class CreateNutrtionActivity : AppCompatActivity() {
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(this@CreateNutrtionActivity,signupResponse.message)
                                 Handler(Looper.myLooper()!!).postDelayed({
                                     val intent = Intent(this@CreateNutrtionActivity, AllNutritionsActivity::class.java)

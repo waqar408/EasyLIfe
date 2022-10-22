@@ -3,7 +3,6 @@ package com.easylife.easylifes.userside.activities.auth
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.NumberPicker.OnValueChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityHeightSelectionBinding
@@ -16,11 +15,11 @@ class HeightSelectionActivity : AppCompatActivity() {
     var gender = ""
     var age = ""
     var weight = ""
-    var weightUnit = ""
-    var heightft = ""
-    var heightInch = ""
-    var heightUnit = ""
-    var heightCm = ""
+    private var weightUnit = ""
+    private var heightft = ""
+    private var heightInch = ""
+    private var heightUnit = ""
+    private var heightCm = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHeightSelectionBinding.inflate(layoutInflater)
@@ -56,7 +55,6 @@ class HeightSelectionActivity : AppCompatActivity() {
             binding.tvcm.setTextColor(resources.getColor(R.color.smokey_grey))
             binding.lnFt.visibility = View.GONE
             binding.lncm.visibility = View.VISIBLE
-
             heightUnit = "cm"
         }
         binding.layoutBackArrow.setOnClickListener {
@@ -68,57 +66,57 @@ class HeightSelectionActivity : AppCompatActivity() {
         binding.secondNumber.minValue = 0
         binding.numbercm.minValue = 0
         binding.numbercm.maxValue = 500
-        binding.firstNumber.setOnValueChangedListener(OnValueChangeListener { picker, oldVal, newVal ->
-            val text = "Changed from $oldVal to $newVal"
+        binding.firstNumber.setOnValueChangedListener { _, _, newVal ->
+//            "Changed from $oldVal to $newVal"
             heightft = newVal.toString()
-        })
-        binding.secondNumber.setOnValueChangedListener(OnValueChangeListener { picker, oldVal, newVal ->
-            val text = "Changed from $oldVal to $newVal"
+        }
+        binding.secondNumber.setOnValueChangedListener { _, _, newVal ->
+//            "Changed from $oldVal to $newVal"
             heightInch = newVal.toString()
-        })
-        binding.numbercm.setOnValueChangedListener(OnValueChangeListener { picker, oldVal, newVal ->
-            val text = "Changed from $oldVal to $newVal"
+        }
+        binding.numbercm.setOnValueChangedListener { _, _, newVal ->
+//            "Changed from $oldVal to $newVal"
             heightCm = newVal.toString()
-        })
+        }
         binding.layoutBackArrow.setOnClickListener {
             finish()
         }
         binding.layoutSend.setOnClickListener {
-            if (heightUnit.equals("ft")) {
-                if (heightft.equals("0")||heightft.equals("")) {
+            if (heightUnit == "ft") {
+                if (heightft == "0" || heightft == "") {
                     utilities.showFailureToast(
                         this@HeightSelectionActivity,
                         "Please enter height greater than zero"
                     )
                 } else {
-                    heightft = heightft + "." + heightInch
-                    val intent = Intent(this@HeightSelectionActivity, GoalActivity::class.java)
-                    intent.putExtra("gender", gender)
-                    intent.putExtra("age", age)
-                    intent.putExtra("wUnit", weightUnit)
-                    intent.putExtra("weight", weight)
-                    intent.putExtra("height", heightft)
-                    intent.putExtra("hunit", heightUnit)
-                    startActivity(intent)
+                    heightft = "$heightft.$heightInch"
+                    val intentGoal = Intent(this@HeightSelectionActivity, GoalActivity::class.java)
+                    intentGoal.putExtra("gender", gender)
+                    intentGoal.putExtra("age", age)
+                    intentGoal.putExtra("wUnit", weightUnit)
+                    intentGoal.putExtra("weight", weight)
+                    intentGoal.putExtra("height", heightft)
+                    intentGoal.putExtra("hunit", heightUnit)
+                    startActivity(intentGoal)
                 }
             }
             else{
                     heightft = heightCm
-                    if (heightft.equals("0")||heightft.equals(""))
+                    if (heightft == "0" || heightft == "")
                     {
                         utilities.showFailureToast(
                             this@HeightSelectionActivity,
                             "Please enter height greater than zero"
                         )
                     }else{
-                        val intent = Intent(this@HeightSelectionActivity,GoalActivity::class.java)
-                        intent.putExtra("gender",gender)
-                        intent.putExtra("age",age)
-                        intent.putExtra("wUnit",weightUnit)
-                        intent.putExtra("weight",weight)
-                        intent.putExtra("height",heightft)
-                        intent.putExtra("hunit",heightUnit)
-                        startActivity(intent)
+                        val intentGoal = Intent(this@HeightSelectionActivity,GoalActivity::class.java)
+                        intentGoal.putExtra("gender",gender)
+                        intentGoal.putExtra("age",age)
+                        intentGoal.putExtra("wUnit",weightUnit)
+                        intentGoal.putExtra("weight",weight)
+                        intentGoal.putExtra("height",heightft)
+                        intentGoal.putExtra("hunit",heightUnit)
+                        startActivity(intentGoal)
                     }
 
             }

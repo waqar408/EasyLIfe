@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
+        android:fillViewport="true"
         android:scrollbarThumbVertical="@null"
         >
 
@@ -185,6 +186,7 @@
             </RelativeLayout>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/text_orSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -199,12 +201,13 @@
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/layout_googleFacebook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_orSignUp"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_4sdp"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -241,12 +244,12 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:visibility="gone"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/bg_azure_rounded_100dp">
+                    android:background="@drawable/bg_azure_rounded_100dp"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="@dimen/_27sdp"
@@ -263,7 +266,7 @@
                 android:id="@+id/layout_alreadyAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_googleFacebook"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginBottom="@dimen/_24sdp"
                 android:gravity="center">

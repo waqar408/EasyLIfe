@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/porcelain"
     tools:context=".userside.activities.choosepackage.PaymentActivity">
-
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/layout_backArrow"
         android:layout_width="@dimen/_30sdp"
@@ -84,6 +86,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/lnUpdateCard"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_marginEnd="@dimen/_12sdp"
@@ -141,19 +144,33 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tvUsePaymentMethod"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_marginBottom="@dimen/_50sdp"
-        android:background="@drawable/btn_back"
-        android:elevation="@dimen/_12sdp"
-        android:fontFamily="@font/barlow_medium"
-        android:gravity="center"
-        android:text="Use Payment Method"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_13sdp" />
+       <TextView
+           android:visibility="gone"
+           android:id="@+id/tvUsePaymentMethod"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_45sdp"
+           android:layout_alignParentBottom="true"
+           android:layout_marginHorizontal="@dimen/_20sdp"
+           android:layout_marginTop="@dimen/_16sdp"
+           android:layout_marginBottom="@dimen/_50sdp"
+           android:background="@drawable/btn_back"
+           android:elevation="@dimen/_12sdp"
+           android:fontFamily="@font/barlow_medium"
+           android:gravity="center"
+           android:text="Use Payment Method"
+           android:textColor="@color/white"
+           android:textSize="@dimen/_13sdp" />
+   </RelativeLayout>
+    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/dotloader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:trailingcircular_animDelay="600"
+        app:trailingcircular_animDuration="1200"
+        app:trailingcircular_bigCircleRadius="24dp"
+        app:trailingcircular_dotsColor="@color/appColor"
+        app:trailingcircular_dotsRadius="@dimen/_5sdp"
+        app:trailingcircular_noOfTrailingDots="5" />
 </RelativeLayout>

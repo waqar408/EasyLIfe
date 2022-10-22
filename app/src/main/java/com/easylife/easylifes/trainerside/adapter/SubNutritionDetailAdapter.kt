@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.easylife.easylifes.R
-import com.easylife.easylifes.model.getuserworkouts.UserWorkoutRepsDataModel
 import com.easylife.easylifes.model.mealtimes.MealTimeFoodsDataModel
 
 

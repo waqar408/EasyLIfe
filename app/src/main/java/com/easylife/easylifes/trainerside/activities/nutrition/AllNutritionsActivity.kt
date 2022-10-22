@@ -11,12 +11,9 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.RelativeLayout
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityAllNutritionsBinding
-import com.easylife.easylifes.model.JobsDataModel
-import com.easylife.easylifes.model.mealplan.CreateMealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlansDataModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
@@ -97,7 +94,7 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 plansList = ArrayList()
                                 plansList = signupResponse.data
                                 binding.rvAllNutritions.layoutManager =
@@ -144,11 +141,11 @@ class AllNutritionsActivity : AppCompatActivity(), AllNutritionsAdapter.onAllCli
         lp.gravity = Gravity.CENTER
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window!!.attributes = lp
-        val layout_send = dialog.findViewById<RelativeLayout>(R.id.layout_send)
+        val layoutSend = dialog.findViewById<RelativeLayout>(R.id.layout_send)
         val nutritionName = dialog.findViewById<EditText>(R.id.edNutritionName)
-        layout_send.setOnClickListener {
+        layoutSend.setOnClickListener {
             val nutritionName1 = nutritionName.text.toString()
-            if (nutritionName1.equals("")) {
+            if (nutritionName1 == "") {
                 utilities.showFailureToast(
                     this@AllNutritionsActivity,
                     "Please enter nutrition name"

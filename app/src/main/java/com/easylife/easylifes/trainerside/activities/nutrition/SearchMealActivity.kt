@@ -23,9 +23,9 @@ class SearchMealActivity : AppCompatActivity(), SearchMealAdapter.onMealTimeClic
     private lateinit var binding: ActivitySearchMealBinding
     private lateinit var utilities: Utilities
     val apiClient = ApiClient()
-    var planid = ""
-    var mealtimeid = ""
-    var nutritionName = ""
+    private var planid = ""
+    private var mealtimeid = ""
+    private var nutritionName = ""
     var clientid = ""
     lateinit var listSearchMeal: ArrayList<SearchDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class SearchMealActivity : AppCompatActivity(), SearchMealAdapter.onMealTimeClic
 
             override fun afterTextChanged(s: Editable) {
                 //avoid triggering event when text is empty
-                if (s.length >= 1) {
+                if (s.isNotEmpty()) {
                     searchMeal(s.toString())
                 }
             }
@@ -72,7 +72,7 @@ class SearchMealActivity : AppCompatActivity(), SearchMealAdapter.onMealTimeClic
                     ) {
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 listSearchMeal = signupResponse.data
                                 if (listSearchMeal.isEmpty()) {
                                     binding.lnNoMeal.visibility = View.VISIBLE
@@ -138,8 +138,8 @@ class SearchMealActivity : AppCompatActivity(), SearchMealAdapter.onMealTimeClic
         val mySelectMeal = gson.toJson(model)
         val intent = Intent(this@SearchMealActivity, NutritionSelectedActivity::class.java)
         intent.putExtra("selectedMeal", mySelectMeal)
-        intent.putExtra("mealtimeid", mealtimeid.toString())
-        intent.putExtra("mealplanid", planid.toString())
+        intent.putExtra("mealtimeid", mealtimeid)
+        intent.putExtra("mealplanid", planid)
         intent.putExtra("nutritionName", nutritionName)
         intent.putExtra("clientid", clientid)
         startActivity(intent)

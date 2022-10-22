@@ -17,7 +17,7 @@ class PortfolioAdapter(
     val context: Context,
     val list: ArrayList<PortfolioDataModel>,
     var mListener: onAllWorkoutClick,
-    var mListner : onDeleteClick
+    private var mListner : onDeleteClick
 
 ) :
     RecyclerView.Adapter<PortfolioAdapter.ViewHolder>() {
@@ -29,7 +29,7 @@ class PortfolioAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: PortfolioDataModel = list.get(position)
+        val model: PortfolioDataModel = list[position]
         val requestOptions = RequestOptions()
         Glide.with(context)
             .load(model.video)
@@ -51,8 +51,8 @@ class PortfolioAdapter(
 
     class ViewHolder(itemView: View, listener: onAllWorkoutClick,listener2: onDeleteClick) :
         RecyclerView.ViewHolder(itemView) {
-        val imgPic: ShapeableImageView = itemView.findViewById(R.id.imgPic);
-        val rlDelete: RelativeLayout = itemView.findViewById(R.id.rlDelete);
+        val imgPic: ShapeableImageView = itemView.findViewById(R.id.imgPic)
+        val rlDelete: RelativeLayout = itemView.findViewById(R.id.rlDelete)
 
 
 

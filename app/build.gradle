@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.easylife.easylifes"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -98,8 +98,11 @@ dependencies {
 
     //card
     implementation 'com.github.maxpilotto:credit-card-view:8.0.0'
+    //mask edit text
+    implementation 'io.github.vicmikhailau:MaskedEditText:4.0.7'
 
 
+    implementation 'com.github.emreesen27:Android-Nested-Progress:v1.0.2'
 
 
 

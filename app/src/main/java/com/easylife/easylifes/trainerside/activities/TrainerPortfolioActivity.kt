@@ -31,6 +31,7 @@ import com.tabadol.tabadol.data.network.ApiClient
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,10 +43,10 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
     var userId = ""
     lateinit var portfolioList : ArrayList<PortfolioDataModel>
     private lateinit var binding : ActivityTrainerPortfolioBinding
-    val REQUEST_VIDEO_CODE = 101
-    lateinit var imageFileToUpload: MultipartBody.Part
+    private val REQUEST_VIDEO_CODE = 101
+    private lateinit var imageFileToUpload: MultipartBody.Part
     private var imageUploaded: Boolean = false
-    var imagefile: File? = null
+    private var imagefile: File? = null
     var image = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +73,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
         utilities.setGrayBar(this@TrainerPortfolioActivity)
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this@TrainerPortfolioActivity, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             userId = obj.id.toString()
 
@@ -95,7 +96,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
                     ) {
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
-                        if (signupResponse!!.status == true) {
+                        if (signupResponse!!.status) {
                             if (!signupResponse.portfolioDataModel.equals("")) {
 
                                 portfolioList = ArrayList()
@@ -143,7 +144,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
     }
 
     override fun onClickArea(position: Int) {
-        val model = portfolioList.get(position)
+        val model = portfolioList[position]
         val intent = Intent(this@TrainerPortfolioActivity, FullScreenVideoActivity::class.java)
         intent.putExtra("videourl", model.video)
         startActivity(intent)
@@ -188,7 +189,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
                         imagefile = photoFile
                         imageUploaded = true
                         image = "video"
-                        if (imageUploaded==true)
+                        if (imageUploaded)
                         {
                             createPost()
                         }
@@ -202,7 +203,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
         }
     }
 
-    fun getPath(uri: Uri?): String? {
+    private fun getPath(uri: Uri?): String? {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         val cursor = managedQuery(uri, projection, null, null, null)
         return if (cursor != null) {
@@ -212,10 +213,10 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
         } else null
     }
 
-    fun createPost() {
+    private fun createPost() {
         val apiClient    = ApiClient()
         val userId1: RequestBody = userId.toRequestBody("text/plain".toMediaTypeOrNull())
-        val requestBody: RequestBody = RequestBody.create("*/*".toMediaTypeOrNull(), imagefile!!)
+        val requestBody: RequestBody = imagefile!!.asRequestBody("*/*".toMediaTypeOrNull())
         imageFileToUpload = MultipartBody.Part.createFormData("video", imagefile!!.name, requestBody)
         binding.dotloader.visibility = View.VISIBLE
         apiClient.getApiService().addTrainerVideo(
@@ -230,20 +231,20 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
                     binding.dotloader.visibility = View.GONE
                     if (response.isSuccessful) {
                         val status: Boolean = response.body()!!.status
-                        if (status.equals(true)) {
-                            val signupResponse = response.body()
+                        if (status) {
+//                            val signupResponse = response.body()
                             val message: String = response.body()!!.message
                             utilities.showSuccessToast(this@TrainerPortfolioActivity,message)
                             getPortfolio()
                         } else {
                             val message: String = response.body()!!.message
 
-                            utilities.showFailureToast(this@TrainerPortfolioActivity, message.toString())
+                            utilities.showFailureToast(this@TrainerPortfolioActivity, message)
 
                         }
                     } else {
                         val message: String = response.body()!!.message
-                        utilities.showFailureToast(this@TrainerPortfolioActivity, message.toString())
+                        utilities.showFailureToast(this@TrainerPortfolioActivity, message)
 
                     }
                 }
@@ -259,8 +260,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
     }
 
     private fun bottomDeletePortfolio(portfolioId : String) {
-        val bottomSheetDialog : BottomSheetDialog
-        bottomSheetDialog = BottomSheetDialog(this@TrainerPortfolioActivity)
+        val bottomSheetDialog = BottomSheetDialog(this@TrainerPortfolioActivity)
         bottomSheetDialog.setContentView(R.layout.bottom_delete)
         bottomSheetDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val canelBtn = bottomSheetDialog.findViewById<RelativeLayout>(R.id.layout_backArrow)
@@ -280,7 +280,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
     }
 
     override fun onDeleteClick(position: Int) {
-        val model = portfolioList.get(position)
+        val model = portfolioList[position]
         bottomDeletePortfolio(model.id.toString())
     }
 
@@ -298,7 +298,7 @@ class TrainerPortfolioActivity : AppCompatActivity(),PortfolioAdapter.onAllWorko
                     ) {
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
-                        if (signupResponse!!.status == true) {
+                        if (signupResponse!!.status) {
                             utilities.showSuccessToast(this@TrainerPortfolioActivity,signupResponse.message)
                             getPortfolio()
                         } else {

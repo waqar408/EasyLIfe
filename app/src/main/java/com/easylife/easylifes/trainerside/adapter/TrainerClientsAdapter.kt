@@ -13,6 +13,7 @@ import com.easylife.easylifes.R
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.trainerhome.TrainerUserDataModel
 import com.easylife.easylifes.userside.activities.inbox.InboxActivity
+import com.easylife.easylifes.userside.activities.profile.UserProfileActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.Gson
@@ -52,6 +53,13 @@ class TrainerClientsAdapter(
             context.startActivity(intent)
         }
 
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, UserProfileActivity::class.java)
+            intent.putExtra("id",model.id.toString())
+            context.startActivity(intent)
+        }
+
+
 
 
     }
@@ -63,10 +71,10 @@ class TrainerClientsAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvUserName: TextView = itemView.findViewById(R.id.tvusername);
-        val rlChat: RelativeLayout = itemView.findViewById(R.id.rlChat);
+        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile)
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvUserName: TextView = itemView.findViewById(R.id.tvusername)
+        val rlChat: RelativeLayout = itemView.findViewById(R.id.rlChat)
 
     }
 

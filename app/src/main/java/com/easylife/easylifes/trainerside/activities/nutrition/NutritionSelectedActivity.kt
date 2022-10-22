@@ -13,7 +13,6 @@ import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityNutritionSelectedBinding
 import com.easylife.easylifes.model.BaseResponse
 import com.easylife.easylifes.model.search.SearchDataModel
-import com.easylife.easylifes.trainerside.activities.clientdetail.AllWorkoutsActivity
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
 import com.google.gson.JsonArray
@@ -29,11 +28,11 @@ class NutritionSelectedActivity : AppCompatActivity() {
     private lateinit var searchDataModel: SearchDataModel
     var servingSize = ""
     var servingId = ""
-    var noOfServings = ""
+    private var noOfServings = ""
     var planid = ""
-    var mealtimeid = ""
-    var mealid = ""
-    var nutritionName = ""
+    private var mealtimeid = ""
+    private var mealid = ""
+    private var nutritionName = ""
     var clientid = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +47,8 @@ class NutritionSelectedActivity : AppCompatActivity() {
 
         binding.layoutBackArrow.setOnClickListener {
             val intent = Intent(this@NutritionSelectedActivity, SearchMealActivity::class.java)
-            intent.putExtra("mealtimeid",mealtimeid.toString())
-            intent.putExtra("mealplanid",planid.toString())
+            intent.putExtra("mealtimeid",mealtimeid)
+            intent.putExtra("mealplanid",planid)
             intent.putExtra("mealname",nutritionName)
             intent.putExtra("clientid",clientid)
             startActivity(intent)
@@ -57,7 +56,7 @@ class NutritionSelectedActivity : AppCompatActivity() {
         }
         binding.layoutCreateWorkout.setOnClickListener {
             noOfServings = binding.edNoOfServing.text.toString()
-            if (noOfServings.equals("")) {
+            if (noOfServings == "") {
                 utilities.showFailureToast(
                     this@NutritionSelectedActivity,
                     "Please Enter No Of Servings"
@@ -69,7 +68,7 @@ class NutritionSelectedActivity : AppCompatActivity() {
     }
 
 
-    fun createMeal(noOfServings : String) {
+    private fun createMeal(noOfServings : String) {
 
         val apiClient = ApiClient()
         val array1 = JsonArray()
@@ -99,7 +98,7 @@ class NutritionSelectedActivity : AppCompatActivity() {
                     if (response.body() != null) {
                         val status = response.body()!!.status
                         utilities.showSuccessToast(this@NutritionSelectedActivity,response.message())
-                        if (status == true) {
+                        if (status) {
                             Handler(Looper.myLooper()!!).postDelayed({
                                 val intent = Intent(this@NutritionSelectedActivity, ClientNutritionActivity::class.java)
                                 intent.putExtra("mealplanid", planid)
@@ -155,16 +154,14 @@ class NutritionSelectedActivity : AppCompatActivity() {
         binding.tvSodium.text = searchDataModel.meal_sodium
         binding.tvSugar.text = searchDataModel.meal_sugar
         val item = java.util.ArrayList<String>()
-        for (i in 0..searchDataModel.servings.size - 1) {
-            item.add(searchDataModel.servings.get(i).serving_size)
+        for (i in 0 until searchDataModel.servings.size) {
+            item.add(searchDataModel.servings[i].serving_size)
         }
-        if (item != null) {
-            val adapter = ArrayAdapter(this@NutritionSelectedActivity, R.layout.spinner_text, item)
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.spinner.setAdapter(adapter)
-        }
+        val adapter = ArrayAdapter(this@NutritionSelectedActivity, R.layout.spinner_text, item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinner.adapter = adapter
 
-        binding.spinner.setOnItemSelectedListener(object :
+        binding.spinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -172,19 +169,19 @@ class NutritionSelectedActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                servingSize = searchDataModel.servings.get(position).serving_size
-                servingId = searchDataModel.servings.get(position).id.toString()
+                servingSize = searchDataModel.servings[position].serving_size
+                servingId = searchDataModel.servings[position].id.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-        })
+        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this@NutritionSelectedActivity, SearchMealActivity::class.java)
-        intent.putExtra("mealtimeid",mealtimeid.toString())
-        intent.putExtra("mealplanid",planid.toString())
+        intent.putExtra("mealtimeid",mealtimeid)
+        intent.putExtra("mealplanid",planid)
         intent.putExtra("mealname",nutritionName)
         intent.putExtra("clientid",clientid)
         startActivity(intent)

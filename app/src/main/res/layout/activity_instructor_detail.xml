@@ -101,6 +101,7 @@
                         android:gravity="center_horizontal">
 
                         <RelativeLayout
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:id="@+id/rlChat"
                             android:layout_width="@dimen/_45sdp"
                             android:layout_height="@dimen/_45sdp"
@@ -117,9 +118,10 @@
 
                         <RelativeLayout
                             android:id="@+id/rlReviews1"
-                            android:layout_width="@dimen/_45sdp"
+                            android:layout_width="@dimen/_50sdp"
                             android:layout_height="@dimen/_45sdp"
                             android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginBottom="@dimen/_20sdp"
                             android:layout_toEndOf="@+id/rlChat"
                             android:background="@drawable/rounded_green"
@@ -133,13 +135,13 @@
                                 android:src="@drawable/ic_star_white" />
 
                             <TextView
+                                android:id="@+id/tvRating"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_4sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
                                 android:layout_toEndOf="@+id/img"
                                 android:fontFamily="@font/barlow_semibold"
-                                android:text="5.0"
+                                android:text=" 5.0"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_11sdp" />
                         </RelativeLayout>
@@ -149,6 +151,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_45sdp"
                             android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginBottom="@dimen/_20sdp"
                             android:layout_toEndOf="@+id/rlReviews1"
                             android:background="@drawable/rounded_green"
@@ -157,6 +160,7 @@
 
 
                             <TextView
+                                android:id="@+id/tvIsSubscribe"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_4sdp"

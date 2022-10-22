@@ -18,7 +18,7 @@ class PhoneNumberActivity : AppCompatActivity() {
     var password= ""
     var name = ""
     var phoneCode = ""
-    var phoneNumber = ""
+    private var phoneNumber = ""
     var experience = ""
     val apiClient = ApiClient()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class PhoneNumberActivity : AppCompatActivity() {
         binding.layoutSend.setOnClickListener {
             phoneCode = binding.countryCodePicker.selectedCountryCode
             phoneNumber = binding.editPhoneNumber.text.toString()
-            if (phoneNumber.equals(""))
+            if (phoneNumber == "")
             {
                 utilities.showFailureToast(this@PhoneNumberActivity,"Please Enter Phone Number")
             }else{
@@ -76,7 +76,7 @@ class PhoneNumberActivity : AppCompatActivity() {
                         utilities.hideProgressDialog()
                         if (response.isSuccessful)
                         {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 val intent = Intent(this@PhoneNumberActivity,OtpVerificationActivity::class.java)
                                 intent.putExtra("email",email)
                                 intent.putExtra("name",name)

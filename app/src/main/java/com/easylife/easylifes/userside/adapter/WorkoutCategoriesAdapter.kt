@@ -25,7 +25,7 @@ class WorkoutCategoriesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: JobsDataModel = list.get(position)
+        val model: JobsDataModel = list[position]
         holder.imgPic.setImageResource(model.image)
         holder.itemView.setOnClickListener {
             context.startActivity(Intent(context,FullImageWorkoutActivity::class.java))
@@ -39,7 +39,7 @@ class WorkoutCategoriesAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val imgPic: ShapeableImageView = itemView.findViewById(R.id.imgPic);
+        val imgPic: ShapeableImageView = itemView.findViewById(R.id.imgPic)
 
     }
 

@@ -24,8 +24,8 @@ class ChangePasswordActivity : AppCompatActivity() {
     private var passwordVisibile2 = false
     private var passwordVisibile3= false
     var password = ""
-    var confirmPassword = ""
-    var oldPassword = ""
+    private var confirmPassword = ""
+    private var oldPassword = ""
     var userId = ""
     val apiClient =  ApiClient()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         utilities.setWhiteBars(this@ChangePasswordActivity)
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             userId = java.lang.String.valueOf(obj.id)
         }
@@ -68,22 +68,22 @@ class ChangePasswordActivity : AppCompatActivity() {
             oldPassword= binding.editOldPassword.text.toString()
             password  =binding.editPassword.text.toString()
             confirmPassword = binding.editConfirmpassword.text.toString()
-            if (oldPassword.equals(""))
+            if (oldPassword == "")
             {
                 utilities.showFailureToast(this@ChangePasswordActivity,"Please Enter Old Password")
 
-            }else if (password.equals(""))
+            }else if (password == "")
             {
                 utilities.showFailureToast(this@ChangePasswordActivity,"Please Enter Password")
             }else if (password.length<6)
             {
                 utilities.showFailureToast(this@ChangePasswordActivity,"Password Length Must Be Greater Than 6")
 
-            }else if (confirmPassword.equals(""))
+            }else if (confirmPassword == "")
             {
                 utilities.showFailureToast(this@ChangePasswordActivity,"Please Confirm Your Password")
 
-            }else if (!confirmPassword.equals(password))
+            }else if (confirmPassword != password)
             {
                 utilities.showFailureToast(this@ChangePasswordActivity,"Password Does Not Match")
             }else{
@@ -107,7 +107,7 @@ class ChangePasswordActivity : AppCompatActivity() {
                         utilities.hideProgressDialog()
                         if (response.isSuccessful)
                         {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(this@ChangePasswordActivity,signupResponse.message)
                                 Handler(Looper.myLooper()!!).postDelayed({
                                     finish()

@@ -17,7 +17,6 @@ import com.easylife.easylifes.databinding.ActivityInboxBinding
 import com.easylife.easylifes.model.BaseResponse
 import com.easylife.easylifes.model.chat.inbox.MessageDataListModel
 import com.easylife.easylifes.model.chat.inbox.MessagesResponseModel
-import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.signup.SignupResponseModel
 import com.easylife.easylifes.userside.adapter.InboxAdapter
 import com.easylife.easylifes.utils.OnLoadMoreListener
@@ -44,21 +43,21 @@ class InboxActivity : AppCompatActivity() {
     private var emptyList: ArrayList<MessageDataListModel?> = ArrayList()
 
     private lateinit var utilities: Utilities
-    var myId = ""
-    var otherUserId = ""
-    var otherUserName = ""
-    var otherUserProfile = ""
-    var otherUserNicName = ""
+    private var myId = ""
+    private var otherUserId = ""
+    private var otherUserName = ""
+    private var otherUserProfile = ""
+    private var otherUserNicName = ""
     var page: Int = 1
     var limit: Int = 50
     var apiClient = ApiClient()
-    var options: PusherOptions? = null
-    var pusher: Pusher? = null
+    private var options: PusherOptions? = null
+    private var pusher: Pusher? = null
     private var imageUploaded: Boolean = false
-    var imagefile: File? = null
-    lateinit var imageFileToUpload: MultipartBody.Part
+    private var imagefile: File? = null
+    private lateinit var imageFileToUpload: MultipartBody.Part
     lateinit var scrollListener: RecyclerViewLoadMoreScroll
-    lateinit var mLayoutManager: RecyclerView.LayoutManager
+    private lateinit var mLayoutManager: RecyclerView.LayoutManager
     lateinit var adapter: InboxAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +77,7 @@ class InboxActivity : AppCompatActivity() {
         }
         binding.sendMessage.setOnClickListener {
             val message = binding.edMessage.text.toString().trim()
-            if (message.equals("")) {
+            if (message == "") {
                 utilities.showFailureToast(this@InboxActivity, "Please enter message to send...")
             } else {
                 binding.edMessage.text.clear()
@@ -93,13 +92,13 @@ class InboxActivity : AppCompatActivity() {
     }
 
 
-    fun setMessagePusher() {
+    private fun setMessagePusher() {
 
         // pusher
         options = PusherOptions().setCluster("ap1")
         pusher = Pusher("2836dd4e0740bd82c439", options)
-        val channel_id = "chat." + myId + ".messages"
-        val channel = pusher!!.subscribe(channel_id)
+        val channelId = "chat.$myId.messages"
+        val channel = pusher!!.subscribe(channelId)
         channel.bind("messages") { event ->
             val gson = Gson()
             var data = event.data
@@ -108,11 +107,11 @@ class InboxActivity : AppCompatActivity() {
             chatList.add(message)
             runOnUiThread {
                 // Stuff that updates the UI
-                if (!chatList.isEmpty()) {
+                if (chatList.isNotEmpty()) {
                     binding.tvNoViewFound.visibility = View.GONE
                 }
             }
-            val item = chatList.get(chatList.size - 1)
+            val item = chatList[chatList.size - 1]
             if (item!!.from_id.toInt() != myId.toInt()) {
                 messageSeen(myId, otherUserId)
             }
@@ -124,8 +123,8 @@ class InboxActivity : AppCompatActivity() {
         pusher!!.connect()
     }
 
-    fun showAllMessagesRecycler() {
-        binding.rvChat.setLayoutManager(LinearLayoutManager(this@InboxActivity))
+    private fun showAllMessagesRecycler() {
+        binding.rvChat.layoutManager = LinearLayoutManager(this@InboxActivity)
         binding.rvChat.adapter = InboxAdapter(this@InboxActivity, chatList)
         binding.rvChat.scrollToPosition(chatList.size - 1)
         binding.rvChat.isNestedScrollingEnabled = false
@@ -136,10 +135,6 @@ class InboxActivity : AppCompatActivity() {
     private fun messageSeen(myId: String, otherUserId: String) {
         val apiClient = ApiClient()
         val utils = Utilities(this@InboxActivity)
-        val gsonn = Gson()
-        val jsonn: String = utils.getString(this@InboxActivity, "loginResponse")
-        val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-        val userId = java.lang.String.valueOf(obj.id)
         val url = apiClient.BASE_URL + "read_messages/" + myId + "/" + otherUserId
         apiClient.getApiService().messageSeen(url)
             .enqueue(object : Callback<BaseResponse> {
@@ -149,7 +144,7 @@ class InboxActivity : AppCompatActivity() {
                     response: Response<BaseResponse>
                 ) {
                     val signupResponse = response.body()
-                    if (signupResponse!!.status == true) {
+                    if (signupResponse!!.status) {
                         //
                     } else {
 
@@ -184,7 +179,7 @@ class InboxActivity : AppCompatActivity() {
         otherUserName = intent.getStringExtra("otherUserName").toString()
         otherUserNicName = intent.getStringExtra("otherUserNicName").toString()
         otherUserProfile = intent.getStringExtra("otherUserProfile").toString()
-        if (!otherUserName.equals("")) {
+        if (otherUserName != "") {
             binding.tvOtherUserName.text = otherUserName
             binding.otherUserNicName.text = otherUserNicName
             Glide.with(this@InboxActivity).load(otherUserProfile).into(binding.imgProfile)
@@ -243,7 +238,7 @@ class InboxActivity : AppCompatActivity() {
     }
 
     private fun getMessages() {
-        val apiClient: ApiClient = ApiClient()
+        val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(this@InboxActivity)) {
             adapter.addLoadingView()
             val url = apiClient.BASE_URL + "get_messages/" + myId + "/" + otherUserId + "?page=" + page
@@ -255,7 +250,7 @@ class InboxActivity : AppCompatActivity() {
                         response: Response<MessagesResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        if (signupResponse!!.status == true) {
+                        if (signupResponse!!.status) {
                             if (!signupResponse.data.equals("")) {
 
                                 chatList = signupResponse.data.data
@@ -317,17 +312,11 @@ class InboxActivity : AppCompatActivity() {
     }
 
     private fun senTextMessage(from_id: String, to_id: String, text: String) {
-        val apiClient: ApiClient = ApiClient()
+        val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(this@InboxActivity)) {
             binding.sendMessage.visibility = View.GONE
             binding.rlAttachment.visibility = View.GONE
             binding.chatloader.visibility = View.VISIBLE
-            val gsonn = Gson()
-            val jsonn: String =
-                utilities.getString(this@InboxActivity, "loginResponse").toString()
-            val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-            val user_idd: String = java.lang.String.valueOf(obj.id)
-
             apiClient.getApiService().sendTextMessage(from_id, to_id, text, "text")
                 .enqueue(object : Callback<BaseResponse> {
 
@@ -340,7 +329,7 @@ class InboxActivity : AppCompatActivity() {
                         binding.sendMessage.visibility = View.VISIBLE
                         binding.chatloader.visibility = View.GONE
 
-                        if (signupResponse!!.status == true) {
+                        if (signupResponse!!.status) {
                             //nothing to show
                         } else {
                             utilities.showFailureToast(
@@ -396,8 +385,8 @@ class InboxActivity : AppCompatActivity() {
         }
     }
 
-    fun sendImageMessage() {
-        val apiClient: ApiClient = ApiClient()
+    private fun sendImageMessage() {
+        val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(this@InboxActivity)) {
             val mediatype = "image"
             val messagetype = "media"
@@ -405,9 +394,9 @@ class InboxActivity : AppCompatActivity() {
             val otheruserid: RequestBody =
                 otherUserId.toRequestBody("text/plain".toMediaTypeOrNull())
             val mediaType: RequestBody =
-                mediatype.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+                mediatype.toRequestBody("text/plain".toMediaTypeOrNull())
             val text: RequestBody =
-                "Sent an attachment....".toString().toRequestBody("text/plain".toMediaTypeOrNull())
+                "Sent an attachment....".toRequestBody("text/plain".toMediaTypeOrNull())
             val messageType: RequestBody =
                 messagetype.toRequestBody("text/plain".toMediaTypeOrNull())
             val requestBody: RequestBody =
@@ -439,7 +428,7 @@ class InboxActivity : AppCompatActivity() {
                         } else {
                             val message: String = response.body()!!.message
                             Log.d("reponmsemss", response.body()!!.message)
-                            utilities.showFailureToast(this@InboxActivity, message.toString())
+                            utilities.showFailureToast(this@InboxActivity, message)
 
                         }
                     }

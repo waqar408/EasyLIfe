@@ -1,5 +1,6 @@
 package com.easylife.easylifes.userside.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -25,14 +26,17 @@ class PackageAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: SubscriptionPackageDataModel = list.get(position)
+        val model: SubscriptionPackageDataModel = list[position]
         holder.tvPacakgeName.text = model.package_name
         holder.tvPerido.text = " / "+model.validity_days +" Days"
         holder.tvPriceUnit.text = model.price_currency
         holder.tvPrice.text =  model.package_price
 
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context,PaymentActivity::class.java))
+            val intent = Intent(context,PaymentActivity::class.java)
+            intent.putExtra("id",model.id.toString())
+            context.startActivity(intent)
+            (context as Activity).finish()
         }
     }
 
@@ -43,10 +47,10 @@ class PackageAdapter(
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val tvPacakgeName: TextView= itemView.findViewById(R.id.tvPacakgeName);
-        val tvPriceUnit: TextView = itemView.findViewById(R.id.tvPriceUnit);
-        val tvPrice: TextView = itemView.findViewById(R.id.tvPrice);
-        val tvPerido: TextView = itemView.findViewById(R.id.tvPerido);
+        val tvPacakgeName: TextView= itemView.findViewById(R.id.tvPacakgeName)
+        val tvPriceUnit: TextView = itemView.findViewById(R.id.tvPriceUnit)
+        val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
+        val tvPerido: TextView = itemView.findViewById(R.id.tvPerido)
 
     }
 

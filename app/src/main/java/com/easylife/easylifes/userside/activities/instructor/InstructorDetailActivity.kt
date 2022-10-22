@@ -2,24 +2,19 @@ package com.easylife.easylifes.userside.activities.instructor
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewTreeObserver.OnScrollChangedListener
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityInstructorDetailBinding
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.model.trainerdetail.ReviewDataListModel
 import com.easylife.easylifes.model.trainerdetail.SubscriptionPackageDataModel
 import com.easylife.easylifes.model.trainerdetail.TrainerDetailResponseModel
 import com.easylife.easylifes.model.trainerdetail.VideoListDataModel
 import com.easylife.easylifes.userside.activities.choosepackage.ChooseYourPackage
+import com.easylife.easylifes.userside.activities.inbox.InboxActivity
+import com.easylife.easylifes.userside.activities.review.ReviewListActivity
 import com.easylife.easylifes.userside.activities.review.WriteReviewActivity
-import com.easylife.easylifes.userside.adapter.ReviewsAdapter
 import com.easylife.easylifes.userside.adapter.TrainerVideosAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
@@ -35,8 +30,12 @@ class InstructorDetailActivity : AppCompatActivity() {
     var id = ""
     var userId = ""
     var trainerId = ""
-    lateinit var videoList : ArrayList<VideoListDataModel>
-    lateinit var packageList : ArrayList<SubscriptionPackageDataModel>
+    var trainerProfileImage = ""
+    var trainerName = ""
+    var trainerNickName = ""
+    var isSubscribed : Int? = null
+    lateinit var videoList: ArrayList<VideoListDataModel>
+    lateinit var packageList: ArrayList<SubscriptionPackageDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInstructorDetailBinding.inflate(layoutInflater)
@@ -49,9 +48,14 @@ class InstructorDetailActivity : AppCompatActivity() {
     private fun initViews() {
         utilities = Utilities(this@InstructorDetailActivity)
         utilities.setGreenBar(this@InstructorDetailActivity)
-
+        val gsonn = Gson()
+        val jsonn: String =
+            utilities.getString(this@InstructorDetailActivity, "loginResponse")
+        val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
+        userId = java.lang.String.valueOf(obj.id)
         val intent = intent
         id = intent.getStringExtra("id").toString()
+
         binding.tvAddAReviews.setOnClickListener {
             startActivity(Intent(this@InstructorDetailActivity, WriteReviewActivity::class.java))
         }
@@ -59,20 +63,43 @@ class InstructorDetailActivity : AppCompatActivity() {
             finish()
         }
         binding.tvAddAReviews.setOnClickListener {
-            val intent1 = Intent(this@InstructorDetailActivity,WriteReviewActivity::class.java)
-            intent1.putExtra("id",trainerId)
+            val intent1 = Intent(this@InstructorDetailActivity, WriteReviewActivity::class.java)
+            intent1.putExtra("id", trainerId)
             startActivity(intent1)
             finish()
         }
         binding.rlSubscribe.setOnClickListener {
-            if (packageList.isEmpty())
-            {
-                utilities.showFailureToast(this@InstructorDetailActivity,"Loading Packages")
-            }else{
-                val intent = Intent(this@InstructorDetailActivity,ChooseYourPackage::class.java)
-                intent.putParcelableArrayListExtra("packagelist",packageList)
-                startActivity(intent)
+            if (packageList.isEmpty()) {
+                utilities.showFailureToast(this@InstructorDetailActivity, "Loading Packages")
+            } else {
+                if (isSubscribed== 1)
+                {
+                    utilities.showSuccessToast(this@InstructorDetailActivity,"You are already subsribed")
+                }else{
+                    val intentChoosePackage = Intent(this@InstructorDetailActivity, ChooseYourPackage::class.java)
+                    intentChoosePackage.putParcelableArrayListExtra("packagelist", packageList)
+                    startActivity(intentChoosePackage)
+                }
+
             }
+
+        }
+        binding.rlChat.setOnClickListener {
+
+            val intentInbox = Intent(this@InstructorDetailActivity, InboxActivity::class.java)
+            intentInbox.putExtra("myId", userId)
+            intentInbox.putExtra("otherUserId",trainerId)
+            intentInbox.putExtra("otherUserProfile", trainerProfileImage)
+            intentInbox.putExtra("otherUserName", trainerName)
+            intentInbox.putExtra("otherUserNicName", trainerNickName)
+            startActivity(intentInbox)
+
+        }
+
+        binding.rlReviews1.setOnClickListener {
+            val intentReview = Intent(this@InstructorDetailActivity,ReviewListActivity::class.java)
+            intentReview.putExtra("trainerid",trainerId)
+            startActivity(intentReview)
 
         }
 
@@ -89,12 +116,12 @@ class InstructorDetailActivity : AppCompatActivity() {
         if (utilities.isConnectingToInternet(this@InstructorDetailActivity)) {
             val gsonn = Gson()
             val jsonn: String =
-                utilities.getString(this@InstructorDetailActivity, "loginResponse").toString()
+                utilities.getString(this@InstructorDetailActivity, "loginResponse")
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-            val user_idd: String = java.lang.String.valueOf(obj.id)
+            val userId: String = java.lang.String.valueOf(obj.id)
 
 
-            val url = apiClient.BASE_URL + "trainer-details/" + user_idd + "/" + id
+            val url = apiClient.BASE_URL + "trainer-details/" + userId + "/" + id
             apiClient.getApiService().trainerDetail(url)
                 .enqueue(object : Callback<TrainerDetailResponseModel> {
 
@@ -105,7 +132,8 @@ class InstructorDetailActivity : AppCompatActivity() {
                         val signupResponse = response.body()
                         utilities.hideProgressDialog()
 
-                        if (signupResponse!!.status == true) {
+                        if (signupResponse!!.status) {
+                            isSubscribed = signupResponse.data.is_subscribed
                             Glide.with(this@InstructorDetailActivity)
                                 .load(signupResponse.data.profile_image).into(binding.trainerPic)
                             binding.tvTrainerName.text = signupResponse.data.name
@@ -114,16 +142,31 @@ class InstructorDetailActivity : AppCompatActivity() {
                             binding.tvCompleteWorkout.text = signupResponse.data.completed_workouts
                             binding.tvClients.text = signupResponse.data.active_clients
                             trainerId = signupResponse.data.id.toString()
+                            trainerProfileImage = signupResponse.data.profile_image
+                            trainerName = signupResponse.data.name
+                            trainerNickName = signupResponse.data.username
+                            binding.tvRating.text = signupResponse.data.average_rating
+
+                            if(isSubscribed == 1)
+                            {
+                                binding.tvIsSubscribe.text = "Subscribed"
+                            }else{
+                                binding.tvIsSubscribe.text = "Subscribe"
+                            }
 
 
                             videoList = ArrayList()
                             videoList = signupResponse.data.videos
-                            binding.rvVideos.layoutManager = GridLayoutManager(this@InstructorDetailActivity,2)
-                            binding.rvVideos.adapter = TrainerVideosAdapter(this@InstructorDetailActivity,videoList)
+                            binding.rvVideos.layoutManager =
+                                GridLayoutManager(this@InstructorDetailActivity, 2)
+                            binding.rvVideos.adapter =
+                                TrainerVideosAdapter(this@InstructorDetailActivity, videoList)
 
 
                             packageList = ArrayList()
                             packageList = signupResponse.data.subscription_packages
+
+
 
                         } else {
                             utilities.hideProgressDialog()
@@ -155,9 +198,6 @@ class InstructorDetailActivity : AppCompatActivity() {
         }
 
     }
-
-
-
 
 
 }

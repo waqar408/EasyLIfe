@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.easylife.easylifes.R
 import com.easylife.easylifes.userside.adapter.CustomizeInterestAdapter
@@ -24,22 +25,20 @@ class CustomizeInterestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCustomizeInterestBinding
     private lateinit var adapter1: CustomizeInterestAdapter
     private lateinit var customizeInterestList: ArrayList<JobsDataModel>
-    lateinit var nameList: Array<String>
     private lateinit var utilities: Utilities
 
-    var stringBuilder: StringBuilder = StringBuilder()
-    var stringBuilderInt: StringBuilder = StringBuilder()
+    private var stringBuilder: StringBuilder = StringBuilder()
     val apiClient = ApiClient()
     var gender = ""
     var age = ""
     var weight = ""
-    var weightUnit = ""
+    private var weightUnit = ""
     var height = ""
-    var heightUnit = ""
-    var interest = ""
-    var achieve = ""
-    var currentFitnessLevel = ""
-    var customizeInterest = ""
+    private var heightUnit = ""
+    private var interest = ""
+    private var achieve = ""
+    private var currentFitnessLevel = ""
+    private var customizeInterest = ""
     var userId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +66,7 @@ class CustomizeInterestActivity : AppCompatActivity() {
         utilities.setWhiteBars(this@CustomizeInterestActivity)
         val gsonn = Gson()
         val jsonn: String = utilities.getString(this, "loginResponse")
-        if (!jsonn.isEmpty()) {
+        if (jsonn.isNotEmpty()) {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             userId = java.lang.String.valueOf(obj.id)
         }
@@ -146,13 +145,13 @@ class CustomizeInterestActivity : AppCompatActivity() {
             stringBuilder = java.lang.StringBuilder()
             if (adapter1.selected.size > 0) {
                 for (i in 0 until adapter1.selected.size) {
-                    stringBuilder.append(adapter1.selected.get(i).name)
+                    stringBuilder.append(adapter1.selected[i].name)
                     stringBuilder.append(",")
                 }
 
 
                 // showToast(stringBuilder.toString().trim { it <= ' ' })
-                if (!stringBuilder.toString().equals("")) {
+                if (stringBuilder.toString() != "") {
                     stringBuilder = stringBuilder.deleteCharAt(stringBuilder.length - 1)
                 }
                 customizeInterest = stringBuilder.toString()
@@ -184,7 +183,7 @@ class CustomizeInterestActivity : AppCompatActivity() {
         customizeInterest: String
     ) {
         if (utilities.isConnectingToInternet(this@CustomizeInterestActivity)) {
-            utilities.showProgressDialog(this@CustomizeInterestActivity, "Please wait...")
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().updateProfile(
                 userId, "",
                 "", "",
@@ -192,7 +191,7 @@ class CustomizeInterestActivity : AppCompatActivity() {
                 weightUnit, height, heightUnit,
                 interest, achieve, currentFitnessLevel,
                 "", "", "",
-                "", "", "", "", "", customizeInterest
+                "", "", "", "", "", customizeInterest,"","","","","",""
             )
                 .enqueue(object : Callback<SignupResponseModel> {
 
@@ -201,9 +200,9 @@ class CustomizeInterestActivity : AppCompatActivity() {
                         response: Response<SignupResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(
                                     this@CustomizeInterestActivity,
                                     signupResponse.message
@@ -241,7 +240,7 @@ class CustomizeInterestActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         utilities.showFailureToast(this@CustomizeInterestActivity, t.message)
 
                     }

@@ -12,7 +12,6 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerDataModel
-import com.easylife.easylifes.trainerside.activities.nutrition.AllNutritionsActivity
 import com.easylife.easylifes.userside.activities.clientnutrition.ClientNutritionsActivity
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -31,23 +30,23 @@ class SubscribedTrainerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: SubscribedTrainerDataModel = list.get(position)
+        val model: SubscribedTrainerDataModel = list[position]
         holder.tvName.text = model.name
         val drawable = CircularProgressDrawable(context)
         drawable.setColorSchemeColors(R.color.appColor, R.color.appColor, R.color.appColor)
-        drawable.setCenterRadius(25f)
-        drawable.setStrokeWidth(6f)
+        drawable.centerRadius = 25f
+        drawable.strokeWidth = 6f
         drawable.start()
         Glide.with(context).load(model.profile_image).placeholder(drawable).into(holder.imgProfile)
         holder.tvUserName.text = model.username
 
-        if (model.workout_assigned == true)
+        if (model.workout_assigned)
         {
             holder.rlWorkout.visibility = View.VISIBLE
         }else{
             holder.rlWorkout.visibility = View.GONE
         }
-        if (model.meal_plan_assigned == true)
+        if (model.meal_plan_assigned)
         {
             holder.tvNutrition.visibility = View.VISIBLE
         }else{
@@ -71,11 +70,11 @@ class SubscribedTrainerAdapter(
 
     class ViewHolder(itemView: View, listener: onAllClientDetailClick) :
         RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvName);
-        val tvUserName: TextView = itemView.findViewById(R.id.tvusername);
-        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile);
-        val rlWorkout: RelativeLayout = itemView.findViewById(R.id.rlWorkout);
-        val tvNutrition: TextView = itemView.findViewById(R.id.rlNutrition);
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvUserName: TextView = itemView.findViewById(R.id.tvusername)
+        val imgProfile: ShapeableImageView = itemView.findViewById(R.id.imgProfile)
+        val rlWorkout: RelativeLayout = itemView.findViewById(R.id.rlWorkout)
+        val tvNutrition: TextView = itemView.findViewById(R.id.rlNutrition)
 
     }
 

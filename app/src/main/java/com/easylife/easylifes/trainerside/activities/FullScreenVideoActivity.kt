@@ -1,11 +1,9 @@
 package com.easylife.easylifes.trainerside.activities
 
-import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.easylife.easylifes.R
 import com.easylife.easylifes.utils.Utilities
@@ -22,15 +20,15 @@ import com.google.android.exoplayer2.util.Util
 class FullScreenVideoActivity : AppCompatActivity() {
     private var player: SimpleExoPlayer? = null
     private var playerView: PlayerView? = null
-    var videolink = ""
+    private var videolink = ""
     private lateinit var utilities: Utilities
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(
+        window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        );
+        )
         setContentView(R.layout.activity_full_screen_video)
 
         utilities = Utilities(this@FullScreenVideoActivity)
@@ -40,7 +38,7 @@ class FullScreenVideoActivity : AppCompatActivity() {
         val ivBack: RelativeLayout = findViewById(R.id.layout_backArrow)
         utilities = Utilities(this@FullScreenVideoActivity)
         videolink = intent.getStringExtra("videourl").toString()
-        if (!videolink.equals("")) {
+        if (videolink != "") {
             setVideo(videolink)
         }
         ivBack.setOnClickListener {
@@ -49,7 +47,7 @@ class FullScreenVideoActivity : AppCompatActivity() {
 
     }
 
-    fun setVideo(videoLink: String) {
+    private fun setVideo(videoLink: String) {
 
         val appNameStringRes = R.string.app_name
         val trackSelectorDef: TrackSelector = DefaultTrackSelector(this)
@@ -62,11 +60,11 @@ class FullScreenVideoActivity : AppCompatActivity() {
         //MediaSource mediaSource = new ExtractorMediaSource(uriOfContentUrl, new CacheDataSourceFactory(context, 100 * 1024 * 1024, 500 * 1024 * 1024), new DefaultExtractorsFactory(), null, null);
         //MediaSource mediaSource = new ExtractorMediaSource(uriOfContentUrl, new CacheDataSourceFactory(context, 100 * 1024 * 1024, 500 * 1024 * 1024), new DefaultExtractorsFactory(), null, null);
         player!!.prepare(mediaSource)
-        player!!.setPlayWhenReady(false)
+        player!!.playWhenReady = false
         playerView!!.requestFocus()
         playerView!!.player = player
         playerView!!.setShowBuffering(PlayerView.SHOW_BUFFERING_WHEN_PLAYING)
-        player!!.setVolume(1f)
+        player!!.volume = 1f
 
     }
 

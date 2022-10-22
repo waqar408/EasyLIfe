@@ -43,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
         utilities = Utilities(this@SignUpActivity)
         utilities.setWhiteBars(this@SignUpActivity)
         userType = utilities.getString(this@SignUpActivity,"usertype")
-        if (userType.equals("user"))
+        if (userType == "user")
         {
             binding.layoutExperience.visibility = View.GONE
         }else{
@@ -69,27 +69,27 @@ class SignUpActivity : AppCompatActivity() {
             phoneNumber = binding.editPhoneNumber.text.toString()
             val isValidEmail: Boolean = utilities.isValidEmail(email)
 
-            if (name.equals(""))
+            if (name == "")
             {
                 utilities.showFailureToast(this@SignUpActivity,"Required!","Please Enter Name")
-            }else if (email.equals(""))
+            }else if (email == "")
             {
                 utilities.showFailureToast(this@SignUpActivity,"Required!","Please Enter Email")
             }else if (!isValidEmail)
             {
                 utilities.showFailureToast(this@SignUpActivity,"Required!","Please Enter Valid Email")
-            }else if (phoneNumber.equals(""))
+            }else if (phoneNumber == "")
             {
                 utilities.showFailureToast(this@SignUpActivity,"Required!","Please Enter Phone Number")
-            }else if (password.equals(""))
+            }else if (password == "")
             {
                 utilities.showFailureToast(this@SignUpActivity,"Required!","Please Enter Password")
             }else if (password.length<6)
             {
                 utilities.showFailureToast(this@SignUpActivity,"Required!","Please 6 Digit Passowrd")
-            }else if (userType.equals("trainer"))
+            }else if (userType == "trainer")
             {
-                if (experience.equals(""))
+                if (experience == "")
                 {
                     utilities.showFailureToast(this@SignUpActivity,"Required!","Please enter experience")
                 }else{
@@ -133,8 +133,8 @@ class SignUpActivity : AppCompatActivity() {
                         utilities.hideProgressDialog()
                         if (response.isSuccessful)
                         {
-                            if (signupResponse?.status!!.equals(true)) {
-                                if(userType.equals("trainer"))
+                            if (signupResponse?.status!!) {
+                                if(userType == "trainer")
                                 {
                                     val intent = Intent(this@SignUpActivity,OtpVerificationActivity::class.java)
                                     intent.putExtra("name",name)

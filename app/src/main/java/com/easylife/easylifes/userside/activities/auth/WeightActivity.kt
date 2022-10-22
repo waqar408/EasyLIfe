@@ -13,7 +13,7 @@ class WeightActivity : AppCompatActivity() {
     var gender = ""
     var age = ""
     var weight = ""
-    var weightUnit = ""
+    private var weightUnit = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,16 +52,16 @@ class WeightActivity : AppCompatActivity() {
         }
         binding.layoutSend.setOnClickListener {
             weight = binding.tv.text.toString()
-            if (weight.equals("0")||weight.equals(""))
+            if (weight == "0" || weight == "")
             {
                 utilities.showFailureToast(this@WeightActivity,"Please Select Weight")
             }else{
-                val intent = Intent(this@WeightActivity,HeightSelectionActivity::class.java)
-                intent.putExtra("gender",gender)
-                intent.putExtra("age",age)
-                intent.putExtra("wUnit",weightUnit)
-                intent.putExtra("weight",weight)
-                startActivity(intent)
+                val intentHeight = Intent(this@WeightActivity,HeightSelectionActivity::class.java)
+                intentHeight.putExtra("gender",gender)
+                intentHeight.putExtra("age",age)
+                intentHeight.putExtra("wUnit",weightUnit)
+                intentHeight.putExtra("weight",weight)
+                startActivity(intentHeight)
             }
         }
         binding.layoutBackArrow.setOnClickListener {

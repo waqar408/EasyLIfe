@@ -11,23 +11,14 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityAllWorkoutsBinding
-import com.easylife.easylifes.model.JobsDataModel
-import com.easylife.easylifes.model.allclients.AllClientsResponseModel
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutDataListModel
-import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutDataModel
 import com.easylife.easylifes.model.getuserworkouts.GetUserWorkoutsResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.model.trainerhome.TrainerUserDataModel
-import com.easylife.easylifes.model.userworkoutcategories.UserCategoryDataModel
-import com.easylife.easylifes.model.userworkoutcategories.UserCategoryResponseModel
-import com.easylife.easylifes.trainerside.adapter.AllClientsListAdapter
 import com.easylife.easylifes.trainerside.adapter.AllWorkoutsAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
-import com.pusher.client.channel.User
 import com.tabadol.tabadol.data.network.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,12 +28,10 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     private lateinit var binding: ActivityAllWorkoutsBinding
     private lateinit var utilities: Utilities
     private lateinit var allWorkoutCategoriesList: ArrayList<GetUserWorkoutDataListModel>
-    private lateinit var workoutCategoriesList: ArrayList<UserCategoryDataModel>
-    var myid = ""
+    private var myid = ""
     var clientId = ""
-    var workoutCategoryId = ""
-    var workoutCategoryName = ""
-    var useridd = ""
+    private var workoutCategoryName = ""
+    private var useridd = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAllWorkoutsBinding.inflate(layoutInflater)
@@ -88,7 +77,7 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
                     ) {
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
-                        if (signupResponse!!.status ==  true) {
+                        if (signupResponse!!.status) {
                             //banner list data
                             //categories data
                             allWorkoutCategoriesList = ArrayList()
@@ -128,13 +117,13 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
         lp.gravity = Gravity.CENTER
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window!!.attributes = lp
-        val layout_send = dialog.findViewById<RelativeLayout>(R.id.layout_send)
+        val layoutsend = dialog.findViewById<RelativeLayout>(R.id.layout_send)
         val edWorkoutName = dialog.findViewById<EditText>(R.id.edWorkoutName)
 
 
-        layout_send.setOnClickListener {
+        layoutsend.setOnClickListener {
             workoutCategoryName = edWorkoutName.text.toString()
-            if (!workoutCategoryName.equals(""))
+            if (workoutCategoryName != "")
             {
                 val intent = Intent(this@AllWorkoutsActivity,WorkoutSelectionActivity::class.java)
                 intent.putExtra("clientid",clientId)
@@ -152,10 +141,10 @@ class AllWorkoutsActivity : AppCompatActivity(),AllWorkoutsAdapter.onAllWorkoutC
     }
 
     override fun onClickArea(position: Int) {
-       val model = allWorkoutCategoriesList.get(position)
+       val model = allWorkoutCategoriesList[position]
         val intent =  Intent(this@AllWorkoutsActivity,UserWorkoutDetailActivity::class.java)
         intent.putExtra("from","from")
-        intent.putExtra("clientid",clientId.toString())
+        intent.putExtra("clientid",clientId)
         intent.putExtra("categoryid",model.id.toString())
         intent.putExtra("categoryName",model.title)
         intent.putExtra("position",position.toString())

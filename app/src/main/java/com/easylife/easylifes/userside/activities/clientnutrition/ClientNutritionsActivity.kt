@@ -1,27 +1,14 @@
 package com.easylife.easylifes.userside.activities.clientnutrition
 
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
-import android.view.WindowManager
-import android.widget.EditText
-import android.widget.RelativeLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.easylife.easylifes.R
-import com.easylife.easylifes.userside.adapter.ClientNutritionAdapter
 import com.easylife.easylifes.databinding.ActivityClientNutritionsBinding
-import com.easylife.easylifes.model.JobsDataModel
 import com.easylife.easylifes.model.mealplan.MealPlanResponseModel
 import com.easylife.easylifes.model.mealplan.MealPlansDataModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
-import com.easylife.easylifes.trainerside.activities.nutrition.ClientNutritionActivity
-import com.easylife.easylifes.trainerside.activities.nutrition.CreateNutrtionActivity
 import com.easylife.easylifes.trainerside.adapter.AllNutritionsAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
@@ -97,7 +84,7 @@ class ClientNutritionsActivity : AppCompatActivity() , AllNutritionsAdapter.onAl
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
                                 plansList = ArrayList()
                                 plansList = signupResponse.data
                                 binding.rvAllNutritions.layoutManager =

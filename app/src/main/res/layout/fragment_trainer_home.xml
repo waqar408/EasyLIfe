@@ -36,10 +36,10 @@
                 android:id="@+id/image_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                 android:contentDescription="@string/text_todo"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_pic" />
+                android:src="@drawable/ic_pic"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
         </RelativeLayout>
 
@@ -124,7 +124,7 @@
                 android:id="@+id/layout_viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:elevation="@dimen/_10sdp"
                 android:orientation="vertical">
 
@@ -162,6 +162,7 @@
                 app:selectedDotColor="@color/appColor" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/layout_search"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_48sdp"

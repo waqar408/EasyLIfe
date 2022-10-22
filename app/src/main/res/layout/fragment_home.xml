@@ -8,19 +8,22 @@
     tools:context=".userside.fragment.HomeFragment">
 
     <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
         android:id="@+id/layout_profileName"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:gravity="center">
 
         <RelativeLayout
             android:id="@+id/layout_profileImage"
             android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            >
+            android:layout_height="@dimen/_40sdp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image_profile"
@@ -55,49 +58,37 @@
             android:textColor="@color/appColor"
             android:textSize="@dimen/_15sdp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:baselineAligned="false">
-
-            <RelativeLayout
-                android:visibility="gone"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="@dimen/_18sdp"
-                    android:layout_height="@dimen/_18sdp"
-                    android:src="@drawable/ic_calendar"
-
-                    />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlNotification"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginStart="10dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_bell_home" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:baselineAligned="false">
 
 
+
+        <RelativeLayout
+            android:id="@+id/rlNotification"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_bell_home" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
     </RelativeLayout>
     <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
         android:id="@+id/dotloader"
@@ -112,7 +103,7 @@
         app:trailingcircular_dotsRadius="@dimen/_7sdp"
         app:trailingcircular_noOfTrailingDots="5" />
     <ScrollView
-        android:layout_below="@+id/layout_profileName"
+        android:layout_below="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
@@ -130,8 +121,8 @@
                 android:id="@+id/layout_viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_55sdp"
                 android:elevation="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -168,6 +159,7 @@
                 app:selectedDotColor="@color/appColor" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/layout_search"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_48sdp"
@@ -230,11 +222,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_bold"
-                    android:text="Trianer Categories"
+                    android:text="Trainer Categories"
                     android:textColor="@color/haiti"
                     android:textSize="@dimen/_15sdp" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="@dimen/_18sdp"
                     android:layout_height="@dimen/_5sdp"
                     android:layout_alignParentEnd="true"
@@ -261,4 +254,14 @@
 
 
     </ScrollView>
+    <com.sn.lib.NestedProgress
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:innerAnimInterpolator="linear"
+        app:outerAnimInterpolator="overshoot"
+        android:layout_centerInParent="true"
+        app:outerLoaderColor="@color/appColor"
+        app:innerLoaderColor="@color/light_grey"
+        app:outerLoaderAnimDuration="1500" />
 </RelativeLayout>

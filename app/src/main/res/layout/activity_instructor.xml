@@ -81,5 +81,18 @@
         android:layout_marginTop="@dimen/_16sdp"
         tools:listitem="@layout/item_trainer_list"
         android:id="@+id/rvTrainerLIst"/>
+    <com.sn.lib.NestedProgress
+        android:visibility="gone"
+        android:id="@+id/dotloader"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:innerAnimInterpolator="linear"
+        app:outerAnimInterpolator="overshoot"
+        android:layout_centerInParent="true"
+        app:innerLoaderStrokeWidth="6dp"
+        app:outerLoaderStrokeWidth="6dp"
+        app:outerLoaderColor="@color/appColor"
+        app:innerLoaderColor="@color/light_grey"
+        app:outerLoaderAnimDuration="1500" />
 
 </RelativeLayout>

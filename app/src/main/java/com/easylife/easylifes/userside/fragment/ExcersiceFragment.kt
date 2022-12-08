@@ -1,11 +1,14 @@
 package com.easylife.easylifes.userside.fragment
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
@@ -17,6 +20,7 @@ import com.easylife.easylifes.model.home.BannersDataModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerDataModel
 import com.easylife.easylifes.model.toptrainers.TopTrainersResponseModel
+import com.easylife.easylifes.userside.activities.auth.LoginActivity
 import com.easylife.easylifes.userside.activities.subscribedtrainer.SubscribedTrainerActivity
 import com.easylife.easylifes.userside.adapter.ExcersideBannerAdapter
 import com.google.gson.Gson
@@ -35,6 +39,7 @@ class ExcersiceFragment : Fragment() {
     private lateinit var trainerList : ArrayList<SubscribedTrainerDataModel>
     var profileImage = ""
     var userName = ""
+    var userType = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +60,7 @@ class ExcersiceFragment : Fragment() {
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             profileImage = obj.profile_image
             userName = obj.name
-
+            userType = obj.type
             Glide.with(requireContext()).load(profileImage).into(binding.imageProfile)
             binding.textName.text = "Hi $userName"
 
@@ -63,9 +68,16 @@ class ExcersiceFragment : Fragment() {
     }
 
     private fun onClicks() {
+
         binding.rls.setOnClickListener {
-            val intent = Intent(requireContext(),SubscribedTrainerActivity::class.java)
-            startActivity(intent)
+            if (userType == "3")
+            {
+                guestDialog()
+            }else{
+                val intent = Intent(requireContext(),SubscribedTrainerActivity::class.java)
+                startActivity(intent)
+            }
+
         }
         getTrainersList()
     }
@@ -183,5 +195,30 @@ class ExcersiceFragment : Fragment() {
 
     }
 
+
+    private fun guestDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_guestmode)
+        val lp = WindowManager.LayoutParams()
+        lp.copyFrom(dialog.window!!.attributes)
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+        lp.gravity = Gravity.CENTER
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window!!.attributes = lp
+        val layoutsend = dialog.findViewById<RelativeLayout>(R.id.layout_send)
+        val imgClose = dialog.findViewById<ImageView>(R.id.imgClose)
+
+
+        layoutsend.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        imgClose.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
 
 }

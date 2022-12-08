@@ -149,6 +149,7 @@
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/activity_meal_times.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/activity_my_address.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/activity_my_payments.xml" value="0.25416666666666665" />
+        <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/activity_my_payments2.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/activity_notification_actiivty.xml" value="0.24010416666666667" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/activity_nutrition_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/activity_nutrition_food_detail.xml" value="0.25416666666666665" />
@@ -192,6 +193,7 @@
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/dialog_create_nutrition.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/dialog_create_workout.xml" value="0.25" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/dialog_gallery.xml" value="0.253125" />
+        <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/dialog_guestmode.xml" value="0.253125" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/fragment_chat.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/fragment_excersice.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/fragment_goals.xml" value="0.25416666666666665" />
@@ -204,7 +206,7 @@
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_all_clients.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_all_workout.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_chat_message.xml" value="0.264" />
-        <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_chats.xml" value="0.25416666666666665" />
+        <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_chats.xml" value="0.264" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_choose_pacakge.xml" value="0.253125" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_client_nutritions.xml" value="0.25416666666666665" />
         <entry key="..\:/MtechSoft/EasyLifes/app/src/main/res/layout/item_clients.xml" value="0.253125" />

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".userside.activities.auth.SignUpActivity">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -386,6 +388,18 @@
             </RelativeLayout>
 
         </RelativeLayout>
-
-
 </ScrollView>
+    <com.sn.lib.NestedProgress
+        android:visibility="gone"
+        android:id="@+id/dotloader"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:innerAnimInterpolator="linear"
+        app:outerAnimInterpolator="overshoot"
+        android:layout_centerInParent="true"
+        app:innerLoaderStrokeWidth="6dp"
+        app:outerLoaderStrokeWidth="6dp"
+        app:outerLoaderColor="@color/appColor"
+        app:innerLoaderColor="@color/light_grey"
+        app:outerLoaderAnimDuration="1500" />
+</RelativeLayout>

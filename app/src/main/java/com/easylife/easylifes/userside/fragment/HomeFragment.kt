@@ -7,27 +7,30 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
-import com.easylife.easylifes.userside.activities.notification.NotificationActiivty
-import com.easylife.easylifes.userside.adapter.CategoriesAdapter
-import com.easylife.easylifes.userside.adapter.HomeSliderAdapter
 import com.easylife.easylifes.databinding.FragmentHomeBinding
 import com.easylife.easylifes.model.BaseResponse
 import com.easylife.easylifes.model.home.BannersDataModel
 import com.easylife.easylifes.model.home.CategoriesDataModel
 import com.easylife.easylifes.model.home.HomeResponseModel
 import com.easylife.easylifes.model.signup.SignUpDataModel
+import com.easylife.easylifes.userside.activities.notification.NotificationActiivty
 import com.easylife.easylifes.userside.activities.profile.UserProfileActivity
+import com.easylife.easylifes.userside.adapter.CategoriesAdapter
+import com.easylife.easylifes.userside.adapter.HomeSliderAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 
@@ -77,6 +80,20 @@ class HomeFragment : Fragment() {
         Log.d("tokennnnnnns", firebaseToken)
 
         updateFcm(userId, firebaseToken)
+
+
+        val c: Calendar = Calendar.getInstance()
+        val timeOfDay: Int = c.get(Calendar.HOUR_OF_DAY)
+
+        if (timeOfDay >= 0 && timeOfDay < 12) {
+            binding.tvTime.text = "Good Morning"
+        } else if (timeOfDay >= 12 && timeOfDay < 16) {
+            binding.tvTime.text = "Good Afternoon"
+        } else if (timeOfDay >= 16 && timeOfDay < 21) {
+            binding.tvTime.text = "Good Evening"
+        } else if (timeOfDay >= 21 && timeOfDay < 24) {
+            binding.tvTime.text = "Good Night"
+        }
     }
 
     private fun onClicks() {

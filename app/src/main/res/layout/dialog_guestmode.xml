@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_8sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAddWorkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_24sdp"
+            app:cardElevation="@dimen/_4sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                >
+
+                <ImageView
+                    android:id="@+id/imgClose"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:padding="@dimen/_20sdp"
+                    android:src="@drawable/ic_cross_white"
+                    app:tint="@color/black" />
+
+                <ImageView
+                    android:id="@+id/imgVlc"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:src="@drawable/vlc" />
+
+                <TextView
+                    android:layout_below="@+id/imgVlc"
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/barlow_bold"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="Sign In Required"
+                    android:textColor="@color/haiti"
+                    android:textSize="@dimen/_15sdp" />
+                <TextView
+                    android:id="@+id/head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv"
+                    android:gravity="center"
+                    android:text="You are currently using guest mode.\nTo use this feature of the application you need to sign in to your profile or create new profile."
+                    android:layout_marginHorizontal="@dimen/_24sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/barlow_medium"
+                    android:textColor="@color/haiti"
+                    android:layout_marginTop="@dimen/_12sdp"/>
+
+
+                <RelativeLayout
+                    android:id="@+id/layout_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_below="@+id/head"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:background="@drawable/bg_green_rounded_30dp"
+                    android:elevation="@dimen/_16sdp"
+                    android:paddingHorizontal="@dimen/_24sdp">
+
+                    <TextView
+                        android:id="@+id/tvnext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="@dimen/_36sdp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:text="Sign In"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</RelativeLayout>

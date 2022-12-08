@@ -78,6 +78,7 @@ class UserProfileActivity : AppCompatActivity() {
                             binding.edAddress.text = signupResponse.data.address
                             binding.tvGoal.text = signupResponse.data.your_goal
                             binding.tvCurrentFitnessLevel.text = signupResponse.data.current_fitness_level
+                            binding.edLocation.text = signupResponse.data.interests
 
                         } else {
                             utilities.showFailureToast(

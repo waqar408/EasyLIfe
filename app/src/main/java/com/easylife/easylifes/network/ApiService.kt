@@ -471,4 +471,8 @@ interface ApiService {
         @Field("token") token: String?,
     ):
             Call<BaseResponse>
+
+    @Headers("Accept: application/json")
+    @GET
+    fun guestLogin(@Url url: String): Call<SignupResponseModel>
 }

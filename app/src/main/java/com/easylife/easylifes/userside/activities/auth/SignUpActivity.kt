@@ -119,9 +119,9 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun verifyData(email: String, countrycode: String, phoneNumber: String) {
         if (utilities.isConnectingToInternet(this@SignUpActivity)) {
-            utilities.showProgressDialog(this@SignUpActivity,"Please wait...")
+            binding.dotloader.visibility =View.VISIBLE
             apiClient.getApiService().verifyData(
-                email,countrycode,phoneNumber
+                email, countrycode, phoneNumber
             )
                 .enqueue(object : Callback<VerifyDataResponseModel> {
 
@@ -130,44 +130,54 @@ class SignUpActivity : AppCompatActivity() {
                         response: Response<VerifyDataResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
-                        if (response.isSuccessful)
-                        {
+                        binding.dotloader.visibility = View.GONE
+                        if (response.isSuccessful) {
                             if (signupResponse?.status!!) {
-                                if(userType == "trainer")
-                                {
-                                    val intent = Intent(this@SignUpActivity,OtpVerificationActivity::class.java)
-                                    intent.putExtra("name",name)
-                                    intent.putExtra("email",email)
-                                    intent.putExtra("password",password)
-                                    intent.putExtra("experience",experience)
-                                    intent.putExtra("phonecode",phoneCode)
-                                    intent.putExtra("phonenumber",phoneNumber)
+                                if (userType == "trainer") {
+                                    val intent = Intent(
+                                        this@SignUpActivity,
+                                        OtpVerificationActivity::class.java
+                                    )
+                                    intent.putExtra("name", name)
+                                    intent.putExtra("email", email)
+                                    intent.putExtra("password", password)
+                                    intent.putExtra("experience", experience)
+                                    intent.putExtra("phonecode", phoneCode)
+                                    intent.putExtra("phonenumber", phoneNumber)
                                     startActivity(intent)
-                                }else{
-                                    val intent = Intent(this@SignUpActivity,OtpVerificationActivity::class.java)
-                                    intent.putExtra("name",name)
-                                    intent.putExtra("email",email)
-                                    intent.putExtra("password",password)
-                                    intent.putExtra("experience","")
-                                    intent.putExtra("phonecode",phoneCode)
-                                    intent.putExtra("phonenumber",phoneNumber)
+                                } else {
+                                    val intent = Intent(
+                                        this@SignUpActivity,
+                                        OtpVerificationActivity::class.java
+                                    )
+                                    intent.putExtra("name", name)
+                                    intent.putExtra("email", email)
+                                    intent.putExtra("password", password)
+                                    intent.putExtra("experience", "")
+                                    intent.putExtra("phonecode", phoneCode)
+                                    intent.putExtra("phonenumber", phoneNumber)
                                     startActivity(intent)
                                 }
 
                             } else {
-                                utilities.showFailureToast(this@SignUpActivity,signupResponse.message)
+                                utilities.showFailureToast(
+                                    this@SignUpActivity,
+                                    signupResponse.message
+                                )
                             }
-                        }else{
-                            utilities.showFailureToast(this@SignUpActivity,signupResponse!!.message)
+                        } else {
+                            utilities.showFailureToast(
+                                this@SignUpActivity,
+                                signupResponse!!.message
+                            )
                         }
 
                     }
 
                     override fun onFailure(call: Call<VerifyDataResponseModel>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
-                        utilities.showFailureToast(this@SignUpActivity,t.message)
+                        binding.dotloader.visibility = View.GONE
+//                        utilities.showFailureToast(this@SignUpActivity,t.message)
 
                     }
 

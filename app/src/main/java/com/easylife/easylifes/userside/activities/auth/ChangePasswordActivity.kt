@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
 import com.easylife.easylifes.R
 import com.easylife.easylifes.databinding.ActivityChangePasswordBinding
 import com.easylife.easylifes.model.signup.SignUpDataModel
@@ -94,7 +95,7 @@ class ChangePasswordActivity : AppCompatActivity() {
 
     private fun resetPasswordApi(oldPassword: String, password: String) {
         if (utilities.isConnectingToInternet(this@ChangePasswordActivity)) {
-            utilities.showProgressDialog(this@ChangePasswordActivity,"Reseting Passowrd...")
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().changePassword(
                 userId,oldPassword,password)
                 .enqueue(object : Callback<SignupResponseModel> {
@@ -104,7 +105,7 @@ class ChangePasswordActivity : AppCompatActivity() {
                         response: Response<SignupResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful)
                         {
                             if (signupResponse?.status!!) {
@@ -123,8 +124,7 @@ class ChangePasswordActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
-                        utilities.showFailureToast(this@ChangePasswordActivity,t.message)
+                        binding.dotloader.visibility = View.GONE
 
                     }
 

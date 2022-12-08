@@ -113,61 +113,6 @@ class WorkoutSelectionAdpater(
         }
     }
 
-    /*private fun bottomsheetreps(position: Int,employee : AllWorkoutsDataListModel,
-                                rl : RelativeLayout,imgTick : ImageView,
-                                tvDescription : TextView,tvDescription2: TextView) {
-        val utilities = Utilities(context)
-        val bottomSheetDialog : BottomSheetDialog
-        bottomSheetDialog = BottomSheetDialog(context)
-        bottomSheetDialog.setContentView(R.layout.bottom_reps)
-        bottomSheetDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val canelBtn = bottomSheetDialog.findViewById<RelativeLayout>(R.id.layout_backArrow)
-        val noOfReps = bottomSheetDialog.findViewById<EditText>(R.id.edNoOfReps)
-        val noOfMinutes = bottomSheetDialog.findViewById<EditText>(R.id.edNoOfReps)
-        val noOfSeconds = bottomSheetDialog.findViewById<EditText>(R.id.edNoOfReps)
-        val btnDone = bottomSheetDialog.findViewById<TextView>(R.id.btnDone)
-
-
-        btnDone!!.setOnClickListener{
-            reps = noOfReps!!.text.toString()
-            minutes = noOfMinutes!!.text.toString()
-            seconds = noOfSeconds!!.text.toString()
-            if (reps.equals(""))
-            {
-                Toast.makeText(context,"Please Enter Reps",Toast.LENGTH_SHORT).show()
-            }else if (minutes.equals("")){
-                Toast.makeText(context,"Please Enter Minutes",Toast.LENGTH_SHORT).show()
-            }else if (seconds.equals(""))
-            {
-                Toast.makeText(context,"Please Enter Seconds",Toast.LENGTH_SHORT).show()
-            }else{
-                reps1= reps.toInt()
-                minutes1 = minutes.toInt()
-                seconds1 = seconds.toInt()
-                tvDescription.text = "No of Reps: " +reps
-                tvDescription2.text = minutes+" mins:"+seconds+" secs"
-
-                employee.isChecked = !employee.isChecked
-                if (employee.isChecked) {
-                    rl.setBackgroundResource(R.drawable.selected_greenback)
-                    imgTick.setColorFilter(ContextCompat.getColor(context, R.color.white))
-
-                }
-                if (!employee.isChecked) {
-                    rl.setBackgroundResource(R.drawable.btn_outline_light_color)
-                    imgTick.setColorFilter(ContextCompat.getColor(context, R.color.white))
-                }
-                bottomSheetDialog.dismiss()
-                Log.d("positionss",position.toString())
-            }
-        }
-
-        canelBtn!!.setOnClickListener {
-            bottomSheetDialog.dismiss()
-        }
-
-        bottomSheetDialog.show()
-    }*/
 
     val all: ArrayList<AllWorkoutsDataListModel>
         get() = employees

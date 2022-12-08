@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import com.easylife.easylifes.databinding.ActivityOtpVerificationBinding
 import com.easylife.easylifes.model.signup.SignupResponseModel
 import com.easylife.easylifes.utils.Utilities
@@ -69,7 +70,7 @@ class OtpVerificationActivity : AppCompatActivity() {
 
     private fun SignUpApi(name: String, email: String, password: String, userType : String) {
         if (utilities.isConnectingToInternet(this@OtpVerificationActivity)) {
-            utilities.showProgressDialog(this@OtpVerificationActivity,"Please wait...")
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().signUp(
                 userType,name,email,password,experience,phoneCode,phoneNumber
             )
@@ -80,7 +81,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                         response: Response<SignupResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful)
                         {
                             if (signupResponse?.status!!) {
@@ -117,9 +118,7 @@ class OtpVerificationActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
-                        utilities.showFailureToast(this@OtpVerificationActivity,t.message)
-
+                        binding.dotloader.visibility = View.GONE
                     }
 
                 })

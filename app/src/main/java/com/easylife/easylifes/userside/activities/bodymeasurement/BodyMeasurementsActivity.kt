@@ -50,11 +50,10 @@ class BodyMeasurementsActivity : AppCompatActivity() {
             val feet = binding.edFeet.text.toString()
             val inch = binding.edInch.text.toString()
             val cm = binding.edCm.text.toString()
-            if (heightUnit == "cm")
-            {
-                heightCm = cm
+            heightCm = if (heightUnit == "cm") {
+                cm
             }else{
-                heightCm = "$feet.$inch"
+                "$feet.$inch"
             }
             updateWithoutImageApi(age,weight,heightCm)
         }

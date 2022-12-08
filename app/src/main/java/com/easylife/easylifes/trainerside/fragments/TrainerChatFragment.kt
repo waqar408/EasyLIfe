@@ -29,7 +29,7 @@ class TrainerChatFragment : Fragment() {
     private var chatList : ArrayList<MessengerDataModel> =ArrayList()
     private lateinit var utilities: Utilities
     var filterList: ArrayList<MessengerDataModel> = ArrayList()
-    private var user_idd = ""
+    private var userId = ""
     lateinit var adapter : ChatAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,7 @@ class TrainerChatFragment : Fragment() {
         val gsonn = Gson()
         val jsonn: String = utilities.getString(requireContext(), "loginResponse")
         val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
-        user_idd = obj.id.toString()
+        userId = obj.id.toString()
         getChatList()
 
         binding.edSearch.addTextChangedListener(object : TextWatcher {
@@ -100,7 +100,7 @@ class TrainerChatFragment : Fragment() {
         val apiClient = ApiClient()
         if (utilities.isConnectingToInternet(requireContext())) {
             binding.dotloader.visibility = View.VISIBLE
-            val url = apiClient.BASE_URL + "get_messanger/" + user_idd
+            val url = apiClient.BASE_URL + "get_messanger/" + userId
             apiClient.getApiService().messengerList(url)
                 .enqueue(object : Callback<MessengerResponseModel> {
 

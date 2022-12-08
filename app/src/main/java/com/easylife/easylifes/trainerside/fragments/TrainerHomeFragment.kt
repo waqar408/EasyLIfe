@@ -44,7 +44,7 @@ class TrainerHomeFragment : Fragment() {
     var profileImage = ""
     var userName = ""
     var userId = ""
-    var firebaseToken = ""
+    private var firebaseToken = ""
     lateinit var adapter : TrainerClientsAdapter
     var filterList: ArrayList<TrainerUserDataModel> = ArrayList()
 
@@ -102,6 +102,19 @@ class TrainerHomeFragment : Fragment() {
         Log.d("tokennnnnnns", firebaseToken)
 
         updateFcm(userId, firebaseToken)
+
+        val c: Calendar = Calendar.getInstance()
+        val timeOfDay: Int = c.get(Calendar.HOUR_OF_DAY)
+
+        if (timeOfDay >= 0 && timeOfDay < 12) {
+            binding.tvTime.text = "Good Morning"
+        } else if (timeOfDay >= 12 && timeOfDay < 16) {
+            binding.tvTime.text = "Good Afternoon"
+        } else if (timeOfDay >= 16 && timeOfDay < 21) {
+            binding.tvTime.text = "Good Evening"
+        } else if (timeOfDay >= 21 && timeOfDay < 24) {
+            binding.tvTime.text = "Good Night"
+        }
     }
     private fun filter(text: String) {
         if (categoriesList.size > 0) {
@@ -263,7 +276,7 @@ class TrainerHomeFragment : Fragment() {
                     ) {
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!!.equals(true)) {
+                            if (signupResponse?.status!!) {
 //                                homeData()
                             } else {
                                 utilities.showFailureToast(

@@ -3,6 +3,7 @@ package com.easylife.easylifes.userside.activities.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.easylife.easylifes.databinding.ActivityForgotPasswordBinding
 import com.easylife.easylifes.model.forgotpassword.ForgotPasswordResponseModel
 import com.easylife.easylifes.utils.Utilities
@@ -54,7 +55,7 @@ class ForgotPassword : AppCompatActivity() {
     private fun forgotPassword(email : String) {
         if (utilities.isConnectingToInternet(this@ForgotPassword)) {
             val url = apiClient.BASE_URL + "forgot-password/"+email
-            utilities.showProgressDialog(this@ForgotPassword,"Please wait...")
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().forgotPassword(url)
                 .enqueue(object : Callback<ForgotPasswordResponseModel> {
 
@@ -63,7 +64,7 @@ class ForgotPassword : AppCompatActivity() {
                         response: Response<ForgotPasswordResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful) {
                             if (signupResponse?.status!!) {
                                 val email1 = signupResponse.data.email
@@ -90,8 +91,7 @@ class ForgotPassword : AppCompatActivity() {
 
                     override fun onFailure(call: Call<ForgotPasswordResponseModel>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
-                        utilities.showFailureToast(this@ForgotPassword, t.message)
+                        binding.dotloader.visibility = View.GONE
 
                     }
 

@@ -27,7 +27,7 @@ class AllWorkoutsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: GetUserWorkoutDataListModel = list.get(position)
+        val model: GetUserWorkoutDataListModel = list[position]
         holder.tvWorkoutCategoryName.text = model.title
         Glide.with(context).load(R.drawable.gradiant).into(holder.imgWorkoutCategory)
         holder.itemView.setOnClickListener {

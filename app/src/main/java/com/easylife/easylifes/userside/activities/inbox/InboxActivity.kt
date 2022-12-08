@@ -124,7 +124,7 @@ class InboxActivity : AppCompatActivity() {
     }
 
     private fun showAllMessagesRecycler() {
-        binding.rvChat.layoutManager = LinearLayoutManager(this@InboxActivity)
+        binding.rvChat.layoutManager = LinearLayoutManager(this@InboxActivity,LinearLayoutManager.VERTICAL,false)
         binding.rvChat.adapter = InboxAdapter(this@InboxActivity, chatList)
         binding.rvChat.scrollToPosition(chatList.size - 1)
         binding.rvChat.isNestedScrollingEnabled = false
@@ -185,15 +185,14 @@ class InboxActivity : AppCompatActivity() {
             Glide.with(this@InboxActivity).load(otherUserProfile).into(binding.imgProfile)
         }
 
-        chatList = ArrayList()
+        apiClient = ApiClient()
         getMessages()
         messageSeen(myId, otherUserId)
         setRVLayoutManager()
         setAdapter()
         setRVScrollListener()
 
-        chatList = ArrayList()
-        apiClient = ApiClient()
+//        chatList = ArrayList()
         page = 1
         limit = 50
         /*binding.idNestedSV.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
@@ -316,7 +315,7 @@ class InboxActivity : AppCompatActivity() {
         if (utilities.isConnectingToInternet(this@InboxActivity)) {
             binding.sendMessage.visibility = View.GONE
             binding.rlAttachment.visibility = View.GONE
-            binding.chatloader.visibility = View.VISIBLE
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().sendTextMessage(from_id, to_id, text, "text")
                 .enqueue(object : Callback<BaseResponse> {
 
@@ -327,7 +326,7 @@ class InboxActivity : AppCompatActivity() {
                         val signupResponse = response.body()
                         binding.rlAttachment.visibility = View.VISIBLE
                         binding.sendMessage.visibility = View.VISIBLE
-                        binding.chatloader.visibility = View.GONE
+                        binding.dotloader.visibility = View.GONE
 
                         if (signupResponse!!.status) {
                             //nothing to show
@@ -344,7 +343,7 @@ class InboxActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
                         binding.rlAttachment.visibility = View.VISIBLE
                         binding.sendMessage.visibility = View.VISIBLE
-                        binding.chatloader.visibility = View.GONE
+                        binding.dotloader.visibility = View.GONE
                         utilities.showFailureToast(this@InboxActivity, t.message!!)
                     }
 
@@ -405,7 +404,7 @@ class InboxActivity : AppCompatActivity() {
                 MultipartBody.Part.createFormData("media", imagefile!!.name, requestBody)
             binding.sendMessage.visibility = View.GONE
             binding.rlAttachment.visibility = View.GONE
-            binding.chatloader.visibility = View.VISIBLE
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().sendImageMessage(
                 myid,
                 otheruserid,
@@ -421,7 +420,7 @@ class InboxActivity : AppCompatActivity() {
                     ) {
                         binding.rlAttachment.visibility = View.VISIBLE
                         binding.sendMessage.visibility = View.VISIBLE
-                        binding.chatloader.visibility = View.GONE
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful) {
                             //do nothing
                             Log.d("reponmsemss", response.body()!!.message)
@@ -436,7 +435,7 @@ class InboxActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<SignupResponseModel>, t: Throwable) {
                         binding.rlAttachment.visibility = View.VISIBLE
                         binding.sendMessage.visibility = View.VISIBLE
-                        binding.chatloader.visibility = View.GONE
+                        binding.dotloader.visibility = View.GONE
                         Log.d("reponmsemss", t.message!!)
                         utilities.showFailureToast(this@InboxActivity, t.message.toString())
 

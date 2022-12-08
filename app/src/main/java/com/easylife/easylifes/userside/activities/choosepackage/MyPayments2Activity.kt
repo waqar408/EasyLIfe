@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easylife.easylifes.R
+import com.easylife.easylifes.databinding.ActivityMyPayments2Binding
 import com.easylife.easylifes.databinding.ActivityMyPaymentsBinding
 import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerDataModel
@@ -17,19 +18,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPaymentsActivity : AppCompatActivity(),SubscribedTrainersAdapter.onAllClientDetailClick {
-    private lateinit var binding : ActivityMyPaymentsBinding
+class MyPayments2Activity : AppCompatActivity() ,SubscribedTrainersAdapter.onAllClientDetailClick{
+    private lateinit var binding : ActivityMyPayments2Binding
     private lateinit var utilities : Utilities
     private lateinit var subscribedTrainerList : ArrayList<SubscribedTrainerDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding  = ActivityMyPaymentsBinding.inflate(layoutInflater)
+        binding = ActivityMyPayments2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initViews()
         onClicks()
     }
-
     private fun onClicks() {
         binding.layoutBackArrow.setOnClickListener {
             finish()
@@ -37,22 +37,22 @@ class MyPaymentsActivity : AppCompatActivity(),SubscribedTrainersAdapter.onAllCl
     }
 
     private fun initViews() {
-        utilities = Utilities(this@MyPaymentsActivity)
-        utilities.setGrayBar(this@MyPaymentsActivity)
+        utilities = Utilities(this@MyPayments2Activity)
+        utilities.setGrayBar(this@MyPayments2Activity)
 
         getAllSubSribedTrainers()
     }
 
     private fun getAllSubSribedTrainers() {
         val apiClient = ApiClient()
-        if (utilities.isConnectingToInternet(this@MyPaymentsActivity)) {
+        if (utilities.isConnectingToInternet(this@MyPayments2Activity)) {
             val gsonn = Gson()
-            val jsonn: String = utilities.getString(this@MyPaymentsActivity, "loginResponse")
+            val jsonn: String = utilities.getString(this@MyPayments2Activity, "loginResponse")
             val obj: SignUpDataModel = gsonn.fromJson(jsonn, SignUpDataModel::class.java)
             val useridd: String = java.lang.String.valueOf(obj.id)
 
             binding.dotloader.visibility = View.VISIBLE
-            val url = apiClient.BASE_URL + "subscribed-users/" + useridd
+            val url = apiClient.BASE_URL + "subscribed-trainers/" + useridd
             apiClient.getApiService().subscribedTrainer(url)
                 .enqueue(object : Callback<SubscribedTrainerResponseModel> {
 
@@ -74,7 +74,7 @@ class MyPaymentsActivity : AppCompatActivity(),SubscribedTrainersAdapter.onAllCl
 
 
                         } else {
-                            utilities.showFailureToast(this@MyPaymentsActivity, signupResponse.message)
+                            utilities.showFailureToast(this@MyPayments2Activity, signupResponse.message)
 
 
                         }
@@ -84,7 +84,7 @@ class MyPaymentsActivity : AppCompatActivity(),SubscribedTrainersAdapter.onAllCl
 
                     override fun onFailure(call: Call<SubscribedTrainerResponseModel>, t: Throwable) {
                         binding.dotloader.visibility = View.GONE
-                        utilities.showFailureToast(this@MyPaymentsActivity, t.message!!)
+                        utilities.showFailureToast(this@MyPayments2Activity, t.message!!)
                     }
 
 
@@ -94,7 +94,7 @@ class MyPaymentsActivity : AppCompatActivity(),SubscribedTrainersAdapter.onAllCl
         } else {
 
             utilities.showFailureToast(
-                this@MyPaymentsActivity,
+                this@MyPayments2Activity,
                 resources.getString(R.string.checkinternet)
             )
 
@@ -103,8 +103,8 @@ class MyPaymentsActivity : AppCompatActivity(),SubscribedTrainersAdapter.onAllCl
     }
 
     private fun allClients(subscribedTrainerList: ArrayList<SubscribedTrainerDataModel>) {
-        binding.rvSubscribedTrainers.layoutManager = LinearLayoutManager(this@MyPaymentsActivity)
-        binding.rvSubscribedTrainers.adapter = SubscribedTrainersAdapter(this@MyPaymentsActivity, subscribedTrainerList, this@MyPaymentsActivity)
+        binding.rvSubscribedTrainers.layoutManager = LinearLayoutManager(this@MyPayments2Activity)
+        binding.rvSubscribedTrainers.adapter = SubscribedTrainersAdapter(this@MyPayments2Activity, subscribedTrainerList, this@MyPayments2Activity)
 
     }
 

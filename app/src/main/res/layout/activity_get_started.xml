@@ -61,51 +61,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <RelativeLayout
-        android:id="@+id/btnGetStarted"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginHorizontal="@dimen/_16sdp"
-        android:background="@drawable/btn_back"
-        android:elevation="@dimen/_10sdp"
-        android:outlineAmbientShadowColor="@color/black"
-        android:outlineSpotShadowColor="@color/black"
-        android:layout_marginBottom="@dimen/_12sdp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_getStartedAsTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/barlow_medium"
-            android:gravity="center"
-            android:text="Get Started As User"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_13sdp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/btn_getStartedAsTrainer"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginHorizontal="@dimen/_16sdp"
-        android:background="@drawable/btn_back"
-        android:elevation="@dimen/_10sdp"
-        android:outlineAmbientShadowColor="@color/black"
-        android:outlineSpotShadowColor="@color/black"
-        android:layout_marginBottom="@dimen/_16sdp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/btnGetStarted"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/barlow_medium"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:background="@drawable/btn_back"
+            android:elevation="@dimen/_10sdp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="578dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="Get Started As User"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_getStartedAsTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:background="@drawable/btn_back"
+            android:elevation="@dimen/_10sdp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="652dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center"
+                android:text="Get Started As Trainer"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvGuestLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:fontFamily="@font/barlow_bold"
             android:gravity="center"
-            android:text="Get Started As Trainer"
-            android:textColor="@color/white"
+            android:text="Continue As Guest"
+            android:textColor="@color/appColor"
             android:textSize="@dimen/_13sdp" />
-    </RelativeLayout>
+    </LinearLayout>
+
+    <com.sn.lib.NestedProgress
+        android:visibility="gone"
+        android:id="@+id/dotloader"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_centerInParent="true"
+        app:innerAnimInterpolator="linear"
+        app:innerLoaderColor="@color/light_grey"
+        app:innerLoaderStrokeWidth="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:outerAnimInterpolator="overshoot"
+        app:outerLoaderAnimDuration="1500"
+        app:outerLoaderColor="@color/appColor"
+        app:outerLoaderStrokeWidth="6dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

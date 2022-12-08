@@ -1,7 +1,15 @@
 package com.easylife.easylifes.userside.activities.instructor
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
+import android.view.WindowManager
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
@@ -11,6 +19,8 @@ import com.easylife.easylifes.model.signup.SignUpDataModel
 import com.easylife.easylifes.model.trainerdetail.SubscriptionPackageDataModel
 import com.easylife.easylifes.model.trainerdetail.TrainerDetailResponseModel
 import com.easylife.easylifes.model.trainerdetail.VideoListDataModel
+import com.easylife.easylifes.trainerside.activities.clientdetail.WorkoutSelectionActivity
+import com.easylife.easylifes.userside.activities.auth.LoginActivity
 import com.easylife.easylifes.userside.activities.choosepackage.ChooseYourPackage
 import com.easylife.easylifes.userside.activities.inbox.InboxActivity
 import com.easylife.easylifes.userside.activities.review.ReviewListActivity
@@ -33,7 +43,8 @@ class InstructorDetailActivity : AppCompatActivity() {
     var trainerProfileImage = ""
     var trainerName = ""
     var trainerNickName = ""
-    var isSubscribed : Int? = null
+    var type = ""
+    var isSubscribed: Int? = null
     lateinit var videoList: ArrayList<VideoListDataModel>
     lateinit var packageList: ArrayList<SubscriptionPackageDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +66,7 @@ class InstructorDetailActivity : AppCompatActivity() {
         userId = java.lang.String.valueOf(obj.id)
         val intent = intent
         id = intent.getStringExtra("id").toString()
+        type = obj.type
 
         binding.tvAddAReviews.setOnClickListener {
             startActivity(Intent(this@InstructorDetailActivity, WriteReviewActivity::class.java))
@@ -69,7 +81,7 @@ class InstructorDetailActivity : AppCompatActivity() {
             finish()
         }
         binding.rlSubscribe.setOnClickListener {
-            if (packageList.isEmpty()) {
+            /*if (packageList.isEmpty()) {
                 utilities.showFailureToast(this@InstructorDetailActivity, "Loading Packages")
             } else {
                 if (isSubscribed== 1)
@@ -81,25 +93,42 @@ class InstructorDetailActivity : AppCompatActivity() {
                     startActivity(intentChoosePackage)
                 }
 
+            }*/
+            if (type == "3") {
+                guestDialog()
+            } else {
+                val intentChoosePackage =
+                    Intent(this@InstructorDetailActivity, ChooseYourPackage::class.java)
+                intentChoosePackage.putParcelableArrayListExtra("packagelist", packageList)
+                startActivity(intentChoosePackage)
             }
 
         }
         binding.rlChat.setOnClickListener {
+            if (type == "3") {
+                guestDialog()
+            } else {
+                val intentInbox = Intent(this@InstructorDetailActivity, InboxActivity::class.java)
+                intentInbox.putExtra("myId", userId)
+                intentInbox.putExtra("otherUserId", trainerId)
+                intentInbox.putExtra("otherUserProfile", trainerProfileImage)
+                intentInbox.putExtra("otherUserName", trainerName)
+                intentInbox.putExtra("otherUserNicName", trainerNickName)
+                startActivity(intentInbox)
+            }
 
-            val intentInbox = Intent(this@InstructorDetailActivity, InboxActivity::class.java)
-            intentInbox.putExtra("myId", userId)
-            intentInbox.putExtra("otherUserId",trainerId)
-            intentInbox.putExtra("otherUserProfile", trainerProfileImage)
-            intentInbox.putExtra("otherUserName", trainerName)
-            intentInbox.putExtra("otherUserNicName", trainerNickName)
-            startActivity(intentInbox)
 
         }
 
         binding.rlReviews1.setOnClickListener {
-            val intentReview = Intent(this@InstructorDetailActivity,ReviewListActivity::class.java)
-            intentReview.putExtra("trainerid",trainerId)
-            startActivity(intentReview)
+            if (type == "3") {
+                guestDialog()
+            } else {
+                val intentReview =
+                    Intent(this@InstructorDetailActivity, ReviewListActivity::class.java)
+                intentReview.putExtra("trainerid", trainerId)
+                startActivity(intentReview)
+            }
 
         }
 
@@ -147,10 +176,9 @@ class InstructorDetailActivity : AppCompatActivity() {
                             trainerNickName = signupResponse.data.username
                             binding.tvRating.text = signupResponse.data.average_rating
 
-                            if(isSubscribed == 1)
-                            {
+                            if (isSubscribed == 1) {
                                 binding.tvIsSubscribe.text = "Subscribed"
-                            }else{
+                            } else {
                                 binding.tvIsSubscribe.text = "Subscribe"
                             }
 
@@ -165,7 +193,6 @@ class InstructorDetailActivity : AppCompatActivity() {
 
                             packageList = ArrayList()
                             packageList = signupResponse.data.subscription_packages
-
 
 
                         } else {
@@ -197,6 +224,31 @@ class InstructorDetailActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun guestDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_guestmode)
+        val lp = WindowManager.LayoutParams()
+        lp.copyFrom(dialog.window!!.attributes)
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+        lp.gravity = Gravity.CENTER
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window!!.attributes = lp
+        val layoutsend = dialog.findViewById<RelativeLayout>(R.id.layout_send)
+        val imgClose = dialog.findViewById<ImageView>(R.id.imgClose)
+
+
+        layoutsend.setOnClickListener {
+            val intent = Intent(this@InstructorDetailActivity, LoginActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        imgClose.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
 

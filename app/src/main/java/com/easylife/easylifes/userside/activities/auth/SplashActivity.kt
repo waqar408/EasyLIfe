@@ -55,15 +55,20 @@ class SplashActivity : AppCompatActivity() {
                         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                         finish()
                     },3000)
-                }else{
+                }else if (userType == "2"){
                     Handler(Looper.myLooper()!!).postDelayed({
                         startActivity(Intent(this@SplashActivity, GenderSelectionActivity::class.java))
                         finish()
                     },3000)
                 }
-            }else{
+            }else if (userType == "2"){
                 Handler(Looper.myLooper()!!).postDelayed({
                     startActivity(Intent(this@SplashActivity, TrainerMainActivity::class.java))
+                    finish()
+                },3000)
+            }else{
+                Handler(Looper.myLooper()!!).postDelayed({
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     finish()
                 },3000)
             }

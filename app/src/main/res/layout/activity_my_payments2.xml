@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/porcelain"
-    tools:context=".userside.activities.choosepackage.MyPaymentsActivity">
-
+    tools:context=".userside.activities.choosepackage.MyPayments2Activity">
     <RelativeLayout
         android:id="@+id/layout_backArrow"
         android:layout_width="@dimen/_30sdp"

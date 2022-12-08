@@ -68,7 +68,7 @@ class ChatAdapter(
 //        holder.time.setText(time)
         if (model.unread_messages == 0)
         {
-            holder.rlSeen.visibility  = View.GONE
+            holder.rlSeen.visibility  = View.INVISIBLE
         }else{
             holder.rlSeen.visibility = View.VISIBLE
             holder.tvSeen.text = model.unread_messages.toString()
@@ -87,7 +87,7 @@ class ChatAdapter(
 
         if (model.unread_messages == 0)
         {
-            holder.rlSeen.visibility  = View.GONE
+            holder.rlSeen.visibility  = View.INVISIBLE
         }else{
             holder.rlSeen.visibility = View.VISIBLE
             holder.tvSeen.text = model.unread_messages.toString()

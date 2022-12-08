@@ -114,10 +114,6 @@ class UserWorkoutDetailVideoAdapter(
             repsSeconds = edRepsSeconds!!.text.toString()
             if (reps == "") {
                 Toast.makeText(context, "Please Enter Reps", Toast.LENGTH_SHORT).show()
-            } else if (repMinutes == "") {
-                Toast.makeText(context, "Please Enter Reps Minutes", Toast.LENGTH_SHORT).show()
-            } else if (repsSeconds == "") {
-                Toast.makeText(context, "Please Enter Reps Seconds", Toast.LENGTH_SHORT).show()
             } else if (restMinute == "") {
                 Toast.makeText(context, "Please Enter Rest Minutes", Toast.LENGTH_SHORT).show()
             } else if (repsSeconds == "") {
@@ -156,8 +152,7 @@ class UserWorkoutDetailVideoAdapter(
                 Glide.with(context).load(obj2.media).into(imgProfile)
                 description.text = obj2.description
                 user_WorkoutId = obj.user_workout_id
-                val layoutManager =
-                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 rv.layoutManager = layoutManager
                 val adapter = WorkoutDetailRepsAndRestAdapter(context, obj.data)
                 rv.adapter = adapter

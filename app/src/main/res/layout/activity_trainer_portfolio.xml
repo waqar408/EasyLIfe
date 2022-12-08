@@ -30,7 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_22sdp"
         android:fontFamily="@font/barlow_semibold"
-        android:text="Client Nutrition"
+        android:text="My Portfolio"
         android:textColor="@color/haiti"
         android:textSize="@dimen/_14sdp" />
 
@@ -53,24 +53,26 @@
             android:src="@drawable/ic_add" />
 
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPortfolio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rvPortfolio"
         android:layout_below="@+id/layout_backArrow"
+        android:layout_marginHorizontal="@dimen/_6sdp"
         android:layout_marginTop="@dimen/_12sdp"
-        tools:listitem="@layout/item_videos"
-        android:layout_marginHorizontal="@dimen/_6sdp"/>
-    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
-        android:id="@+id/dotloader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        tools:listitem="@layout/item_videos" />
+    <com.sn.lib.NestedProgress
         android:visibility="gone"
-        app:trailingcircular_animDelay="600"
-        app:trailingcircular_animDuration="1200"
-        app:trailingcircular_bigCircleRadius="40dp"
-        app:trailingcircular_dotsColor="@color/appColor"
-        app:trailingcircular_dotsRadius="@dimen/_7sdp"
-        app:trailingcircular_noOfTrailingDots="5" />
+        android:id="@+id/dotloader"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:innerAnimInterpolator="linear"
+        app:outerAnimInterpolator="overshoot"
+        android:layout_centerInParent="true"
+        app:innerLoaderStrokeWidth="6dp"
+        app:outerLoaderStrokeWidth="6dp"
+        app:outerLoaderColor="@color/appColor"
+        app:innerLoaderColor="@color/light_grey"
+        app:outerLoaderAnimDuration="1500" />
 </RelativeLayout>

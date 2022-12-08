@@ -112,7 +112,7 @@ class ChatFragment : Fragment() {
                             binding.dotloader.visibility =View.GONE
                             if (signupResponse!!.status) {
                                 if (!signupResponse.data.equals("")) {
-                                    //setMessagePusher()
+//                                    setMessagePusher()
                                     chatList = ArrayList()
                                     chatList = signupResponse.data
                                     if (chatList.isEmpty()) {

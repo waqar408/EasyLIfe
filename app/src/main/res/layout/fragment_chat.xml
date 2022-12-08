@@ -25,16 +25,16 @@
             android:src="@drawable/ic_back_arrow" />
 
     </RelativeLayout>
+
     <TextView
         android:id="@+id/tvChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat"
-        android:textColor="@color/haiti"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_24sdp"
-        android:textSize="@dimen/_14sdp"
-        />
+        android:text="Inbox"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_14sdp" />
     <RelativeLayout
         android:visibility="gone"
         android:layout_width="@dimen/_20sdp"
@@ -117,18 +117,19 @@
 
         tools:listitem="@layout/item_chats" />
 
-    <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
-        android:id="@+id/dotloader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:trailingcircular_animDelay="600"
-        app:trailingcircular_animDuration="1200"
+    <com.sn.lib.NestedProgress
         android:visibility="gone"
-        app:trailingcircular_bigCircleRadius="24dp"
-        app:trailingcircular_dotsColor="@color/appColor"
-        app:trailingcircular_dotsRadius="@dimen/_5sdp"
-        app:trailingcircular_noOfTrailingDots="5" />
+        android:id="@+id/dotloader"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:innerAnimInterpolator="linear"
+        app:outerAnimInterpolator="overshoot"
+        android:layout_centerInParent="true"
+        app:innerLoaderStrokeWidth="6dp"
+        app:outerLoaderStrokeWidth="6dp"
+        app:outerLoaderColor="@color/appColor"
+        app:innerLoaderColor="@color/light_grey"
+        app:outerLoaderAnimDuration="1500" />
     <TextView
         android:id="@+id/tvNoChat"
         android:layout_width="wrap_content"

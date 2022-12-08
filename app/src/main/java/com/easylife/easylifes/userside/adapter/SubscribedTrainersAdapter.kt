@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.easylife.easylifes.R
 import com.easylife.easylifes.model.subscribedtrainer.SubscribedTrainerDataModel
 import com.google.android.material.imageview.ShapeableImageView
@@ -30,6 +31,7 @@ class SubscribedTrainersAdapter(
         val model: SubscribedTrainerDataModel = list[position]
         val pacakgePrice = model.package_price
         val packageCurrency = model.price_currency
+        Glide.with(context).load(model.profile_image).into(holder.imgProfile)
         holder.tvPackagePrice.text = "$pacakgePrice $packageCurrency"
         val isExpired = model.is_expired
         if (isExpired)
@@ -37,7 +39,7 @@ class SubscribedTrainersAdapter(
             holder.imgClose.visibility = View.VISIBLE
             holder.tvDuration.text ="Subscription End"
         }else{
-            holder.imgTick.visibility = View.GONE
+            holder.imgTick.visibility = View.VISIBLE
             holder.tvDuration.text = model.validity_days+" Days"
         }
 

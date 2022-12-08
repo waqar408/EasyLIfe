@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.35"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -63,15 +63,15 @@
                         android:fontFamily="@font/barlow_semibold"
                         android:text="3/4 Setup"
                         android:textColor="@color/haiti"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_12sdp" />
                     <LinearLayout
                         android:layout_marginTop="@dimen/_4sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <ImageView
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
                             android:src="@drawable/mypayments"/>
                         <TextView
                             android:layout_marginStart="@dimen/_8sdp"
@@ -118,7 +118,8 @@
                     android:id="@+id/rlDelete"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.65"
+                    android:layout_marginEnd="@dimen/_12sdp"
                     android:orientation="vertical"
                     android:gravity="center">
 
@@ -150,9 +151,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
+                            <ImageView
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
                             android:src="@drawable/timer"/>
                         <TextView
                             android:id="@+id/tvDuration"

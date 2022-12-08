@@ -7,7 +7,7 @@
     tools:context=".userside.fragment.ProfileFragment">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cons"
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/layout_backArrow"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
@@ -78,6 +79,7 @@
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
         <ImageView
+            android:visibility="gone"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:src="@drawable/cameraicon"
@@ -138,9 +140,9 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_marginVertical="@dimen/_16sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 >
                 <RelativeLayout
@@ -169,7 +171,7 @@
                                 android:id="@+id/imgBodyMeasurements"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="@dimen/_12sdp"
+                                android:padding="@dimen/_14sdp"
                                 android:src="@drawable/bodymeasurementicon"
                                 app:tint="@color/statusbarcolor" />
                         </RelativeLayout>
@@ -182,6 +184,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="@dimen/_16sdp"
                         android:layout_marginBottom="@dimen/_16sdp"
+                        android:fontFamily="@font/barlow_bold"
                         android:text="Body\nMeasurements"
                         android:textColor="@color/haiti"
                         android:textSize="@dimen/_13sdp" />
@@ -193,8 +196,8 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_marginVertical="@dimen/_16sdp"
-                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 >
@@ -224,7 +227,7 @@
                                 android:id="@+id/imgMyPayments"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="@dimen/_12sdp"
+                                android:padding="@dimen/_14sdp"
                                 android:src="@drawable/wallet"
                                 app:tint="@color/statusbarcolor" />
                         </RelativeLayout>
@@ -237,6 +240,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="@dimen/_16sdp"
                         android:layout_marginBottom="@dimen/_16sdp"
+                        android:fontFamily="@font/barlow_bold"
                         android:text="My Payment"
                         android:textColor="@color/haiti"
                         android:textSize="@dimen/_13sdp" />
@@ -310,9 +314,9 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_marginVertical="@dimen/_16sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
                 android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 >
                 <RelativeLayout
@@ -341,21 +345,23 @@
                                 android:id="@+id/imgSettings"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="@dimen/_12sdp"
+                                android:padding="@dimen/_14sdp"
                                 android:src="@drawable/settingsicon"
                                 app:tint="@color/statusbarcolor" />
                         </RelativeLayout>
                     </RelativeLayout>
+
                     <TextView
                         android:id="@+id/tvSettings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_13sdp"
-                        android:textColor="@color/haiti"
-                        android:text="Settings"
                         android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_16sdp"
                         android:layout_marginBottom="@dimen/_16sdp"
-                        android:layout_marginStart="@dimen/_16sdp"/>
+                        android:fontFamily="@font/barlow_bold"
+                        android:text="Settings"
+                        android:textColor="@color/haiti"
+                        android:textSize="@dimen/_13sdp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -363,8 +369,8 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_marginVertical="@dimen/_16sdp"
-                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_16sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 >
@@ -394,7 +400,7 @@
                                 android:id="@+id/imgMyAddress"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="@dimen/_12sdp"
+                                android:padding="@dimen/_14sdp"
                                 android:src="@drawable/addressicon"
                                 app:tint="@color/statusbarcolor" />
                         </RelativeLayout>
@@ -407,6 +413,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="@dimen/_16sdp"
                         android:layout_marginBottom="@dimen/_16sdp"
+                        android:fontFamily="@font/barlow_bold"
                         android:text="My Address"
                         android:textColor="@color/haiti"
                         android:textSize="@dimen/_13sdp" />
@@ -425,9 +432,10 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_marginVertical="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
                 android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 >
                 <RelativeLayout
@@ -456,7 +464,7 @@
                                 android:id="@+id/imgEditAccount"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="@dimen/_12sdp"
+                                android:padding="@dimen/_14sdp"
                                 android:src="@drawable/supporticon"
                                 app:tint="@color/statusbarcolor" />
                         </RelativeLayout>
@@ -470,6 +478,7 @@
                         android:layout_marginStart="@dimen/_16sdp"
                         android:layout_marginBottom="@dimen/_16sdp"
                         android:text="FAQ And Support"
+                        android:fontFamily="@font/barlow_bold"
                         android:textColor="@color/haiti"
                         android:textSize="@dimen/_13sdp" />
                 </RelativeLayout>
@@ -479,16 +488,16 @@
                 android:layout_weight="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_marginVertical="@dimen/_16sdp"
-                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_16sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 >
                 <RelativeLayout
                     android:id="@+id/rlInviteFriend"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
 
                     <RelativeLayout
                         android:id="@+id/rlInviteFriend2"
@@ -510,7 +519,7 @@
                                 android:id="@+id/imgInviteFriend"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="@dimen/_12sdp"
+                                android:padding="@dimen/_14sdp"
                                 android:src="@drawable/addfriendicon"
                                 app:tint="@color/statusbarcolor" />
                         </RelativeLayout>
@@ -524,6 +533,7 @@
                         android:layout_marginStart="@dimen/_16sdp"
                         android:layout_marginBottom="@dimen/_16sdp"
                         android:text="Invite Friends"
+                        android:fontFamily="@font/barlow_bold"
                         android:textColor="@color/haiti"
                         android:textSize="@dimen/_13sdp" />
                 </RelativeLayout>

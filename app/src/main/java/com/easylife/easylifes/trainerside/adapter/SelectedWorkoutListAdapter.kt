@@ -93,11 +93,7 @@ class SelectedWorkoutListAdapter(
             repsSeconds = edRepsSeconds!!.text.toString()
             if (reps == "") {
                 Toast.makeText(context, "Please Enter Reps", Toast.LENGTH_SHORT).show()
-            } else if (repMinutes == "") {
-                Toast.makeText(context, "Please Enter Reps Minutes", Toast.LENGTH_SHORT).show()
-            } else if (repsSeconds == "") {
-                Toast.makeText(context, "Please Enter Reps Seconds", Toast.LENGTH_SHORT).show()
-            } else if (restMinute == "") {
+            }  else if (restMinute == "") {
                 Toast.makeText(context, "Please Enter Rest Minutes", Toast.LENGTH_SHORT).show()
             } else if (repsSeconds == "") {
                 Toast.makeText(context, "Please Enter Rest Seconds", Toast.LENGTH_SHORT).show()

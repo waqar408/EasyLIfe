@@ -74,6 +74,7 @@ class EditTrainerProfileActivity : AppCompatActivity() {
             address = obj.address
             phoneCode = obj.country_code
             phoneNumber= obj.phone
+            val experience = obj.experience
             Glide.with(this@EditTrainerProfileActivity).load(profileImage).placeholder(drawable).into(binding.profileImage)
             binding.edName.text = Editable.Factory.getInstance().newEditable(name)
             binding.edUserName.text = Editable.Factory.getInstance().newEditable(username)
@@ -82,6 +83,7 @@ class EditTrainerProfileActivity : AppCompatActivity() {
             binding.edAddress.text = Editable.Factory.getInstance().newEditable(address)
             binding.userName.text = username
             binding.tvLocation.text = location
+            binding.edExperience.text = Editable.Factory.getInstance().newEditable(experience)
         }
     }
 

@@ -3,6 +3,7 @@ package com.easylife.easylifes.userside.activities.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.easylife.easylifes.databinding.ActivityPhoneNumberBinding
 import com.easylife.easylifes.model.verifydata.VerifyDataResponseModel
 import com.easylife.easylifes.utils.Utilities
@@ -62,7 +63,7 @@ class PhoneNumberActivity : AppCompatActivity() {
 
     private fun verifyData(email: String, countrycode: String, phoneNumber: String) {
         if (utilities.isConnectingToInternet(this@PhoneNumberActivity)) {
-            utilities.showProgressDialog(this@PhoneNumberActivity,"Please wait...")
+            binding.dotloader.visibility = View.VISIBLE
             apiClient.getApiService().verifyData(
                 email,countrycode,phoneNumber
             )
@@ -73,7 +74,7 @@ class PhoneNumberActivity : AppCompatActivity() {
                         response: Response<VerifyDataResponseModel>
                     ) {
                         val signupResponse = response.body()
-                        utilities.hideProgressDialog()
+                        binding.dotloader.visibility = View.GONE
                         if (response.isSuccessful)
                         {
                             if (signupResponse?.status!!) {
@@ -96,8 +97,7 @@ class PhoneNumberActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<VerifyDataResponseModel>, t: Throwable) {
                         // Error logging in
-                        utilities.hideProgressDialog()
-                        utilities.showFailureToast(this@PhoneNumberActivity,t.message)
+                        binding.dotloader.visibility = View.GONE
 
                     }
 

@@ -86,7 +86,7 @@ dependencies {
     //image picker
     implementation 'com.github.dhaval2404:imagepicker:2.1'
     //loader
-    implementation 'com.agrawalsuneet.androidlibs:dotsloader:1.4'
+//    implementation 'com.agrawalsuneet.androidlibs:dotsloader:1.4'
     //pusher in android
     implementation 'com.pusher:pusher-java-client:2.2.1'
     //time

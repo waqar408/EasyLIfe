@@ -18,6 +18,9 @@
         android:theme="@style/Theme.EasyLifes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".userside.activities.choosepackage.MyPayments2Activity"
+            android:exported="false" />
+        <activity
             android:name=".userside.activities.profile.UserProfileActivity"
             android:exported="false" />
         <activity
@@ -126,10 +129,10 @@
             android:name="com.easylife.easylifes.userside.activities.Support.SupportActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".userside.activities.profile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileSettingActivity"
+            android:name=".userside.activities.profile.ProfileSettingActivity"
             android:exported="false" />
         <activity
             android:name="com.easylife.easylifes.userside.activities.auth.LogoutActivity"

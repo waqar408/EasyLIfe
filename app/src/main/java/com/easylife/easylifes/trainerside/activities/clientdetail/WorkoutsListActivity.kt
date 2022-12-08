@@ -26,7 +26,7 @@ class WorkoutsListActivity : AppCompatActivity(),
     private lateinit var binding: ActivityWorkoutsListBinding
     private lateinit var utilities: Utilities
     private var allWorkoutList: ArrayList<AllWorkoutsDataListModel> = ArrayList()
-    var tvWorkoutCategory = ""
+    private var tvWorkoutCategory = ""
     var clientid = ""
     var trainerid = ""
     var workoutid = ""
@@ -123,10 +123,7 @@ class WorkoutsListActivity : AppCompatActivity(),
         if (allWorkoutList.size > 0) {
 
             for (i in 0 until allWorkoutList.size) {
-                /*while (array1.size()>0)
-                {
-                    array1.remove(0)
-                }*/
+
                 val array1 = JsonArray()
                 workoutid = allWorkoutList.get(i).id.toString()
                 for (j in 0 until allWorkoutList.get(i).listReps.size)
@@ -209,10 +206,7 @@ class WorkoutsListActivity : AppCompatActivity(),
         var jsonObject2: JsonObject
         if (allWorkoutList.size > 0) {
             for (i in 0 until allWorkoutList.size) {
-                /*while (array1.size()>0)
-                {
-                    array1.remove(0)
-                }*/
+
                 val array1 = JsonArray()
                 workoutid = allWorkoutList.get(i).id.toString()
                 for (j in 0 until allWorkoutList.get(i).listReps.size)

@@ -21,7 +21,7 @@ class SubNutritionDetailAdapter(val context: Context, val list: ArrayList<MealTi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model: MealTimeFoodsDataModel = list!!.get(position)
         holder.tvCal.text = model.food_details.meal_calories+" Kcal"
-        holder.tvServings.text = model.food_details.serving_quantity
+        holder.tvServings.text = model.food_details.serving_size
         holder.tvMealTimeName.text = model.food_details.meal_title
 
     }

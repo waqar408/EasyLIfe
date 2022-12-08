@@ -32,7 +32,6 @@ class InboxAdapter(
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     lateinit var utils: Utilities
-    val apiClient = ApiClient()
 
     override fun getItemViewType(position: Int): Int {
         val model: MessageDataListModel? = listModel[position]
@@ -67,7 +66,8 @@ class InboxAdapter(
 
     fun addData(dataViews: ArrayList<MessageDataListModel?>) {
         this.listModel.addAll(dataViews)
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
+        notifyItemInserted(this.listModel.size-1)
     }
 
 

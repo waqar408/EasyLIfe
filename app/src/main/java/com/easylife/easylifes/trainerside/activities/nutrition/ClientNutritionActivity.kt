@@ -96,7 +96,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!! == true) {
+                            if (signupResponse?.status!!) {
                                 utilities.showSuccessToast(
                                     this@ClientNutritionActivity,
                                     signupResponse.message
@@ -147,13 +147,13 @@ class ClientNutritionActivity : AppCompatActivity(),
         lp.gravity = Gravity.CENTER
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window!!.attributes = lp
-        val layout_send = dialog.findViewById<RelativeLayout>(R.id.layout_send)
+        val layoutSend = dialog.findViewById<RelativeLayout>(R.id.layout_send)
         val nutritionName = dialog.findViewById<EditText>(R.id.edNutritionName)
         val tv = dialog.findViewById<TextView>(R.id.tv)
         val tvHeading = dialog.findViewById<TextView>(R.id.tvHeading)
         tv.text = "Select a name for the meal plan"
         tvHeading.text = "Meal Plan Name"
-        layout_send.setOnClickListener {
+        layoutSend.setOnClickListener {
             val nutritionName1 = nutritionName.text.toString()
             if (nutritionName1 == "") {
                 utilities.showFailureToast(
@@ -188,7 +188,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!! == true) {
+                            if (signupResponse?.status!!) {
                                 mealTimesList = ArrayList()
                                 mealTimesList = signupResponse.data
                                 binding.rvClientNutrition.layoutManager =
@@ -240,7 +240,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!! == true) {
+                            if (signupResponse?.status!!) {
                                 getMealTimes(mealPlanId)
                             } else {
                                 utilities.showFailureToast(
@@ -270,12 +270,12 @@ class ClientNutritionActivity : AppCompatActivity(),
 
 
     override fun onClickArea(position: Int) {
-        val model = mealTimesList.get(position)
+        val model = mealTimesList[position]
         bottomDeleteMeal(model.id.toString())
     }
 
     override fun onAddMealClick(position: Int) {
-        val model = mealTimesList.get(position)
+        val model = mealTimesList[position]
         val intent = Intent(this@ClientNutritionActivity,SearchMealActivity::class.java)
         intent.putExtra("mealplanid",model.user_meal_plan_id)
         intent.putExtra("mealtimeid",model.id.toString())
@@ -341,7 +341,7 @@ class ClientNutritionActivity : AppCompatActivity(),
                         binding.dotloader.visibility = View.GONE
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
-                            if (signupResponse?.status!! == true) {
+                            if (signupResponse?.status!!) {
                                 getMealTimes(mealPlanId)
                             } else {
                                 utilities.showFailureToast(

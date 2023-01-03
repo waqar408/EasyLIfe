@@ -104,6 +104,7 @@ class InboxActivity : AppCompatActivity() {
             var data = event.data
             data = data.substring(1, data.length - 1)
             val message: MessageDataListModel = gson.fromJson(data, MessageDataListModel::class.java)
+            val size = chatList.size
             chatList.add(message)
             runOnUiThread {
                 // Stuff that updates the UI
@@ -117,17 +118,20 @@ class InboxActivity : AppCompatActivity() {
             }
 
             Handler(Looper.getMainLooper()).post {
-                showAllMessagesRecycler()
+               showAllMessagesRecycler()
+//                setAdapter()
             }
         }
         pusher!!.connect()
     }
 
     private fun showAllMessagesRecycler() {
-        binding.rvChat.layoutManager = LinearLayoutManager(this@InboxActivity,LinearLayoutManager.VERTICAL,false)
+        /*binding.rvChat.layoutManager = LinearLayoutManager(this@InboxActivity,LinearLayoutManager.VERTICAL,false)
         binding.rvChat.adapter = InboxAdapter(this@InboxActivity, chatList)
         binding.rvChat.scrollToPosition(chatList.size - 1)
-        binding.rvChat.isNestedScrollingEnabled = false
+        binding.rvChat.isNestedScrollingEnabled = false*/
+        adapter.addData(chatList)
+        adapter.notifyDataSetChanged()
 
 
     }
@@ -209,6 +213,7 @@ class InboxActivity : AppCompatActivity() {
     }
 
     private fun setAdapter() {
+
         adapter = InboxAdapter(this@InboxActivity,chatList)
         adapter.notifyDataSetChanged()
         binding.rvChat.adapter = adapter

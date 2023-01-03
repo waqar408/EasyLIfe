@@ -75,10 +75,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@id/lnChat"
         android:layout_below="@+id/rlBar"
         tools:itemCount="12"
+        android:layout_marginBottom="@dimen/_8sdp"
         tools:listitem="@layout/item_chat_message" />
 
 

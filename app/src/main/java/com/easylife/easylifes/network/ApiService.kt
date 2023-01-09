@@ -475,4 +475,15 @@ interface ApiService {
     @Headers("Accept: application/json")
     @GET
     fun guestLogin(@Url url: String): Call<SignupResponseModel>
+
+    @Headers("Accept: application/json")
+    @POST("contact-us")
+    @FormUrlEncoded
+    fun contactus(
+        @Field("name") name: String,
+        @Field("phone") phone: String?,
+        @Field("email") email: String,
+        @Field("message") message: String,
+    ):
+            Call<SignupResponseModel>
 }

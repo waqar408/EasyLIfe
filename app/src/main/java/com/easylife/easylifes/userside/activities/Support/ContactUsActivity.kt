@@ -2,6 +2,7 @@ package com.easylife.easylifes.userside.activities.Support
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.easylife.easylifes.R
 
 class ContactUsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

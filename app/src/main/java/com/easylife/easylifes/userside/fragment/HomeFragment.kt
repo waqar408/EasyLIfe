@@ -51,8 +51,6 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-        /*sliderItems()
-        itemsSliderView()*/
         initViews()
         onClicks()
         getHomeData()
@@ -121,11 +119,7 @@ class HomeFragment : Fragment() {
         binding.viewPager.offscreenPageLimit = 1
 
         val pageTransformer = ViewPager.PageTransformer { page: View, position: Float ->
-            /*page.translationX = -pageTranslationX * position
-            // Next line scales the item's height. You can remove it if you don't want this effect
-            page.scaleY = 1 - (0.25f * abs(position))
-            // If you want a fading effect uncomment the next line:
-            // page.alpha = 0.25f + (1 - abs(position))*/
+
             val r : Float = 1- abs(position)
             page.scaleY = 0.75f +r*0.25f
         }
@@ -139,14 +133,7 @@ class HomeFragment : Fragment() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                /*if (position == 0) {
-                    // viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                }
-                if (position == 1) {
 
-                }
-                if (position == 2){
-                }*/
             }
 
             override fun onPageSelected(position: Int) {}
@@ -193,28 +180,19 @@ class HomeFragment : Fragment() {
                         }
 
                     }
-
                     override fun onFailure(call: Call<HomeResponseModel>, t: Throwable) {
                         binding.dotloader.visibility = View.GONE
                         utilities.showFailureToast(requireActivity(),t.message!!)
                     }
-
-
                 })
-
-
         } else {
-
             utilities.showFailureToast(requireActivity(), resources.getString(R.string.checkinternet))
-
         }
-
     }
 
     private fun categoryData(categoriesList : ArrayList<CategoriesDataModel>) {
         binding.recyclerViewFitness.layoutManager =LinearLayoutManager(requireContext())
         binding.recyclerViewFitness.adapter = CategoriesAdapter(requireContext(),categoriesList)
-
     }
 
     private fun updateFcm(
@@ -227,7 +205,6 @@ class HomeFragment : Fragment() {
                 userId, "android", token
             )
                 .enqueue(object : Callback<BaseResponse> {
-
                     override fun onResponse(
                         call: Call<BaseResponse>,
                         response: Response<BaseResponse>
@@ -235,7 +212,6 @@ class HomeFragment : Fragment() {
                         val signupResponse = response.body()
                         if (response.isSuccessful) {
                             if (signupResponse?.status!!) {
-//                                homeData()
                             } else {
                                 utilities.showFailureToast(
                                     requireActivity(),
@@ -248,16 +224,10 @@ class HomeFragment : Fragment() {
                                 signupResponse!!.message
                             )
                         }
-
                     }
-
                     override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-                        // Error logging in
                         utilities.hideProgressDialog()
-                        //   utilities.showFailureToast(requireActivity(), t.message)
-
                     }
-
                 })
         } else {
             utilities.showNoInternetToast(requireActivity())

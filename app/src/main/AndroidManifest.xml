@@ -18,6 +18,13 @@
         android:theme="@style/Theme.EasyLifes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".userside.activities.Support.ContactUsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".userside.activities.choosepackage.MyPayments2Activity"
             android:exported="false" />
         <activity
@@ -120,13 +127,13 @@
             android:name=".userside.activities.choosepackage.ChooseYourPackage"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.Support.PrivacyPolicyActivity"
+            android:name=".userside.activities.Support.PrivacyPolicyActivity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.Support.Support2Activity"
+            android:name=".userside.activities.Support.Support2Activity"
             android:exported="false" />
         <activity
-            android:name="com.easylife.easylifes.userside.activities.Support.SupportActivity"
+            android:name=".userside.activities.Support.SupportActivity"
             android:exported="false" />
         <activity
             android:name=".userside.activities.profile.EditProfileActivity"

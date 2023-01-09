@@ -2,6 +2,7 @@ package com.easylife.easylifes.trainerside.fragments
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -35,7 +36,7 @@ import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 
-class TrainerHomeFragment : Fragment() {
+class TrainerHomeFragment : Fragment(),HomeSliderAdapter.onPageListner {
     private lateinit var binding : FragmentTrainerHomeBinding
     private var adpter: HomeSliderAdapter? = null
     private lateinit var utilities: Utilities
@@ -108,7 +109,7 @@ class TrainerHomeFragment : Fragment() {
 
         if (timeOfDay >= 0 && timeOfDay < 12) {
             binding.tvTime.text = "Good Morning"
-        } else if (timeOfDay >= 12 && timeOfDay < 16) {
+        } else if (timeOfDay in 12..15) {
             binding.tvTime.text = "Good Afternoon"
         } else if (timeOfDay >= 16 && timeOfDay < 21) {
             binding.tvTime.text = "Good Evening"
@@ -150,7 +151,7 @@ class TrainerHomeFragment : Fragment() {
     fun imageSlider(imageList : ArrayList<BannersDataModel>)
     {
 
-        adpter = HomeSliderAdapter(requireContext(), imageList)
+        adpter = HomeSliderAdapter(requireContext(), imageList,this@TrainerHomeFragment)
         binding.viewPager.currentItem = 0
         binding.viewPager.adapter = adpter
         binding.dotsIndicator.attachTo(binding.viewPager)
@@ -304,5 +305,13 @@ class TrainerHomeFragment : Fragment() {
         } else {
             utilities.showNoInternetToast(requireActivity())
         }
+    }
+
+    override fun onPageClick(position: Int) {
+        val viewIntent = Intent(
+            "android.intent.action.VIEW",
+            Uri.parse(bannerList[position].website_url)
+        )
+        startActivity(viewIntent)
     }
 }

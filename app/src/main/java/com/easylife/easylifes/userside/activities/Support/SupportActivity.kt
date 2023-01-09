@@ -49,14 +49,16 @@ class SupportActivity : AppCompatActivity() {
             finish()
         }
         binding.layoutSend.setOnClickListener {
-            try {
+            val intent = Intent(this@SupportActivity,ContactUsActivity::class.java)
+            startActivity(intent)
+            /*try {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + "easylife4661@gmail.com"))
                 intent.putExtra(Intent.EXTRA_SUBJECT, "your_subject")
                 intent.putExtra(Intent.EXTRA_TEXT, "your_text")
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
                 //TODO smth
-            }
+            }*/
         }
     }
 

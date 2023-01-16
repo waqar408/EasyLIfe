@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/porcelain"
+    tools:context=".userside.activities.clientnutrition.SearchNutritionDetailActivity">
+    <RelativeLayout
+        android:id="@+id/layout_backArrow"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_white_rounded_8dp"
+        android:elevation="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/text_todo"
+            android:src="@drawable/ic_back_arrow" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="Nutrition Name"
+        android:textColor="@color/haiti"
+        android:textSize="@dimen/_14sdp" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_bell_home" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layoutCreateWorkout"
+        android:layout_below="@id/layout_backArrow">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:elevation="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:cardCornerRadius="@dimen/_30sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        android:background="@drawable/upper_white_curve"
+                        android:elevation="@dimen/_12sdp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/con"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_12sdp">
+
+                            <RelativeLayout
+                                android:id="@+id/rlL"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/btn_weight_selection_back"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/imgProfile"
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:padding="@dimen/_8sdp"
+                                    android:src="@drawable/ic_diets"
+                                    android:tint="@color/white"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                            </RelativeLayout>
+
+
+                            <ImageView
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginTop="-20dp"
+                                android:src="@drawable/online_icon"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toEndOf="@+id/rlL"
+                                app:layout_constraintTop_toBottomOf="@+id/rlL" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toEndOf="@+id/con"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:layout_weight="0.3"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/barlow_semibold"
+                                    android:text="Egg Yolk"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_15sdp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl"
+                        android:background="@color/porcelain"
+                        android:orientation="vertical">
+
+
+
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Calories"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvCalories"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="center"
+                                android:text="00"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Protein (g)"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvProtein"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="start|center_vertical"
+                                android:text="40"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Carbs (g)"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvCarbs"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="start|center_vertical"
+                                android:text="40"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Fat (g)"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvFat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="start|center_vertical"
+                                android:text="40"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Fiber (g)"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvFiber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="start|center_vertical"
+                                android:text="40"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Sodium (g)"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvSodium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="start|center_vertical"
+                                android:text="40"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Sugar (g)"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvSugar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="start|center_vertical"
+                                android:text="40"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="start|center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_16sdp"
+                                    android:fontFamily="@font/barlow_medium"
+                                    android:text="Serving Size"
+                                    android:textColor="@color/haiti"
+                                    android:textSize="@dimen/_14sdp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <Spinner
+                                android:id="@+id/spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/barlow_medium"
+                                android:gravity="start|center_vertical"
+                                android:text="40"
+                                android:textColor="@color/haiti"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:background="@color/grayviewcolor" />
+
+                        <RelativeLayout
+                            android:id="@+id/layoutComplete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginHorizontal="@dimen/_16sdp"
+                            android:background="@drawable/bg_green_rounded_30dp"
+                            android:elevation="@dimen/_8sdp"
+                            android:outlineAmbientShadowColor="@color/black"
+                            android:outlineSpotShadowColor="@color/black"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginHorizontal="@dimen/_16sdp"
+                                android:fontFamily="@font/barlow_medium"
+                                android:text="Add Set"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <com.sn.lib.NestedProgress
+        android:visibility="gone"
+        android:id="@+id/dotloader"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:innerAnimInterpolator="linear"
+        app:outerAnimInterpolator="overshoot"
+        android:layout_centerInParent="true"
+        app:innerLoaderStrokeWidth="6dp"
+        app:outerLoaderStrokeWidth="6dp"
+        app:outerLoaderColor="@color/appColor"
+        app:innerLoaderColor="@color/light_grey"
+        app:outerLoaderAnimDuration="1500" />
+</RelativeLayout>

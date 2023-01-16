@@ -15,6 +15,11 @@
         android:icon="@drawable/ic_excersice"
         android:title="Tools" />
 
+    <item
+        android:id="@+id/goalsFragment"
+        android:icon="@drawable/ic_diets"
+        android:title="Tools" />
+
 
 
     <item

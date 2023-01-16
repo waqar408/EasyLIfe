@@ -2,12 +2,12 @@ package com.easylife.easylifes.userside.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
@@ -26,22 +26,23 @@ import com.easylife.easylifes.userside.adapter.HomeSliderAdapter
 import com.easylife.easylifes.utils.Utilities
 import com.google.gson.Gson
 import com.tabadol.tabadol.data.network.ApiClient
+import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),HomeSliderAdapter.onPageListner {
 
     private var adpter: HomeSliderAdapter? = null
-    private lateinit var binding : FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var utilities: Utilities
     var profileImage = ""
     var userName = ""
     var userId = ""
+    var positions = ""
     private var firebaseToken = ""
     private lateinit var bannerList: ArrayList<BannersDataModel>
     private lateinit var categoriesList: ArrayList<CategoriesDataModel>
@@ -50,7 +51,11 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+
         binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        /*sliderItems()
+        itemsSliderView()*/
         initViews()
         onClicks()
         getHomeData()
@@ -96,21 +101,18 @@ class HomeFragment : Fragment() {
 
     private fun onClicks() {
         binding.rlNotification.setOnClickListener {
-            startActivity(Intent(requireContext(),NotificationActiivty::class.java))
+            startActivity(Intent(requireContext(), NotificationActiivty::class.java))
         }
         binding.layoutProfileName.setOnClickListener {
-            val intent = Intent(requireContext(),UserProfileActivity::class.java)
-            intent.putExtra("id",userId)
+            val intent = Intent(requireContext(), UserProfileActivity::class.java)
+            intent.putExtra("id", userId)
             startActivity(intent)
         }
     }
 
 
-
-    fun imageSlider(imageList : ArrayList<BannersDataModel>)
-    {
-
-        adpter = HomeSliderAdapter(requireContext(), imageList)
+    fun imageSlider(imageList: ArrayList<BannersDataModel>) {
+        adpter = HomeSliderAdapter(requireContext(), imageList,this@HomeFragment)
         binding.viewPager.currentItem = 0
         binding.viewPager.adapter = adpter
         binding.dotsIndicator.attachTo(binding.viewPager)
@@ -122,9 +124,10 @@ class HomeFragment : Fragment() {
 
             val r : Float = 1- abs(position)
             page.scaleY = 0.75f +r*0.25f
+
         }
 
-        binding.viewPager.setPageTransformer(false,pageTransformer)
+        binding.viewPager.setPageTransformer(false, pageTransformer)
 
 
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -134,13 +137,29 @@ class HomeFragment : Fragment() {
                 positionOffsetPixels: Int
             ) {
 
+                /*if (position == 0) {
+                    // viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                }
+                if (position == 1) {
+
+                }
+                if (position == 2){
+                }*/
+                positions = position.toString()
             }
 
-            override fun onPageSelected(position: Int) {}
-            override fun onPageScrollStateChanged(state: Int) {}
-        })
-    }
+            override fun onPageSelected(position: Int) {
+                positions = position.toString()
 
+            }
+
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+        })
+
+    }
 
 
     private fun getHomeData() {
@@ -171,9 +190,11 @@ class HomeFragment : Fragment() {
                                 categoryData(categoriesList)
 
 
-
                             } else {
-                                utilities.showFailureToast( requireActivity(),signupResponse.message)
+                                utilities.showFailureToast(
+                                    requireActivity(),
+                                    signupResponse.message
+                                )
 
 
                             }
@@ -182,19 +203,26 @@ class HomeFragment : Fragment() {
                     }
                     override fun onFailure(call: Call<HomeResponseModel>, t: Throwable) {
                         binding.dotloader.visibility = View.GONE
-                        utilities.showFailureToast(requireActivity(),t.message!!)
+                        utilities.showFailureToast(requireActivity(), t.message!!)
                     }
                 })
         } else {
             utilities.showFailureToast(requireActivity(), resources.getString(R.string.checkinternet))
+
+
+            utilities.showFailureToast(
+                requireActivity(),
+                resources.getString(R.string.checkinternet)
+            )
+
         }
     }
 
     private fun categoryData(categoriesList : ArrayList<CategoriesDataModel>) {
-        binding.recyclerViewFitness.layoutManager =LinearLayoutManager(requireContext())
-        binding.recyclerViewFitness.adapter = CategoriesAdapter(requireContext(),categoriesList)
-    }
+        binding.recyclerViewFitness.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewFitness.adapter = CategoriesAdapter(requireContext(), categoriesList)
 
+    }
     private fun updateFcm(
         userId: String,
         token: String
@@ -232,6 +260,14 @@ class HomeFragment : Fragment() {
         } else {
             utilities.showNoInternetToast(requireActivity())
         }
+    }
+
+    override fun onPageClick(position: Int) {
+        val viewIntent = Intent(
+            "android.intent.action.VIEW",
+            Uri.parse(bannerList[position].website_url)
+        )
+        startActivity(viewIntent)
     }
 
 }

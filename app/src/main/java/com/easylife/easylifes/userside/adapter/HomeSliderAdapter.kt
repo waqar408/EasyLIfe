@@ -11,7 +11,7 @@ import com.easylife.easylifes.R
 import com.easylife.easylifes.model.home.BannersDataModel
 
 
-class HomeSliderAdapter(private val context: Context, private val list: ArrayList<BannersDataModel>) :
+class HomeSliderAdapter(private val context: Context, private val list: ArrayList<BannersDataModel>,var mListner : onPageListner) :
     PagerAdapter() {
     override fun getCount(): Int {
         return list.size
@@ -29,6 +29,9 @@ class HomeSliderAdapter(private val context: Context, private val list: ArrayLis
         val model = list[position]
         Glide.with(context).asBitmap().load(model.banner_image).into(imageView)
         container.addView(view, 0)
+        view.setOnClickListener {
+            mListner.onPageClick(position)
+        }
         return view
     }
 
@@ -36,4 +39,10 @@ class HomeSliderAdapter(private val context: Context, private val list: ArrayLis
         //remove object from conatiner
         container.removeView(`object` as View)
     }
+
+    interface onPageListner{
+        fun onPageClick(position: Int)
+    }
+
+
 }

@@ -15,7 +15,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.firebase:firebase-auth:21.0.6'
+    implementation 'com.google.firebase:firebase-auth:21.1.0'
     testImplementation 'junit:junit:4.13.2'
     //sdp lib for dimension and text
     implementation 'com.intuit.sdp:sdp-android:1.0.6'

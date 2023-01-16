@@ -132,8 +132,6 @@ class InboxActivity : AppCompatActivity() {
         binding.rvChat.isNestedScrollingEnabled = false*/
         adapter.addData(chatList)
         adapter.notifyDataSetChanged()
-
-
     }
 
     private fun messageSeen(myId: String, otherUserId: String) {
@@ -219,6 +217,7 @@ class InboxActivity : AppCompatActivity() {
         binding.rvChat.adapter = adapter
         binding.rvChat.scrollToPosition(chatList.size-1)
 
+
     }
     private fun setRVLayoutManager() {
         mLayoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
@@ -276,6 +275,7 @@ class InboxActivity : AppCompatActivity() {
                                         adapter.notifyDataSetChanged()
                                     }
                                 }, 2000)
+                                
 
 
                             } else {

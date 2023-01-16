@@ -3,57 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/porcelain"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".userside.fragment.GoalsFragment">
 
-    <RelativeLayout
-        android:id="@+id/layout_backArrow"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:background="@drawable/bg_white_rounded_8dp"
-        android:elevation="@dimen/_15sdp">
-
+    <LinearLayout
+        android:id="@+id/lnNoMeal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="@dimen/_8sdp"
-            android:layout_height="@dimen/_16sdp"
-            android:layout_centerInParent="true"
-            android:contentDescription="@string/text_todo"
-            android:src="@drawable/ic_back_arrow" />
-
-    </RelativeLayout>
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/restaurant"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/haiti"
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/barlow_bold"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="No Meal Found" />
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="Search Meal"
         android:textColor="@color/haiti"
+        android:fontFamily="@font/barlow_medium"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_24sdp"
         android:textSize="@dimen/_14sdp"
         />
-    <RelativeLayout
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_weight="1">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_bell_home" />
-
-    </RelativeLayout>
     <RelativeLayout
+
         android:id="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
-        android:layout_below="@+id/layout_backArrow"
         android:layout_marginHorizontal="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_70sdp"
         android:background="@drawable/bg_white_rounded_20dp"
         android:elevation="@dimen/_10sdp">
 
@@ -65,17 +56,21 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:contentDescription="@string/text_todo"
             android:src="@drawable/ic_search_icn"
-            app:tint="@color/homesearchcolor" />
+            app:tint="@color/searchcoloricon" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/edSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_toEndOf="@id/image_search"
-            android:fontFamily="@font/barlow_medium"
-            android:text="Search here..."
-            android:textColor="@color/homesearchcolor"
+            android:background="@null"
+            android:fontFamily="@font/barlow_regular"
+            android:gravity="center_vertical"
+            android:hint="Search here..."
+            android:textColor="@color/searchcoloricon"
+            android:textCursorDrawable="@drawable/cursor"
             android:textSize="@dimen/_12sdp" />
 
         <RelativeLayout
@@ -96,12 +91,15 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        tools:listitem="@layout/item_mealslist"
+        android:layout_marginTop="@dimen/_12sdp"
+        tools:itemCount="3"
+        android:visibility="gone"
+        android:layout_below="@id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rvGoals"
-        android:layout_below="@+id/layout_search"
-        android:layout_marginTop="@dimen/_16sdp"
-        tools:listitem="@layout/item_goals"/>
+        android:id="@+id/rvMealsList"/>
 
 </RelativeLayout>

@@ -90,7 +90,7 @@ class SelectedWorkoutListAdapter(
             restSeconds = edRestSeconds!!.text.toString()
             restMinute = edRestMinutes!!.text.toString()
             repMinutes = edRepsMinutes!!.text.toString()
-            repsSeconds = edRepsSeconds!!.text.toString()
+            repsSeconds = edRestSeconds.text.toString()
             if (reps == "") {
                 Toast.makeText(context, "Please Enter Reps", Toast.LENGTH_SHORT).show()
             }  else if (restMinute == "") {

@@ -136,8 +136,8 @@ class WorkoutsListActivity : AppCompatActivity(),
 
                     val obj1 = JsonObject()
                     obj1.addProperty("reps", rep.toInt())
-                    obj1.addProperty("reps_minutes", repsMinutes.toInt())
-                    obj1.addProperty("reps_seconds", repsSecond.toInt())
+                    obj1.addProperty("reps_minutes", 0)
+                    obj1.addProperty("reps_seconds",0)
                     obj1.addProperty("rest_minutes", resminutes.toInt())
                     obj1.addProperty("rest_seconds", restSeconds.toInt())
                     array1.add(obj1)

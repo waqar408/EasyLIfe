@@ -116,7 +116,7 @@ class UserWorkoutDetailVideoAdapter(
                 Toast.makeText(context, "Please Enter Reps", Toast.LENGTH_SHORT).show()
             } else if (restMinute == "") {
                 Toast.makeText(context, "Please Enter Rest Minutes", Toast.LENGTH_SHORT).show()
-            } else if (repsSeconds == "") {
+            } else if (restSeconds == "") {
                 Toast.makeText(context, "Please Enter Rest Seconds", Toast.LENGTH_SHORT).show()
             } else {
 
